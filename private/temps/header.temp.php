@@ -7,10 +7,26 @@
     <meta name="author" content="Virtual Medical Missions">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title><?=$config['name']; ?></title>
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <?php foreach($config['stylesheets'] as $style): ?>
+        <link rel="stylesheet" href="<?=$style; ?>">
+    <?php endforeach; ?>
     <link rel="shortcut icon" href="<?=$config['logo']; ?>" type="image/png">
     <link rel="icon" href="<?=$config['logo']; ?>" type="image/png">
+
+    <!-- Advanced style tag builder loader, directly translating styles from a PHP Object to a style tag -->
+
+    <style>
+        <?php foreach($styles as $element => $property): ?>
+            <?=$element . '{'; ?>
+
+            <?php foreach($property as $style): ?>
+                <?=$style . ';' . "\r\n"; ?>
+            <?php endforeach; ?>
+            <?='}' . "\r\n"; ?>
+        <?php endforeach; ?>
+    </style>
 </head>
 
 
