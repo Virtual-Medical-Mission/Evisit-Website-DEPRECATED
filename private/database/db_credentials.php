@@ -1,5 +1,7 @@
 <?php
 
-const DB_USER = "root";
-const DB_PASSWORD = 'telemed123$';
-const DB_NAME = "telemed1";
+const DB_USER = "vmmadmin";
+const DB_PASSWORD = 'Telemed123$';
+const DB_NAME = "evisit";
+
+const DB_SERVER = 'evisitdb.mysql.database.azure.com';

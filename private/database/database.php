@@ -7,7 +7,9 @@ require_once('db_credentials.php');
 //Creates a connection to the database using the constants defined in db_credentials.php
 function db_connect()
 {
-    $connection = mysqli_connect("localhost", DB_USER, DB_PASSWORD, DB_NAME);
+    $con = mysqli_init();
+    mysqli_ssl_set($con, NULL, NULL, "cert/BaltimoreCyberTrustRoot.crt.pem", NULL, NULL);
+    $connection = mysqli_real_connect($con, DB_SERVER, DB_USER, DB_PASSWORD, DB_NAME, 3306, MYSQLI_CLIENT_SSL);
     confirm_db_connect();
     return $connection;
 }

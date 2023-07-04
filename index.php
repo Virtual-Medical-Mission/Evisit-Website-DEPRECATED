@@ -34,7 +34,7 @@ $styles = [
 
 
 require_once 'private/init.php';
-$telemedDB = db_connect();
+
 ?>
 
 <?php  require_once 'private/temps/header.temp.php' ?>
