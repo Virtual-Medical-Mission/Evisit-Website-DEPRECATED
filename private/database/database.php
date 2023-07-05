@@ -8,8 +8,8 @@ require_once('db_credentials.php');
 function db_connect()
 {
     $con = mysqli_init();
-    mysqli_ssl_set($con, NULL, NULL, "cert/BaltimoreCyberTrustRoot.crt.pem", NULL, NULL);
-    $connection = mysqli_real_connect($con, DB_SERVER, DB_USER, DB_PASSWORD, DB_NAME, 3306, MYSQLI_CLIENT_SSL);
+    mysqli_ssl_set($con, NULL, NULL, "../cert/DigiCertGlobalRootG2.crt.pem", NULL, NULL);
+    $connection = mysqli_real_connect($con, DB_SERVER, DB_USER, DB_PASSWORD, DB_NAME, 3306, MYSQLI_CLIENT_SSL, MYSQLI_CLIENT_SSL_DONT_VERIFY_SERVER_CERT);
     confirm_db_connect();
     return $connection;
 }
