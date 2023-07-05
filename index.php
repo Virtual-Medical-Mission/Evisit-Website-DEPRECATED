@@ -113,7 +113,7 @@ if(is_post_request()) {
         <div>
             <label class="form-label mt-2 text-light" for="username">Create Username</label>
             <div class="input-group input-group-lg">
-                <span <?php error_style_logo($errors, 'username'); ?> class="input-group-text" id="inputGroup-sizing-lg"><i class="bi bi-person-circle"></i></span>
+                <span <?php error_style_logo($errors, 'username'); ?> class="input-group-text" id="inputGroup-sizing-lg"><i class="bi bi-person-badge"></i></span>
                 <input <?php error_style_input($errors, 'username'); ?> type="text" class="form-control form-control-lg" id="username" name="username" placeholder="Enter last name">
             </div>
             <?php if(isset($errors['username']) and $errors['present']) { ?>
