@@ -1,3 +1,19 @@
+<?php
+
+require_once 'private/init.php';
+
+if( is_post_request() ) {
+
+}
+
+
+?>
+
+
+
+
+
+
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -17,7 +33,7 @@
       <h1>Welcome</h1>
     </header>
     <div>
-      <form action="" method="post">
+      <form action="index.php" method="post">
         <label for="name">Name</label><br />
         <input type="text" name="name" id="name" />
       </form>
