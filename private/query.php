@@ -4,6 +4,11 @@ require_once 'private/init.php';
 
 function register_user($user_data) {
 
+    $errors = validate_registration($user_data);
+    if($errors['present']) {
+        return $errors;
+    }
+
     global $evisit_db;
     $hashed_password = password_hash($user_data['password'], PASSWORD_BCRYPT);
     $sql = "INSERT INTO users (full_name, gender, DOB, password) VALUES (";
@@ -14,7 +19,7 @@ function register_user($user_data) {
     $sql .= ")";
     $result = mysqli_query($evisit_db, $sql);
     confirm_result_set($result);
-
+    return $errors;
 
 
 

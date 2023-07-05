@@ -28,11 +28,6 @@ function validate_registration($user_data) {
         $errors['present'] = true;
     }
 
-    if($errors['present']) {
-        return $errors;
-    } else {
-        return false;
-    }
-
+    return $errors;
 
 }
