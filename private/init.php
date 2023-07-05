@@ -10,3 +10,5 @@ const PRIVATE_PATH = __DIR__;
 require_once PRIVATE_PATH . '\database\db_credentials.php';
 require_once PRIVATE_PATH . '\database\database.php';
 require_once PRIVATE_PATH . '\server.php';
+
+$evisit_db = db_connect();
