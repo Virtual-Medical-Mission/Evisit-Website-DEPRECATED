@@ -60,7 +60,15 @@ require_once 'private/init.php';
             <label class="form-label mt-2 text-light" for="DOB">Date of Birth</label>
             <div class="input-group input-group-lg">
                 <span class="input-group-text" id="inputGroup-sizing-lg"><i class="bi bi-calendar3"></i></span>
-                <input type="text" class="form-control form-control-lg" id="DOB" name="DOB" placeholder="Enter Date of Birth">
+                <select  class="form-select" id="month">
+                    <option value="month" selected>Month</option>
+                </select>
+                <select  class="form-select" id="day" name="day">
+                    <option value="day" selected>Day</option>
+                </select>
+                <select  class="form-select" id="year" name="year">
+                    <option value="year" selected>Year</option>
+                </select>
             </div>
 
         </div>
