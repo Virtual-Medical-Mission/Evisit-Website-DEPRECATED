@@ -19,17 +19,76 @@ require_once 'private/init.php';
             integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
             crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <title>VMM Healthcare</title>
 </head>
 <body>
-<header>
-    <img class="logo" src="private/assets/img/logo.png" alt="logo" />
-    <h1>Welcome</h1>
-</header>
-<div>
-    <form action="index.php" method="post">
-        <label for="name">Name</label><br />
-        <input type="text" name="name" id="name" />
+<div class="container-fluid" style="background-color: #05445e">
+    <div class="row">
+        <div class="col-md-6 text-center">
+            <img src="/private/assets/img/logo.png" width="300px" height="170px" alt="logo" />
+        </div>
+        <div class="col-md-6">
+            <div class="text-white align-text-bottom fs-1" style="padding-top: 50px">VMM Healthcare</div>
+        </div>
+    </div>
+
+</div>
+<div class="container-fluid mt-5">
+    <form action="index.php" method="POST" class="w-75 ps-5 pe-5 mt-3" style="margin: auto; background-color: #05445e; border-radius: 20px;">
+        <div class="fs-2 mt-5 text-light text-center">Register</div>
+
+        <div>
+            <label class="form-label mt-2 text-light" for="full_name">Full Name</label>
+            <div class="input-group input-group-lg">
+                <span class="input-group-text" id="inputGroup-sizing-lg"><i class="bi bi-person-circle"></i></span>
+                <input type="text" class="form-control form-control-lg" id="full_name" name="full_name" placeholder="Enter full name">
+            </div>
+
+        </div>
+
+        <div>
+            <label class="form-label mt-2 text-light" for="gender">Gender</label>
+            <div class="input-group input-group-lg">
+                <span class="input-group-text" id="inputGroup-sizing-lg"><i class="bi bi-gender-ambiguous"></i></span>
+                <input type="text" class="form-control form-control-lg" id="gender" name="gender" placeholder="Enter Gender">
+            </div>
+
+        </div>
+
+        <div>
+            <label class="form-label mt-2 text-light" for="DOB">Date of Birth</label>
+            <div class="input-group input-group-lg">
+                <span class="input-group-text" id="inputGroup-sizing-lg"><i class="bi bi-calendar3"></i></span>
+                <input type="text" class="form-control form-control-lg" id="DOB" name="DOB" placeholder="Enter Date of Birth">
+            </div>
+
+        </div>
+
+        <div>
+            <label class="form-label mt-2 text-light" for="password">Create Password</label>
+            <div class="input-group input-group-lg">
+                <span class="input-group-text" id="inputGroup-sizing-lg"><i class="bi bi-asterisk"></i></span>
+                <input type="text" class="form-control form-control-lg" id="password" name="password" placeholder="Create a password">
+            </div>
+
+        </div>
+
+        <div>
+            <label class="form-label mt-2 text-light" for="confirm_password">Confirm Password</label>
+            <div class="input-group input-group-lg">
+                <span class="input-group-text" id="inputGroup-sizing-lg"><i class="bi bi-asterisk"></i></span>
+                <input type="text" class="form-control form-control-lg" id="confirm_password" name="confirm_password" placeholder="Confirm password">
+            </div>
+
+        </div>
+
+        <button type="submit" class="btn btn-lg mt-3 mb-3" style="background-color: antiquewhite">Register</button>
+
+        <div class="text-center fs-4 pb-3">
+            <a href="login.php" class="text-light">Already have an account? Login</a>
+        </div>
+
     </form>
 </div>
 </body>
