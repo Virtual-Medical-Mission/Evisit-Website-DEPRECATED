@@ -16,6 +16,9 @@ $errors = [
 
 if(is_post_request()) {
     $errors = register_user($_POST);
+    if(!$errors['present']) {
+        $success = true;
+    }
 }
 
 
@@ -24,6 +27,30 @@ if(is_post_request()) {
 
 
 
+
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="/private/assets/css/style.css" />
+        <link
+                href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+                rel="stylesheet"
+                integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+                crossorigin="anonymous"
+        />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+        <title>Register</title>
+    </head>
+
+    <body>
+
+
+
+    </body>
+
+</html>
 
 
 
@@ -40,7 +67,7 @@ if(is_post_request()) {
             crossorigin="anonymous"
     />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-    <title>VMM Healthcare</title>
+    <title>Register</title>
 </head>
 <body>
 <div class="container-fluid" style="background-color: #05445e">
@@ -197,5 +224,10 @@ if(is_post_request()) {
 
     </form>
 </div>
+
+<?php require_once 'private/temps/footer.temp.php'?>
+
+
 </body>
 </html>
+
