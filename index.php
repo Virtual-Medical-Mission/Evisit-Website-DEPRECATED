@@ -44,10 +44,19 @@ if(is_post_request()) {
         <div class="fs-2 mt-5 text-light text-center">Register</div>
 
         <div>
-            <label class="form-label mt-2 text-light" for="full_name">Full Name</label>
+            <label class="form-label mt-2 text-light" for="first_name">First Name</label>
             <div class="input-group input-group-lg">
                 <span class="input-group-text" id="inputGroup-sizing-lg"><i class="bi bi-person-circle"></i></span>
-                <input type="text" class="form-control form-control-lg" id="full_name" name="full_name" placeholder="Enter full name">
+                <input type="text" class="form-control form-control-lg" id="first_name" name="first_name" placeholder="Enter first name">
+            </div>
+
+        </div>
+
+        <div>
+            <label class="form-label mt-2 text-light" for="last_name">Last Name</label>
+            <div class="input-group input-group-lg">
+                <span class="input-group-text" id="inputGroup-sizing-lg"><i class="bi bi-person-circle"></i></span>
+                <input type="text" class="form-control form-control-lg" id="last_name" name="last_name" placeholder="Enter last name">
             </div>
 
         </div>
