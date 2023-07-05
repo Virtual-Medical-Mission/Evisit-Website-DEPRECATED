@@ -57,10 +57,10 @@ if(is_post_request()) {
             <div class="input-group input-group-lg">
                 <span class="input-group-text" id="inputGroup-sizing-lg"><i class="bi bi-person-circle"></i></span>
                 <input type="text" class="form-control form-control-lg" id="first_name" name="first_name" placeholder="Enter first name">
-                <?php if(isset($errors['first_name']) and $errors['present']) { ?>
-                    <div class="p text-danger fs-5"><?php echo $errors['first_name'] ?></div>
-                <?php } ?>
             </div>
+            <?php if(isset($errors['first_name']) and $errors['present']) { ?>
+                <div class="p text-danger fs-5"><?php echo $errors['first_name'] ?></div>
+            <?php } ?>
 
         </div>
 
@@ -69,10 +69,10 @@ if(is_post_request()) {
             <div class="input-group input-group-lg">
                 <span class="input-group-text" id="inputGroup-sizing-lg"><i class="bi bi-person-circle"></i></span>
                 <input type="text" class="form-control form-control-lg" id="last_name" name="last_name" placeholder="Enter last name">
-                <?php if(isset($errors['last_name']) and $errors['present']) { ?>
-                    <div class="p text-danger fs-5"><?php echo $errors['last_name'] ?></div>
-                <?php } ?>
             </div>
+            <?php if(isset($errors['last_name']) and $errors['present']) { ?>
+                <div class="p text-danger fs-5"><?php echo $errors['last_name'] ?></div>
+            <?php } ?>
 
         </div>
 
@@ -87,6 +87,9 @@ if(is_post_request()) {
                     <option value="other">Other</option>
                 </select>
             </div>
+            <?php if(isset($errors['gender']) and $errors['present']) { ?>
+                <div class="p text-danger fs-5"><?php echo $errors['gender'] ?></div>
+            <?php } ?>
 
         </div>
 
@@ -149,10 +152,10 @@ if(is_post_request()) {
                         <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
                     <?php } ?>
                 </select>
-                <?php if(isset($errors['DOB']) and $errors['present']) { ?>
-                    <div class="p text-danger fs-5"><?php echo $errors['DOB'] ?></div>
-                <?php } ?>
             </div>
+            <?php if(isset($errors['DOB']) and $errors['present']) { ?>
+                <div class="p text-danger fs-5"><?php echo $errors['DOB'] ?></div>
+            <?php } ?>
 
         </div>
 
@@ -161,10 +164,10 @@ if(is_post_request()) {
             <div class="input-group input-group-lg">
                 <span class="input-group-text" id="inputGroup-sizing-lg"><i class="bi bi-asterisk"></i></span>
                 <input type="password" class="form-control form-control-lg" id="password" name="password" placeholder="Create a password">
-                <?php if(isset($errors['password']) and $errors['present']) { ?>
-                    <div class="p text-danger fs-5"><?php echo $errors['password'] ?></div>
-                <?php } ?>
             </div>
+            <?php if(isset($errors['password']) and $errors['present']) { ?>
+                <div class="p text-danger fs-5"><?php echo $errors['password'] ?></div>
+            <?php } ?>
 
         </div>
 
@@ -173,10 +176,10 @@ if(is_post_request()) {
             <div class="input-group input-group-lg">
                 <span class="input-group-text" id="inputGroup-sizing-lg"><i class="bi bi-asterisk"></i></span>
                 <input type="password" class="form-control form-control-lg" id="confirm_password" name="confirm_password" placeholder="Confirm password">
-                <?php if(isset($errors['confirm_password']) and $errors['present']) { ?>
-                    <div class="p text-danger fs-5"><?php echo $errors['confirm_password'] ?></div>
-                <?php } ?>
             </div>
+            <?php if(isset($errors['confirm_password']) and $errors['present']) { ?>
+                <div class="p text-danger fs-5"><?php echo $errors['confirm_password'] ?></div>
+            <?php } ?>
 
         </div>
 

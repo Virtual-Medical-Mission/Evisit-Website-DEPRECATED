@@ -37,7 +37,15 @@ function validate_registration($user_data) {
         $errors['present'] = true;
     }
 
-    if(intval($user_data['day']) > $days_per_month[$user_data['month']]) {
+    if($user_data['gender'] == 'gender') {
+        $errors['gender'] = 'Please choose a gender.';
+        $errors['present'] = true;
+    }
+
+    if($user_data['year'] == 'year' || $user_data['month'] == 'month' || $user_data['day'] == 'day') {
+        $errors['DOB'] = 'Please choose a date of birth.';
+        $errors['present'] = true;
+    } elseif(intval($user_data['day']) > $days_per_month[$user_data['month']]) {
         $errors['DOB'] = 'Invalid date';
         $errors['present'] = true;
     }
