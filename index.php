@@ -51,7 +51,12 @@ require_once 'private/init.php';
             <label class="form-label mt-2 text-light" for="gender">Gender</label>
             <div class="input-group input-group-lg">
                 <span class="input-group-text" id="inputGroup-sizing-lg"><i class="bi bi-gender-ambiguous"></i></span>
-                <input type="text" class="form-control form-control-lg" id="gender" name="gender" placeholder="Enter Gender">
+                <select class="form-select" id="gender" name="gender">
+                    <option value="gender" selected>Choose your gender:</option>
+                    <option value="male">♂️Male</option>
+                    <option value="female">♀️Female</option>
+                    <option value="other">Other</option>
+                </select>
             </div>
 
         </div>
@@ -60,7 +65,7 @@ require_once 'private/init.php';
             <label class="form-label mt-2 text-light" for="DOB">Date of Birth</label>
             <div class="input-group input-group-lg">
                 <span class="input-group-text" id="inputGroup-sizing-lg"><i class="bi bi-calendar3"></i></span>
-                <select  class="form-select" id="month">
+                <select  class="form-select" id="month" name="month">
                     <option value="month" selected>Month</option>
                 </select>
                 <select  class="form-select" id="day" name="day">
