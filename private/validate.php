@@ -5,10 +5,27 @@ function validate_registration($user_data) {
         'first_name' => '',
         'last_name' => '',
         'gender' => '',
+        'DOB' => '',
         'password' => '',
         'confirm_password' => '',
         'present' => false
     ];
+
+    $days_per_month =
+        [
+        'january' => 31,
+        'february' => 28,
+        'march' => 31,
+        'april' => 30,
+        'may' => 31,
+        'june' => 30,
+        'july' => 31,
+        'august' => 31,
+        'september' => 30,
+        'october' => 31,
+        'november' => 30,
+        'december' => 31
+        ];
 
     if(!preg_match('/^[A-Z]{1}[a-z]{2}/', $user_data['first_name'])) {
         $errors['first_name'] = 'First name must start with a capital letter and be at least 3 characters long';
@@ -17,6 +34,11 @@ function validate_registration($user_data) {
 
     if(!preg_match('/^[A-Z]{1}[a-z]{1}/', $user_data['last_name'])) {
         $errors['last_name'] = "Last name must start with a capital letter, must have no numbers or special characters, and must be at least 2 characters long.";
+        $errors['present'] = true;
+    }
+
+    if(intval($user_data['day']) > $days_per_month[$user_data['month']]) {
+        $errors['DOB'] = 'Invalid date';
         $errors['present'] = true;
     }
 

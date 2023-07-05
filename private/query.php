@@ -3,18 +3,19 @@
 require_once 'private/init.php';
 
 function register_user($user_data) {
-
+    global $evisit_db;
     $errors = validate_registration($user_data);
     if($errors['present']) {
         return $errors;
     }
 
-    global $evisit_db;
     $hashed_password = password_hash($user_data['password'], PASSWORD_BCRYPT);
-    $sql = "INSERT INTO users (full_name, gender, DOB, password) VALUES (";
-    $sql .= "'" . db_escape($evisit_db, $user_data['full_name']) . "',";
+    $DOB = $user_data['year'] . '-' . $user_data['month'] . '-' . $user_data['day'];
+    $sql = "INSERT INTO users (first_name, last_name, gender, DOB, password) VALUES (";
+    $sql .= "'" . db_escape($evisit_db, $user_data['first_name']) . "',";
+    $sql .= "'" . db_escape($evisit_db, $user_data['last_name']) . "',";
     $sql .= "'" . db_escape($evisit_db, $user_data['gender']) . "',";
-    $sql .= "'" . db_escape($evisit_db, $user_data['DOB']) . "',";
+    $sql .= "'" . db_escape($evisit_db, $DOB) . "',";
     $sql .= "'" . db_escape($evisit_db, $hashed_password) . "'";
     $sql .= ")";
     $result = mysqli_query($evisit_db, $sql);

@@ -5,8 +5,8 @@ function patient_set($user_data) {
     $_SESSION['first_name'] = $user_data['first_name'];
     $_SESSION['last_name'] = $user_data['last_name'];
     $_SESSION['gender'] = $user_data['gender'];
-    $_SESSION['DOB'] = $user_data['DOB'];
-    $_SESSION['role'] = $user_data['patient'];
+    $_SESSION['DOB'] = $user_data['year'] . '-' . $user_data['month'] . '-' . $user_data['day'];
+    $_SESSION['role'] = 'patient';
 }
 
 function patient_destroy($user_data) {

@@ -7,11 +7,11 @@ require_once('db_credentials.php');
 //Creates a connection to the database using the constants defined in db_credentials.php
 function db_connect()
 {
-    $con = mysqli_init();
-    mysqli_ssl_set($con, NULL, NULL, "../cert/DigiCertGlobalRootG2.crt.pem", NULL, NULL);
-    $connection = mysqli_real_connect($con, DB_SERVER, DB_USER, DB_PASSWORD, DB_NAME, 3306, MYSQLI_CLIENT_SSL, MYSQLI_CLIENT_SSL_DONT_VERIFY_SERVER_CERT);
+    $conn = mysqli_init();
+    mysqli_ssl_set($conn, NULL, NULL, "../cert/DigiCertGlobalRootG2.crt.pem", NULL, NULL);
+    $connection = mysqli_real_connect($conn, DB_SERVER, DB_USER, DB_PASSWORD, DB_NAME, 3306, MYSQLI_CLIENT_SSL, MYSQLI_CLIENT_SSL_DONT_VERIFY_SERVER_CERT);
     confirm_db_connect();
-    return $connection;
+    return $conn;
 }
 
 
