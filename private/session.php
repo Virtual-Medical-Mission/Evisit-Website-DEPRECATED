@@ -1,5 +1,6 @@
 <?php
 
+//stores patient user data in the session storage
 function patient_set($user_data) {
     session_regenerate_id();
     $_SESSION['first_name'] = $user_data['first_name'];
@@ -10,6 +11,7 @@ function patient_set($user_data) {
     $_SESSION['role'] = 'patient';
 }
 
+//deletes patient user data from the session storage
 function patient_destroy($user_data) {
     unset($_SESSION['first_name']);
     unset($_SESSION['last_name']);

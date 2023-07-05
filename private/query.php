@@ -2,6 +2,7 @@
 
 require_once 'private/init.php';
 
+//processes registration form and registers a user in the database
 function register_user($user_data) {
     global $evisit_db;
     $errors = validate_registration($user_data);

@@ -1,5 +1,6 @@
 <?php
 
+//checks if a $username exists in the users table of the database
 function user_exists($username) {
     global $evisit_db;
     $sql = "SELECT * FROM users WHERE username='";
@@ -13,6 +14,7 @@ function user_exists($username) {
 
 }
 
+//processes registration form data and returns an array of errors
 function validate_registration($user_data) {
     $errors = [
         'first_name' => '',
