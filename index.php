@@ -77,7 +77,7 @@ require_once 'private/init.php';
             <label class="form-label mt-2 text-light" for="password">Create Password</label>
             <div class="input-group input-group-lg">
                 <span class="input-group-text" id="inputGroup-sizing-lg"><i class="bi bi-asterisk"></i></span>
-                <input type="text" class="form-control form-control-lg" id="password" name="password" placeholder="Create a password">
+                <input type="password" class="form-control form-control-lg" id="password" name="password" placeholder="Create a password">
             </div>
 
         </div>
@@ -86,7 +86,7 @@ require_once 'private/init.php';
             <label class="form-label mt-2 text-light" for="confirm_password">Confirm Password</label>
             <div class="input-group input-group-lg">
                 <span class="input-group-text" id="inputGroup-sizing-lg"><i class="bi bi-asterisk"></i></span>
-                <input type="text" class="form-control form-control-lg" id="confirm_password" name="confirm_password" placeholder="Confirm password">
+                <input type="password" class="form-control form-control-lg" id="confirm_password" name="confirm_password" placeholder="Confirm password">
             </div>
 
         </div>
