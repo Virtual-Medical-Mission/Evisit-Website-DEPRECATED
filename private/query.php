@@ -19,6 +19,9 @@ function register_user($user_data) {
     $sql .= ")";
     $result = mysqli_query($evisit_db, $sql);
     confirm_result_set($result);
+
+    patient_set($user_data);
+
     return $errors;
 
 

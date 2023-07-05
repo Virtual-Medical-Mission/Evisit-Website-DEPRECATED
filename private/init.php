@@ -9,5 +9,7 @@ require_once 'database/db_credentials.php';
 require_once 'database/database.php';
 require_once 'query.php';
 require_once 'server.php';
+require_once 'session.php';
+require_once 'validate.php';
 
 $evisit_db = db_connect();

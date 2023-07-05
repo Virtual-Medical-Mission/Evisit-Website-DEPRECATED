@@ -3,7 +3,7 @@
 require_once 'private/init.php';
 
 if(is_post_request()) {
-    reg
+    //register_user($_POST);
 }
 
 ?>
