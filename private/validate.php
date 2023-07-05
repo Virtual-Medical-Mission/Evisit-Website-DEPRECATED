@@ -1,9 +1,23 @@
 <?php
 
+function user_exists($username) {
+    global $evisit_db;
+    $sql = "SELECT * FROM users WHERE username='";
+    $sql.= $username . "'";
+    $result = mysqli_query($evisit_db, $sql);
+    confirm_result_set($result);
+    $user_count = mysqli_num_rows($result);
+    mysqli_free_result($result);
+
+    return !($user_count === 0);
+
+}
+
 function validate_registration($user_data) {
     $errors = [
         'first_name' => '',
         'last_name' => '',
+        'username' => '',
         'gender' => '',
         'DOB' => '',
         'password' => '',
@@ -34,6 +48,11 @@ function validate_registration($user_data) {
 
     if(!preg_match('/^[A-Z]{1}[a-z]{1}/', $user_data['last_name'])) {
         $errors['last_name'] = "Last name must start with a capital letter, must have no numbers or special characters, and must be at least 2 characters long.";
+        $errors['present'] = true;
+    }
+
+    if(user_exists($user_data['username'])) {
+        $errors['username'] = 'Username already exists, choose another username.';
         $errors['present'] = true;
     }
 

@@ -11,9 +11,10 @@ function register_user($user_data) {
 
     $hashed_password = password_hash($user_data['password'], PASSWORD_BCRYPT);
     $DOB = $user_data['year'] . '-' . $user_data['month'] . '-' . $user_data['day'];
-    $sql = "INSERT INTO users (first_name, last_name, gender, DOB, password) VALUES (";
+    $sql = "INSERT INTO users (first_name, last_name, username, gender, DOB, password) VALUES (";
     $sql .= "'" . db_escape($evisit_db, $user_data['first_name']) . "',";
     $sql .= "'" . db_escape($evisit_db, $user_data['last_name']) . "',";
+    $sql .= "'" . db_escape($evisit_db, $user_data['username']) . "',";
     $sql .= "'" . db_escape($evisit_db, $user_data['gender']) . "',";
     $sql .= "'" . db_escape($evisit_db, $DOB) . "',";
     $sql .= "'" . db_escape($evisit_db, $hashed_password) . "'";

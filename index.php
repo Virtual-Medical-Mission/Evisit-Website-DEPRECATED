@@ -5,6 +5,7 @@ $year = date("Y");
 $errors = [
     'first_name' => '',
     'last_name' => '',
+    'username' => '',
     'gender' => '',
     'DOB' => '',
     'password' => '',
@@ -105,6 +106,18 @@ if(is_post_request()) {
             </div>
             <?php if(isset($errors['last_name']) and $errors['present']) { ?>
                 <div class="p text-danger fs-5"><?php echo $errors['last_name'] ?></div>
+            <?php } ?>
+
+        </div>
+
+        <div>
+            <label class="form-label mt-2 text-light" for="username">Create Username</label>
+            <div class="input-group input-group-lg">
+                <span <?php error_style_logo($errors, 'username'); ?> class="input-group-text" id="inputGroup-sizing-lg"><i class="bi bi-person-circle"></i></span>
+                <input <?php error_style_input($errors, 'username'); ?> type="text" class="form-control form-control-lg" id="username" name="username" placeholder="Enter last name">
+            </div>
+            <?php if(isset($errors['username']) and $errors['present']) { ?>
+                <div class="p text-danger fs-5"><?php echo $errors['username'] ?></div>
             <?php } ?>
 
         </div>
