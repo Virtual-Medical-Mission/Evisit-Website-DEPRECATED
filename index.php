@@ -84,10 +84,9 @@ if (is_post_request()) {
 
     </div>
     <div class="container-fluid mt-5">
-        <form action="index.php" method="POST" class="w-75 ps-5 pe-5 mt-3"
+        <form action="index.php" method="POST" class="ps-5 pe-5 mt-3"
             style="margin: auto; background-color: #05445e; border-radius: 20px;">
             <div class="fs-2 mt-5 text-light text-center">Register</div>
-
             <div>
                 <label class="form-label mt-2 text-light" for="first_name">First Name</label>
                 <div class="input-group input-group-lg">
@@ -163,8 +162,7 @@ if (is_post_request()) {
             <div>
                 <label class="form-label mt-2 text-light" for="DOB">Date of Birth</label>
                 <div class="input-group input-group-lg">
-                    <span <?php error_style_logo($errors, 'DOB'); ?> class="input-group-text"
-                        id="inputGroup-sizing-lg"><i class="bi bi-calendar3"></i></span>
+                    <span <?php error_style_logo($errors, 'DOB'); ?> class="input-group-text" id="inputGroup-sizing-lg"><i class="bi bi-calendar3"></i></span>
                     <select <?php error_style_input($errors, 'DOB'); ?> class="form-select" id="month" name="month">
                         <option value="month" selected>Month</option>
                         <option value="january">January</option>
@@ -262,8 +260,9 @@ if (is_post_request()) {
                 <?php } ?>
 
             </div>
-
-            <button type="submit" class="btn btn-lg mt-3 mb-3" style="background-color: antiquewhite">Register</button>
+            <div class="text-center">
+                <button type="submit" class="btn btn-lg mt-3 mb-3" style="background-color: antiquewhite;">Register</button>
+            </div>
 
             <div class="text-center fs-4 pb-3">
                 <a href="login.php" class="text-light">Already have an account? Login</a>
