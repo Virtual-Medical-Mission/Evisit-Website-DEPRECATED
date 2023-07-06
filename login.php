@@ -72,7 +72,7 @@ if(is_post_request()) {
 
 </div>
 <div class="container-fluid mt-5">
-    <form action="login.php" method="POST" class="w-75 ps-5 pe-5 mt-3" style="margin: auto; background-color: #05445e; border-radius: 20px;">
+    <form action="login.php" method="POST" class="ps-5 pe-5 mt-3" style="margin: auto; background-color: #05445e; border-radius: 20px;">
         <div class="fs-2 mt-5 text-light text-center">Login</div>
 
         <div>
@@ -97,7 +97,10 @@ if(is_post_request()) {
         <?php if($error) { ?>
             <div class="p fs-5 text-danger">Invalid Login</div>
         <?php } ?>
-        <button type="submit" class="btn btn-lg mt-3 mb-3" style="background-color: antiquewhite">Login</button>
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-lg mt-3 mb-3" style="background-color: antiquewhite">Login</button>
+        </div>
 
         <div class="text-center fs-4 pb-3">
             <a href="index.php" class="text-light">Don't have an account? Register</a>
