@@ -23,10 +23,33 @@ function register_user($user_data) {
     $result = mysqli_query($evisit_db, $sql);
     confirm_result_set($result);
 
-    patient_set($user_data);
+    patient_set($user_data, 'register');
 
     return $errors;
 
+
+
+}
+
+function login_user($user_login) {
+
+    global $evisit_db;
+
+    $sql = "SELECT * FROM users WHERE username='";
+    $sql .= db_escape($evisit_db, $user_login['username']) . "'";
+    $result = mysqli_query($evisit_db, $sql);
+    confirm_result_set($result);
+    $fetched_data = mysqli_fetch_assoc($result);
+    mysqli_free_result($result);
+
+    if($fetched_data) {
+        if(password_verify($user_login['password'], $fetched_data['password'])) {
+            patient_set($fetched_data, 'login');
+            return true;
+        }
+    }
+
+    return false;
 
 
 }
