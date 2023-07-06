@@ -60,17 +60,7 @@ if(is_post_request()) {
     <title>Register</title>
 </head>
 <body>
-<div class="container-fluid" style="background-color: #05445e">
-    <div class="row">
-        <div class="col-md-6 text-center">
-            <img src="/private/assets/img/logo.png" width="300px" height="170px" alt="logo" />
-        </div>
-        <div class="col-md-6">
-            <div class="text-white align-text-bottom fs-1" style="padding-top: 50px">VMM Healthcare</div>
-        </div>
-    </div>
-
-</div>
+<?php require_once 'private/temps/vmmbanner.temp.php'; ?>
 <div class="container-fluid mt-5">
     <form action="login.php" method="POST" class="ps-5 pe-5 mt-3" style="margin: auto; background-color: #05445e; border-radius: 20px;">
         <div class="fs-2 mt-5 text-light text-center">Login</div>
