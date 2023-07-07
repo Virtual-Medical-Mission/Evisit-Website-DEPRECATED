@@ -11,6 +11,11 @@
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
         if(!isset($_POST['back'])) {
             $errors = loadValidation($hpi_page, $_POST);
+            if(!$errors['present']) {
+                $_SESSION['hpi']['page']+=1;
+                $hpi_data = $_SESSION['hpi'];
+                $hpi_page = $hpi_data['page'];
+            }
         }
     }
 
