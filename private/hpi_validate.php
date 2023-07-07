@@ -124,7 +124,7 @@ function v_page4($HPI_data) {
     ];
 
     if($HPI_data['physical_activities'] == '') {
-        $errors['test3'] = 'Type N/A if none';
+        $errors['physical_activities'] = 'Type N/A if none';
         $errors['present'] = true;
     }
 
