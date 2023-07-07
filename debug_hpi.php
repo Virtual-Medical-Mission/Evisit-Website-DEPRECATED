@@ -14,7 +14,7 @@
             if(!$errors['present']) {
                 $_SESSION['hpi']['page']+=1;
                 $hpi_data = $_SESSION['hpi'];
-                $hpi_page = $hpi_data['page'];
+                $hpi_page = (int)$hpi_data['page'];
             }
         }
     }
