@@ -10,20 +10,8 @@ $end_page = $hpi_data['page_end'];
 if(is_post_request()) {
     var_dump($_POST);
     if(!isset($_POST['back'])) {
-        $errors = loadValidation($hpi_page, $_POST);
-        if(!$errors['present']) {
-            $_SESSION['hpi']['page']++;
-            $hpi_data = $_SESSION['hpi'];
-            $hpi_page = $hpi_data['page'];
-
-
-        }
-    } elseif(isset($_POST['back'])) {
-        $_SESSION['hpi']['page']--;
-        $hpi_data = $_SESSION['hpi'];
-        $hpi_page = $hpi_data['page'];
+        echo 'next/submit';
     }
-
 }
 
 var_dump($hpi_data);
