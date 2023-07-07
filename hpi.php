@@ -57,7 +57,7 @@
                 <?php loadPage($hpi_page, $hpi_data); ?>
                 <?php if($hpi_page == 1){ ?>
                     <div class="text-center mt-5">
-                        <input class="btn" style="background-color: mediumseagreen" type="submit">
+                        <input class="btn" style="background-color: mediumseagreen" type="submit" name="next" value="next">
                     </div>
                 <?php } elseif($hpi_page > 1 and $hpi_page < $end_page){ ?>
                     <div class="text-center mt-5">

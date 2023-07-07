@@ -30,6 +30,11 @@
             <h2 class="text-center">Page <?=$hpi_page?></h2>
             <form class="bg-light border rounded border-secondary shadow-lg" action="debug_hpi.php" method="post">
                 <?php loadPage($hpi_page, $hpi_data); ?>
+                <?php if($hpi_page == 1) { ?>
+                    <div class="text-center mt-5">
+                        <input class="btn" style="background-color: mediumseagreen" type="submit" name="next" value="next">
+                    </div>
+                <?php } ?>
             </form>
         </section>
 
