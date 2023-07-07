@@ -7,7 +7,7 @@ $hpi_data = $_SESSION['hpi'];
 $hpi_page = $hpi_data['page'];
 $end_page = $hpi_data['page_end'];
 
-if($_SERVER['REQUEST_METHOD'] == 'POST') {
+if(is_post_request()) {
     var_dump($_POST);
 }
 
@@ -33,7 +33,7 @@ var_dump($hpi_data);
 <?php vmm_banner('HPI Form'); ?>
 <section class="shadow contact-clean" style="background: antiquewhite">
     <h2 class="text-center">Page <?=$hpi_page?></h2>
-    <form class="bg-light border rounded border-secondary shadow-lg" action="hpi.php" method="post" style="background: rgb(248,248,249);">
+    <form class="bg-light border rounded border-secondary shadow-lg" action="hpi_debug.php" method="post" style="background: rgb(248,248,249);">
         <?php loadPage($hpi_page, $hpi_data); ?>
         <?php if($hpi_page == 1){ ?>
             <div class="text-center mt-5">
