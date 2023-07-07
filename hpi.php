@@ -5,9 +5,11 @@
     require_once 'private/hpi_validate.php';
 
     require_login('login.php');
+
     $hpi_data = $_SESSION['hpi'];
     $hpi_page = $hpi_data['page'];
     $end_page = 3;
+
     if(is_post_request()) {
         var_dump($_POST);
         if(!isset($_POST['back'])) {
@@ -16,6 +18,11 @@
                 $_SESSION['hpi']['page']++;
                 $hpi_data = $_SESSION['hpi'];
                 $hpi_page = $hpi_data['page'];
+
+                if(isset($_POST['submit'])) {
+                    //code for uploading HPI data to the database
+                }
+
             }
         } elseif(isset($_POST['back'])) {
             $_SESSION['hpi']['page']--;
