@@ -37,6 +37,7 @@ function hpi_init() {
     if(!isset($_SESSION['hpi'])) {
         $_SESSION['hpi'] = [
             'page' => 1,
+            'page_end' => 3,
             'tribe' => '',
             'test' => '',
             'test2' => ''

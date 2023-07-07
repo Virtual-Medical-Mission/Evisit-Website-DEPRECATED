@@ -12,5 +12,7 @@ require_once 'server.php';
 require_once 'session.php';
 require_once 'validate.php';
 require_once 'util.php';
+require_once 'hpi_questions.php';
+require_once 'hpi_validate.php';
 
 $evisit_db = db_connect();
