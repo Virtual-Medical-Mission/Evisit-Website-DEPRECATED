@@ -37,10 +37,26 @@ function hpi_init() {
     if(!isset($_SESSION['hpi'])) {
         $_SESSION['hpi'] = [
             'page' => 1,
-            'page_end' => 3,
+            'page_end' => 4,
+            'language' => 'english',
             'tribe' => '',
-            'test' => '',
-            'test2' => ''
+            'location' => '',
+            'start_date' => date('Y-m-d'),
+            'medical_conditions' => '',
+            'medications' => '',
+            'surgeries' => '',
+            'allergies' => '',
+            'hospitalized' => 'no',
+            'clean_water' => '',
+            'transportation' => '',
+            'immunizations' => '',
+            'dietary_restrictions' => '',
+            'smoke_rate' => '',
+            'alcohol_rate' => '',
+            'drug_rate' => '',
+            'physical_activities' => '',
+            'family_history' => '',
+
         ];
     }
 }

@@ -34,3 +34,9 @@ function crint($check, $condition, $output) {
         return $output;
     }
 }
+
+function hpi_error($errors, $field) {
+    if($errors[$field] != '') {
+        return '<div class="p text-danger">'.$errors[$field].'</div>';
+    }
+}

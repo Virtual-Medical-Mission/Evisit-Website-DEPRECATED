@@ -2,18 +2,35 @@
 
 function v_pageStart($HPI_data) {
     $errors = [
+        'language' => '',
         'tribe' => '',
+        'location' => '',
+        'start_date' => '',
         'present' => false
     ];
 
-    if($HPI_data['tribe'] == '') {
-        $errors['tribe'] = 'Please select an option';
+    if($HPI_data['language'] == '') {
+        $errors['language'] = 'Please select a language';
+        $errors['present'] = true;
+    }
+
+    if($HPI_data['location'] == '') {
+        $errors['location'] = 'Please select an option';
+        $errors['present'] = true;
+    }
+
+    if($HPI_data['start_date'] == '') {
+        $errors['start_date'] = 'Please select an option';
         $errors['present'] = true;
     }
 
     if(!$errors['present']) {
+        $_SESSION['hpi']['language'] = $HPI_data['language'];
         $_SESSION['hpi']['tribe'] = $HPI_data['tribe'];
+        $_SESSION['hpi']['location'] = $HPI_data['location'];
+        $_SESSION['hpi']['start_date'] = $HPI_data['start_date'];
     }
+
 
     return $errors;
 
@@ -21,17 +38,45 @@ function v_pageStart($HPI_data) {
 
 function v_page2($HPI_data) {
     $errors = [
-        'test' => '',
+        'medical_conditions' => '',
+        'medications' => '',
+        'surgeries' => '',
+        'allergies' => '',
+        'hospitalized' => '',
         'present' => false
     ];
 
-    if($HPI_data['test'] == '') {
-        $errors['test'] = 'Please select an option';
+    if($HPI_data['medical_conditions'] == '') {
+        $errors['medical_conditions'] = 'Write N/A if none';
+        $errors['present'] = true;
+    }
+
+    if($HPI_data['medications'] == '') {
+        $errors['medications'] = 'Write N/A if none';
+        $errors['present'] = true;
+    }
+
+    if($HPI_data['surgeries'] == '') {
+        $errors['surgeries'] = 'Write N/A if none';
+        $errors['present'] = true;
+    }
+
+    if($HPI_data['allergies'] == '') {
+        $errors['allergies'] = 'Write N/A if none';
+        $errors['present'] = true;
+    }
+
+    if($HPI_data['hospitalized'] == '') {
+        $errors['hospitalized'] = 'Please select an option';
         $errors['present'] = true;
     }
 
     if(!$errors['present']) {
-        $_SESSION['hpi']['test'] = $HPI_data['test'];
+        $_SESSION['hpi']['medical_conditions'] = $HPI_data['medical_conditions'];
+        $_SESSION['hpi']['medications'] = $HPI_data['medications'];
+        $_SESSION['hpi']['surgeries'] = $HPI_data['surgeries'];
+        $_SESSION['hpi']['allergies'] = $HPI_data['allergies'];
+        $_SESSION['hpi']['hospitalized'] = $HPI_data['hospitalized'];
     }
 
     return $errors;
@@ -40,17 +85,60 @@ function v_page2($HPI_data) {
 
 function v_page3($HPI_data) {
     $errors = [
-        'test2' => '',
+        'clean_water' => '',
+        'transportation' => '',
+        'immunizations' => '',
+        'dietary_restrictions' => '',
         'present' => false
     ];
 
-    if($HPI_data['test2'] == '') {
-        $errors['test2'] = 'Please select an option';
+    if($HPI_data['transportation'] == '') {
+        $errors['transportation'] = 'Please select an option';
+        $errors['present'] = true;
+    }
+
+    if($HPI_data['dietary_restrictions'] == '') {
+        $errors['dietary_restrictions'] = 'Type N/A if none';
         $errors['present'] = true;
     }
 
     if(!$errors['present']) {
-        $_SESSION['hpi']['test2'] = $HPI_data['test2'];
+        $_SESSION['hpi']['clean_water'] = $HPI_data['clean_water'];
+        $_SESSION['hpi']['transportation'] = $HPI_data['transportation'];
+        $_SESSION['hpi']['immunizations'] = $HPI_data['immunizations'];
+        $_SESSION['hpi']['dietary_restrictions'] = $HPI_data['dietary_restrictions'];
+    }
+
+    return $errors;
+
+}
+
+function v_page4($HPI_data) {
+    $errors = [
+        'smoke_rate' => '',
+        'alcohol_rate' => '',
+        'drug_rate' => '',
+        'physical_activities' => '',
+        'family_history' => '',
+        'present' => false
+    ];
+
+    if($HPI_data['physical_activities'] == '') {
+        $errors['test3'] = 'Type N/A if none';
+        $errors['present'] = true;
+    }
+
+    if($HPI_data['family_history'] == '') {
+        $errors['family_history'] = 'Type N/A if none';
+        $errors['present'] = true;
+    }
+
+    if(!$errors['present']) {
+        $_SESSION['hpi']['smoke_rate'] = $HPI_data['smoke_rate'];
+        $_SESSION['hpi']['alcohol_rate'] = $HPI_data['alcohol_rate'];
+        $_SESSION['hpi']['drug_rate'] = $HPI_data['drug_rate'];
+        $_SESSION['hpi']['physical_activities'] = $HPI_data['physical_activities'];
+        $_SESSION['hpi']['family_history'] = $HPI_data['family_history'];
     }
 
     return $errors;
@@ -64,6 +152,8 @@ function loadValidation($hpi_page, $HPI_data) {
         case 2:
             return v_page2($HPI_data);
         case 3:
-            return v_page3($HPI_data);;
+            return v_page3($HPI_data);
+        case 4:
+            return v_page4($HPI_data);
     }
 }
