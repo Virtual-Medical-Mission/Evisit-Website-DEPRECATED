@@ -1,2 +1,4 @@
 <?php
-var_dump($_SESSION['hpi']);
+require_once 'private/init.php';
+require_login('login.php');
+var_dump($_SESSION);
