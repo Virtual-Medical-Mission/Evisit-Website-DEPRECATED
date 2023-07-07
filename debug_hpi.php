@@ -33,7 +33,7 @@ var_dump($hpi_data);
 <?php vmm_banner('HPI Form'); ?>
 <section class="shadow contact-clean" style="background: antiquewhite">
     <h2 class="text-center">Page <?=$hpi_page?></h2>
-    <form class="bg-light border rounded border-secondary shadow-lg" action="hpi_debug.php" method="post" style="background: rgb(248,248,249);">
+    <form class="bg-light border rounded border-secondary shadow-lg" action="debug_hpi.php" method="post" style="background: rgb(248,248,249);">
         <?php loadPage($hpi_page, $hpi_data); ?>
         <?php if($hpi_page == 1){ ?>
             <div class="text-center mt-5">
