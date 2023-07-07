@@ -25,7 +25,13 @@
 
 
     <body>
+        <?php vmm_banner('HPI Form'); ?>
+        <section class="shadow contact-clean" style="background-color: antiquewhite">
+            <h2 class="text-center">Page <?=$hpi_page?></h2>
+            <form class="bg-light border rounded border-secondary shadow-lg" action="debug_hpi.php" method="post">
 
+            </form>
+        </section>
 
     </body>
 
