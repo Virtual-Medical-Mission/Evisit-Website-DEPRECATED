@@ -50,9 +50,8 @@
             </form>
         </section>
 
+        <?php include 'private/temps/footer.temp.php'?>
+
     </body>
-
-
-
 </html>
 
