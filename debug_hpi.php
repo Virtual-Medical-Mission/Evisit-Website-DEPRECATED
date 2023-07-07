@@ -41,6 +41,11 @@
                             <input class="btn" style="background-color: mediumseagreen" type="submit" name="next" value="next"/>
                         </div>
                     </div>
+                <?php } elseif($hpi_page == $end_page){ ?>
+                    <div class="text-center mt-5">
+                        <input class="btn" style="background-color: mediumseagreen" type="submit" name="back" value="back">
+                        <input class="btn" style="background-color: mediumseagreen" type="submit" name="finish" value="finish">
+                    </div>
                 <?php } ?>
             </form>
         </section>
