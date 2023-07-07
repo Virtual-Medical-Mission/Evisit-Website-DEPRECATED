@@ -140,13 +140,13 @@ function page4($HPI_data, $errors) {
         <div class="input-group-md">
             <input class="form-control" type="text" name="physical_activities" id="physical_activities" placeholder="Physical Activities" value="' . $HPI_data['physical_activities'] .'">
         </div>
-        '. hpi_error($errors, 'transportation') .'
+        '. hpi_error($errors, 'physical_activities') .'
 
         <label class="form-label" for="family_history">Do you have any family history of disease? If so, please list them:</label>
         <div class="input-group-md">
-            <input class="form-control" type="text" name="family_history" id="family_history" placeholder="Family History" value="' . $HPI_data['physical_activities'] .'">
+            <input class="form-control" type="text" name="family_history" id="family_history" placeholder="Family History" value="' . $HPI_data['family_history'] .'">
         </div>
-        '. hpi_error($errors, 'transportation');
+        '. hpi_error($errors, 'family_history');
 
 }
 
