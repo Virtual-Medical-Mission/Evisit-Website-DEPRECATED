@@ -9,9 +9,6 @@ $end_page = $hpi_data['page_end'];
 
 if(is_post_request()) {
     var_dump($_POST);
-    if(!isset($_POST['back'])) {
-        echo 'next/submit';
-    }
 }
 
 var_dump($hpi_data);
