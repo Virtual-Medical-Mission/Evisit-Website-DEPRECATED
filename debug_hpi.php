@@ -8,6 +8,9 @@
     $hpi_page = $hpi_data['page'];
     $end_page = $hpi_data['end_page'];
 
+    if($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+    }
 
 ?>
 
