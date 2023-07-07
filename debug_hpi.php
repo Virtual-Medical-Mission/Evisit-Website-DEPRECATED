@@ -7,7 +7,7 @@ $hpi_data = $_SESSION['hpi'];
 $hpi_page = $hpi_data['page'];
 $end_page = $hpi_data['page_end'];
 
-if(is_post_request()) {
+if($_SERVER['REQUEST_METHOD'] == 'POST') {
     var_dump($_POST);
 }
 
