@@ -29,7 +29,7 @@
         <section class="shadow contact-clean" style="background-color: antiquewhite">
             <h2 class="text-center">Page <?=$hpi_page?></h2>
             <form class="bg-light border rounded border-secondary shadow-lg" action="debug_hpi.php" method="post">
-
+                <?php loadPage($hpi_page, $hpi_data); ?>
             </form>
         </section>
 
