@@ -1,5 +1,6 @@
 CREATE table hpi (
     id bigint(20) not null auto_increment,
+    username varchar(255),
     language varchar(255),
     tribe varchar(255),
     location varchar(255),

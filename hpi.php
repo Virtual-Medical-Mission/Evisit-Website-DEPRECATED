@@ -32,9 +32,15 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     if(!isset($_POST['back'])) {
         $validate = loadValidation($hpi_page, $_POST);
         if(!$validate['present']) {
-            $_SESSION['hpi']['page'] = $hpi_page + 1;
-            $hpi_data = $_SESSION['hpi'];
-            $hpi_page++;
+            if(isset($_POST['next'])) {
+                $_SESSION['hpi']['page'] = $hpi_page + 1;
+                $hpi_data = $_SESSION['hpi'];
+                $hpi_page++;
+            } elseif (isset($_POST['finish'])) {
+                submit_hpi($_SESSION['hpi']);
+                redirect_to('pairing.php');
+            }
+
         } else {
             $errors = $validate;
         }
