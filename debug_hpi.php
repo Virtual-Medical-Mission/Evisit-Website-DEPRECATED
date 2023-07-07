@@ -7,17 +7,12 @@ $hpi_data = $_SESSION['hpi'];
 $hpi_page = $hpi_data['page'];
 $end_page = $hpi_data['page_end'];
 
-if(is_post_request()) {
-    var_dump($_POST);
-}
-
-var_dump($hpi_data);
 
 ?>
 
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
