@@ -3,15 +3,11 @@
     require_once 'private/init.php';
     require_login('login.php');
 
-    //initialize HPI variables
+
     $hpi_data = $_SESSION['hpi'];
     $hpi_page = $hpi_data['page'];
     $end_page = $hpi_data['end_page'];
 
-    //if the form is submitted
-    if(is_post_request()) {
-        echo 'test';
-    }
 
 ?>
 
