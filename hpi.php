@@ -11,7 +11,6 @@
     $end_page = 3;
 
     if(is_post_request()) {
-        var_dump($_POST);
         if(!isset($_POST['back'])) {
             $errors = loadValidation($hpi_page, $_POST);
             if(!$errors['present']) {
@@ -31,8 +30,6 @@
         }
 
     }
-
-    var_dump($hpi_data);
 
 ?>
 
