@@ -32,3 +32,18 @@ function require_login($redirect_url) {
         redirect_to($redirect_url);
     }
 }
+
+function hpi_init() {
+    if(!isset($_SESSION['hpi'])) {
+        $_SESSION['hpi'] = [
+            'page' => 1,
+            'tribe' => '',
+            'test' => '',
+            'test2' => ''
+        ];
+    }
+}
+
+function hpi_destroy() {
+    unset($_SESSION['hpi']);
+}

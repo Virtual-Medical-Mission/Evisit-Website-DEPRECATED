@@ -6,6 +6,7 @@ if(is_post_request()) {
 
     $login_result = login_user($_POST);
     if($login_result) {
+        hpi_init();
         redirect_to('hpi.php');
     } else {
         $error = true;
@@ -32,8 +33,9 @@ if(is_post_request()) {
     <title>Register</title>
 </head>
     <body>
-        <?php require_once 'private/temps/vmmbanner.temp.php'; ?>
-        <div class="container-fluid mt-5">
+
+    <?php vmm_banner('VMM Healthcare'); ?>
+    <div class="container-fluid mt-5">
             <form action="login.php" method="POST" class="ps-5 pe-5 mt-3" style="margin: auto; background-color: #05445e; border-radius: 20px;">
                 <div class="fs-2 mt-5 text-light text-center">Login</div>
 
