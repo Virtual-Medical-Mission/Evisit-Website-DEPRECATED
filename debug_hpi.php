@@ -16,6 +16,10 @@
                 $hpi_data = $_SESSION['hpi'];
                 $hpi_page++;
             }
+        } elseif(isset($_POST['back'])) {
+            $_SESSION['hpi']['page'] = $hpi_page - 1;
+            $hpi_data = $_SESSION['hpi'];
+            $hpi_page--;
         }
     }
 
