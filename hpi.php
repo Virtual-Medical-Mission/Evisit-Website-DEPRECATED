@@ -64,6 +64,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         } else {
             //if there were errors in the validation, reassigns errors handler
             $errors = $validate;
+            $hpi_data = $_SESSION['hpi'];
         }
     }
     //Else if the back button is pressed
