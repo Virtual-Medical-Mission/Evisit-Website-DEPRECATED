@@ -1,8 +1,12 @@
 <?php
 
 require_once 'private/init.php';
-require_login('login.php');
 
+//Requires user to be logged in and an HPI session to be started
+require_login('login.php');
+require_hpi_session('login.php');
+
+//Error variable handler
 $errors = [
     'present' => false,
     'language' => '',
@@ -25,26 +29,46 @@ $errors = [
     'family_history' => '',
 ];
 
+//Handler for the current HPI data stored in session storage
 $hpi_data = $_SESSION['hpi'];
+//current page of the HPI form
 $hpi_page = $hpi_data['page'];
+//what number the last page is for HPI form
 $end_page = $hpi_data['page_end'];
+
+//If a post request is made
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+    //If the back button is not pressed which means next button and finish button
     if(!isset($_POST['back'])) {
+        //Validates the data, updates session storage if data passes validation, and returns errors
         $validate = loadValidation($hpi_page, $_POST);
+        //If there are no errors
         if(!$validate['present']) {
+            //If the next button is pressed
             if(isset($_POST['next'])) {
+                //Update session storage and increment page number
                 $_SESSION['hpi']['page'] = $hpi_page + 1;
+                //reassigns hpi data handler
                 $hpi_data = $_SESSION['hpi'];
+                //reassigns page number handler
                 $hpi_page++;
-            } elseif (isset($_POST['finish'])) {
+            }
+            //Else if the finish button is pressed
+            elseif (isset($_POST['finish'])) {
+                //if it passes validation, submits the HPI data to the database, deletes HPI session, and redirects to the pairing page
                 submit_hpi($_SESSION['hpi']);
                 redirect_to('pairing.php');
             }
 
         } else {
+            //if there were errors in the validation, reassigns errors handler
             $errors = $validate;
         }
-    } elseif(isset($_POST['back'])) {
+    }
+    //Else if the back button is pressed
+    elseif(isset($_POST['back'])) {
+        //decrements page number and reassigns hpi data handler
         $_SESSION['hpi']['page'] = $hpi_page - 1;
         $hpi_data = $_SESSION['hpi'];
         $hpi_page--;
@@ -75,9 +99,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 <section class="shadow contact-clean" style="background-color: antiquewhite">
     <h2 class="text-center">Page <?=$hpi_page?>/<?= $end_page?></h2>
     <form class="bg-light border rounded border-secondary shadow-lg" action="hpi.php" method="post">
-
+        <!-- Loads different pages of form questions based off of current HPI page, the hpi data handler which allows it to remember user response, and errors-->
         <?php loadPage($hpi_page, $hpi_data, $errors); ?>
 
+
+        <!-- If the current page is the first page, only show the next button, if it is between first and last page show back and next button, if it is last page show back and final button -->
         <?php if($hpi_page == 1) { ?>
             <div class="text-center mt-5">
                 <input class="btn" style="background-color: mediumseagreen" type="submit" name="next" value="next">
@@ -98,4 +124,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <?php include 'private/temps/footer.temp.php'?>
 </body>
+
+
 </html>

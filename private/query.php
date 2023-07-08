@@ -31,6 +31,7 @@ function register_user($user_data) {
 
 }
 
+//Checks if a user logs in to a username with the correct password and then sets the session variables for auth purposes
 function login_user($user_login) {
 
     global $evisit_db;
@@ -54,6 +55,7 @@ function login_user($user_login) {
 
 }
 
+//Submits all the HPI data into the database and destroys the HPI session storage
 function submit_hpi($hpi_data) {
 
     global $evisit_db;

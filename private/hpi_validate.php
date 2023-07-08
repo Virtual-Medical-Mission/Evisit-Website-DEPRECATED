@@ -1,5 +1,15 @@
 <?php
 
+//IMPORTANT MANUAL
+
+/*
+This file is for storing all the HPI page validation functions
+At the end the loadValidation function loads a validation function based on the page number
+*/
+
+
+
+
 function v_pageStart($HPI_data) {
     $errors = [
         'language' => '',

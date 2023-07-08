@@ -1,6 +1,25 @@
 <?php
 require_once 'util.php';
 
+
+
+
+//IMPORTANT MANUAL
+
+/*
+ This file is for storing all the page HTML
+Each page has some questions which are HTML input/select form elements
+Each page is represented with a function that echos out the HTML
+HPI_data parameter is so that the page remembers what the users answers were which are stored in the session storage temporarily
+Errors parameter is so that the page remembers what errors the user made
+At the end, the loadPage function will load a page based on the page number
+ */
+
+
+
+
+
+
 function pageStart($HPI_data, $errors) {
 
 

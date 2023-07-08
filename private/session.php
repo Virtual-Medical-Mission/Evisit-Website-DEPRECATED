@@ -1,7 +1,7 @@
 <?php
 
 //stores patient user data in the session storage
-function patient_set($user_data, $action) {
+function patient_set($user_data, $action) : void {
     session_regenerate_id();
     $_SESSION['first_name'] = $user_data['first_name'];
     $_SESSION['last_name'] = $user_data['last_name'];
@@ -16,7 +16,7 @@ function patient_set($user_data, $action) {
 }
 
 //deletes patient user data from the session storage
-function patient_destroy($user_data) {
+function patient_destroy($user_data) : void {
     unset($_SESSION['first_name']);
     unset($_SESSION['last_name']);
     unset($_SESSION['username']);
@@ -27,13 +27,14 @@ function patient_destroy($user_data) {
 
 }
 
-function require_login($redirect_url) {
+function require_login($redirect_url) : void {
     if(!isset($_SESSION['username'])) {
         redirect_to($redirect_url);
     }
 }
 
-function hpi_init() {
+//Session storage object that temporarily will store HPI form data when a user does the HPI form
+function hpi_init() : void {
     if(!isset($_SESSION['hpi'])) {
         $_SESSION['hpi'] = [
             'page' => 1,
@@ -61,6 +62,14 @@ function hpi_init() {
     }
 }
 
-function hpi_destroy() {
+//Destroy HPI form data from session storage if the user is finished with the HPI form
+function hpi_destroy() : void {
     unset($_SESSION['hpi']);
+}
+
+//Makes sure that some random person can't do the HPI form unless they have auth to do it
+function require_hpi_session($redirect_url) : void {
+    if(!isset($_SESSION['hpi'])) {
+        redirect_to($redirect_url);
+    }
 }
