@@ -1,6 +1,12 @@
 <?php
 
 require_once 'private/init.php';
+require __DIR__ . '/vendor/autoload.php'; // remove this line if you use a PHP Framework.
+use Orhanerday\OpenAi\OpenAi;
+
+
+
+
 
 
 //Requires user to be logged in and an HPI session to be started
@@ -8,33 +14,8 @@ require_login('login.php');
 require_hpi_session('login.php');
 
 //Setup HPI AI
-require_once __DIR__ . '/vendor/autoload.php';
-use Orhanerday\OpenAi\OpenAi;
-
 $open_ai_key = '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';
-
 $HPI_AI = new OpenAi($open_ai_key);
-
-
-function validateAnswer($question, $response) {
-
-    global $HPI_AI;
-    $complete = $HPI_AI->completion(
-        [
-            'model' => 'text-davinci-003',
-            'prompt' => 'A user filled out the prompt: "' . $question . '" and responded with ' . $response . '. if this is a relevant response return true, else return false.',
-            'temperature' => 0.9,
-            'max_tokens' => 150,
-            'frequency_penalty' => 0.0,
-            'presence_penalty' => 0.6
-
-        ]
-    );
-
-    $complete = json_decode($complete, true);
-    return $complete['choices'][0]['text'];
-
-}
 
 
 //Error variable handler
@@ -73,7 +54,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     //If the back button is not pressed which means next button and finish button
     if(!isset($_POST['back'])) {
         //Validates the data, updates session storage if data passes validation, and returns errors
-        $validate = loadValidation($hpi_page, $_POST);
+        $validate = loadValidation($hpi_page, $_POST, $HPI_AI);
         //If there are no errors
         if(!$validate['present']) {
             //If the next button is pressed
