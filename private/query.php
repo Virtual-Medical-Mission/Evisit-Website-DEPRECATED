@@ -3,7 +3,8 @@
 require_once 'private/init.php';
 
 //processes registration form and registers a user in the database
-function register_user($user_data) {
+function register_user($user_data): array
+{
     global $evisit_db;
     $errors = validate_registration($user_data);
     if($errors['present']) {
@@ -32,7 +33,8 @@ function register_user($user_data) {
 }
 
 //Checks if a user logs in to a username with the correct password and then sets the session variables for auth purposes
-function login_user($user_login) {
+function login_user($user_login): bool
+{
 
     global $evisit_db;
 
@@ -56,7 +58,8 @@ function login_user($user_login) {
 }
 
 //Submits all the HPI data into the database and destroys the HPI session storage
-function submit_hpi($hpi_data) {
+function submit_hpi($hpi_data): void
+{
 
     global $evisit_db;
 
