@@ -7,7 +7,6 @@ This file is for storing all the HPI page validation functions
 At the end the loadValidation function loads a validation function based on the page number
 */
 
-require_once 'hpi_ai.php';
 
 
 function v_pageStart($HPI_data) {
@@ -19,33 +18,40 @@ function v_pageStart($HPI_data) {
         'present' => false
     ];
 
-    if($HPI_data['language'] == '') {
-        $errors['language'] = 'Please select a language';
-        $errors['present'] = true;
+    if(AI_ENABLED) {
+
+
+
     } else {
-        $_SESSION['hpi']['language'] = $HPI_data['language'];
+        if($HPI_data['language'] == '') {
+            $errors['language'] = 'Please select a language';
+            $errors['present'] = true;
+        } else {
+            $_SESSION['hpi']['language'] = $HPI_data['language'];
+        }
+
+        if($HPI_data['tribe'] == '') {
+            $errors['tribe'] = 'Please select an option';
+            $errors['present'] = true;
+        } else {
+            $_SESSION['hpi']['tribe'] = $HPI_data['tribe'];
+        }
+
+        if($HPI_data['location'] == '') {
+            $errors['location'] = 'Please select an option';
+            $errors['present'] = true;
+        } else {
+            $_SESSION['hpi']['location'] = $HPI_data['location'];
+        }
+
+        if($HPI_data['start_date'] == '') {
+            $errors['start_date'] = 'Please select an option';
+            $errors['present'] = true;
+        } else {
+            $_SESSION['hpi']['start_date'] = $HPI_data['start_date'];
+        }
     }
 
-    if($HPI_data['tribe'] == '') {
-        $errors['tribe'] = 'Please select an option';
-        $errors['present'] = true;
-    } else {
-        $_SESSION['hpi']['tribe'] = $HPI_data['tribe'];
-    }
-
-    if($HPI_data['location'] == '') {
-        $errors['location'] = 'Please select an option';
-        $errors['present'] = true;
-    } else {
-        $_SESSION['hpi']['location'] = $HPI_data['location'];
-    }
-
-    if($HPI_data['start_date'] == '') {
-        $errors['start_date'] = 'Please select an option';
-        $errors['present'] = true;
-    } else {
-        $_SESSION['hpi']['start_date'] = $HPI_data['start_date'];
-    }
 
     return $errors;
 

@@ -6,15 +6,18 @@ ob_start();
 
 const AI_ENABLED = true;
 
-require_once 'database/db_credentials.php';
-require_once 'database/database.php';
-require_once 'query.php';
-require_once 'server.php';
-require_once 'session.php';
-require_once 'validate.php';
-require_once 'util.php';
-require_once 'hpi_questions.php';
-require_once 'hpi_validate.php';
-require_once 'hpi_ai.php';
+const private_path = __DIR__ . '/';
+
+require_once private_path . 'database/db_credentials.php';
+require_once private_path .'database/database.php';
+require_once private_path . 'query.php';
+require_once private_path . 'server.php';
+require_once private_path . 'session.php';
+require_once private_path . 'validate.php';
+require_once private_path . 'util.php';
+require_once private_path . 'hpi_questions.php';
+require_once private_path . 'hpi_validate.php';
+
+
 
 $evisit_db = db_connect();

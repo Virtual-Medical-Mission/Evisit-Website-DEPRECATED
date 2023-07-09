@@ -2,10 +2,9 @@
 
 require_once 'private/init.php';
 
-//used to  build the year field of the form where it loads 100 years past the current year for choosing what year you are born
 $year = date("Y");
 
-//simple error handling setup
+
 $errors = [
     'first_name' => '',
     'last_name' => '',
