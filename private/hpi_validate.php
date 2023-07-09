@@ -7,7 +7,7 @@ This file is for storing all the HPI page validation functions
 At the end the loadValidation function loads a validation function based on the page number
 */
 
-
+require_once 'hpi_ai.php';
 
 
 function v_pageStart($HPI_data) {

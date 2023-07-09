@@ -4,6 +4,7 @@
 session_start();
 ob_start();
 
+const AI_ENABLED = true;
 
 require_once 'database/db_credentials.php';
 require_once 'database/database.php';
@@ -14,5 +15,6 @@ require_once 'validate.php';
 require_once 'util.php';
 require_once 'hpi_questions.php';
 require_once 'hpi_validate.php';
+require_once 'hpi_ai.php';
 
 $evisit_db = db_connect();
