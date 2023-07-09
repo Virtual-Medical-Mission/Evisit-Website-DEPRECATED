@@ -14,8 +14,8 @@ require_login('login.php');
 require_hpi_session('login.php');
 
 //Setup HPI AI
-$open_ai_key = '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';
-$HPI_AI = new OpenAi($open_ai_key);
+//$open_ai_key = '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';
+//$HPI_AI = new OpenAi($open_ai_key);
 
 
 //Error variable handler
@@ -54,7 +54,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     //If the back button is not pressed which means next button and finish button
     if(!isset($_POST['back'])) {
         //Validates the data, updates session storage if data passes validation, and returns errors
-        $validate = loadValidation($hpi_page, $_POST, $HPI_AI);
+        $validate = loadValidation($hpi_page, $_POST);
         //If there are no errors
         if(!$validate['present']) {
             //If the next button is pressed

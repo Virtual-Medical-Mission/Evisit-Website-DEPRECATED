@@ -4,7 +4,7 @@
 session_start();
 ob_start();
 
-const AI_ENABLED = true;
+const AI_ENABLED = false;
 
 const private_path = __DIR__ . '/';
 
