@@ -1,1 +1,3 @@
 .idea/
+
+private/database/db_credentials.php

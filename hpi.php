@@ -62,7 +62,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         } else {
             $validate = loadValidation($hpi_page, $_POST);
         }
-        $validate = loadValidation($hpi_page, $_POST);
         //If there are no errors
         if(!$validate['present']) {
             //If the next button is pressed
