@@ -15,8 +15,6 @@ require_once private_path . 'server.php';
 require_once private_path . 'session.php';
 require_once private_path . 'validate.php';
 require_once private_path . 'util.php';
-require_once private_path . 'hpi_questions.php';
-require_once private_path . 'hpi_validate.php';
 require_once private_path . 'ai.php';
 
 

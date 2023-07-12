@@ -1,6 +1,5 @@
 <?php
 
-require_once 'init.php';
 //IMPORTANT MANUAL
 
 /*
