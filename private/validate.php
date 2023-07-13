@@ -15,7 +15,7 @@ function user_exists($username) {
 }
 
 //processes registration form data and returns an array of errors
-function validate_registration($user_data) {
+function validate_registration($user_data, $REGISTER_AI = null) {
     $errors = [
         'first_name' => '',
         'last_name' => '',
@@ -53,10 +53,20 @@ function validate_registration($user_data) {
         $errors['present'] = true;
     }
 
+
     if(user_exists($user_data['username'])) {
         $errors['username'] = 'Username already exists, choose another username.';
         $errors['present'] = true;
+    } elseif(!preg_match('/^[a-zA-Z0-9]{3,}$/', $user_data['username'])) {
+        $errors['username'] = 'Username must be at least 3 characters long and can only contain letters and numbers.';
+        $errors['present'] = true;
+    } elseif(AI_ENABLED) {
+        if(!is_appropriate_username($user_data['username'], $REGISTER_AI)) {
+            $errors['username'] = 'Username is not appropriate.';
+            $errors['present'] = true;
+        }
     }
+
 
     if($user_data['gender'] == 'gender') {
         $errors['gender'] = 'Please choose a gender.';

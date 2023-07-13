@@ -5,6 +5,7 @@ session_start();
 ob_start();
 
 const AI_ENABLED = false;
+const OPENAI_API_KEY = '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';
 
 const private_path = __DIR__ . '/';
 
