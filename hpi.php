@@ -19,6 +19,8 @@ require_hpi_session('login.php');
 if(AI_ENABLED) {
     $open_ai_key = OPENAI_API_KEY;
     $HPI_AI = new OpenAi($open_ai_key);
+} else {
+    $HPI_AI = null;
 }
 
 
@@ -59,11 +61,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     //If the back button is not pressed which means next button and finish button
     if(!isset($_POST['back'])) {
         //Validates the data, updates session storage if data passes validation, and returns errors
-        if(AI_ENABLED) {
-            $validate = loadValidation($hpi_page, $_POST, $HPI_AI);
-        } else {
-            $validate = loadValidation($hpi_page, $_POST);
-        }
+        $validate = loadValidation($hpi_page, $_POST, $HPI_AI);
         //If there are no errors
         if(!$validate['present']) {
             //If the next button is pressed

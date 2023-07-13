@@ -7,6 +7,8 @@ use Orhanerday\OpenAi\OpenAi;
 if (AI_ENABLED) {
     $open_ai_key = OPENAI_API_KEY;
     $REGISTER_AI = new OpenAi($open_ai_key);
+} else {
+    $REGISTER_AI = null;
 }
 
 
