@@ -48,6 +48,12 @@ function client_ipv4() {
         $ipaddress = $_SERVER['REMOTE_ADDR'];
     else
         $ipaddress="UNKNOWN";
+
+    if($ipaddress != "UNKNOWN") {
+        $ipaddress = explode(":", $ipaddress);
+        $ipaddress = $ipaddress[0];
+    }
+
     return $ipaddress;
 }
 
