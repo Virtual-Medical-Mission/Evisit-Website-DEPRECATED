@@ -20,6 +20,5 @@ var_dump($fetched_data);
 
 
 
-$user_ip = get_client_ip();
-
-echo $user_ip;
+$user_ip = client_ipv4();
+echo '<br><br>Your IP address is: ' . $user_ip;
