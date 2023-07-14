@@ -1,7 +1,7 @@
 <?php
 
 require_once 'private/init.php';
-require_once 'private/HPI/hpi_questions.php';
+require_once 'private/HPI/hpi_pages.php';
 require_once 'private/HPI/hpi_validate.php';
 require __DIR__ . '/vendor/autoload.php';
 use Orhanerday\OpenAi\OpenAi;
@@ -102,48 +102,48 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/private/assets/css/style.css" />
-    <link rel="stylesheet" href="/private/assets/css/questionnaire.css" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-    <title>HPI</title>
-</head>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="/private/assets/css/style.css" />
+        <link rel="stylesheet" href="/private/assets/css/questionnaire.css" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+              integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+        <title>HPI</title>
+    </head>
 
 
-<body>
-<?php vmm_banner('HPI Form'); ?>
-<section class="shadow contact-clean" style="background-color: antiquewhite">
-    <h2 class="text-center">Page <?=$hpi_page?>/<?= $end_page?></h2>
-    <form class="bg-light border rounded border-secondary shadow-lg" action="hpi.php" method="post">
-        <!-- Loads different pages of form questions based off of current HPI page, the hpi data handler which allows it to remember user response, and errors-->
-        <?php loadPage($hpi_page, $hpi_data, $errors); ?>
+    <body>
+        <?php vmm_banner('HPI Form'); ?>
+        <section class="shadow contact-clean" style="background-color: antiquewhite">
+            <h2 class="text-center">Page <?=$hpi_page?>/<?= $end_page?></h2>
+            <form class="bg-light border rounded border-secondary shadow-lg" action="hpi.php" method="post">
+                <!-- Loads different pages of form questions based off of current HPI page, the hpi data handler which allows it to remember user response, and errors-->
+                <?php loadPage($hpi_page, $hpi_data, $errors); ?>
 
 
-        <!-- If the current page is the first page, only show the next button, if it is between first and last page show back and next button, if it is last page show back and final button -->
-        <?php if($hpi_page == 1) { ?>
-            <div class="text-center mt-5">
-                <input class="btn" style="background-color: mediumseagreen" type="submit" name="next" value="next">
-            </div>
-        <?php } elseif($hpi_page > 1 and $hpi_page < $end_page){ ?>
-            <div class="text-center mt-5">
-                <input class="btn" style="background-color: mediumseagreen" type="submit" name="back" value="back"/>
-                <input class="btn" style="background-color: mediumseagreen" type="submit" name="next" value="next"/>
-            </div>
-        <?php } elseif($hpi_page == $end_page){ ?>
-            <div class="text-center mt-5">
-                <input class="btn" style="background-color: mediumseagreen" type="submit" name="back" value="back">
-                <input class="btn" style="background-color: mediumseagreen" type="submit" name="finish" value="finish">
-            </div>
-        <?php } ?>
-    </form>
-</section>
+                <!-- If the current page is the first page, only show the next button, if it is between first and last page show back and next button, if it is last page show back and final button -->
+                <?php if($hpi_page == 1) { ?>
+                    <div class="text-center mt-5">
+                        <input class="btn" style="background-color: mediumseagreen" type="submit" name="next" value="next">
+                    </div>
+                <?php } elseif($hpi_page > 1 and $hpi_page < $end_page){ ?>
+                    <div class="text-center mt-5">
+                        <input class="btn" style="background-color: mediumseagreen" type="submit" name="back" value="back"/>
+                        <input class="btn" style="background-color: mediumseagreen" type="submit" name="next" value="next"/>
+                    </div>
+                <?php } elseif($hpi_page == $end_page){ ?>
+                    <div class="text-center mt-5">
+                        <input class="btn" style="background-color: mediumseagreen" type="submit" name="back" value="back">
+                        <input class="btn" style="background-color: mediumseagreen" type="submit" name="finish" value="finish">
+                    </div>
+                <?php } ?>
+            </form>
+        </section>
 
-<?php include 'private/temps/footer.temp.php'?>
-</body>
+        <?php include 'private/temps/footer.temp.php'?>
+    </body>
 
 
 </html>

@@ -73,3 +73,4 @@ function require_hpi_session($redirect_url) : void {
         redirect_to($redirect_url);
     }
 }
+
