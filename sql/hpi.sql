@@ -19,6 +19,7 @@ CREATE table hpi (
     drug_rate varchar(255),
     physical_activities varchar(255),
     family_history varchar(255),
+    date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     primary key (id)
 
 );

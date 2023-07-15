@@ -9,5 +9,6 @@ CREATE TABLE users
     DOB TEXT,
     password VARCHAR(255),
     vid bigint(20),
+    created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id)
 )
