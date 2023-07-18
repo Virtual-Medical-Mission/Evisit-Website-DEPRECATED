@@ -1,10 +1,43 @@
 <?php
 
 require_once 'private/init.php';
+require_once 'Questionnaire/Question.php';
+require_once 'Questionnaire/Form.php';
+require_once 'Questionnaire/RadioCheck.php';
+require_once 'Questionnaire/TextBox.php';
+require_once 'Questionnaire/Select.php';
+require_once 'Questionnaire/Questionnaire.php';
+use Questionnaire\{Questionnaire ,Form, RadioCheck, TextBox, Select};
 
+$hpi = new Questionnaire(
 
-require_login('login.php');
+        'hpi',
 
+        [
+                new Form(
+                        'test',
+                        [
+                                new RadioCheck('test',1, 'yes,no', 'RADIO_DEFAULT'),
+                                new RadioCheck('test',2, 'acnee,fever', 'RADIO_DEFAULT'),
+                                new TextBox('te st',3, 'TEXTBOX_DEFAULT'),
+                                new Select('test',4, 'yes,no', 'SELECT_DEFAULT')
+                        ]
+                ),
+
+                new Form(
+                        'test2',
+                        [
+                                new RadioCheck('test',1, 'yes,no', 'RADIO_DEFAULT'),
+                                new RadioCheck('test',2, 'test,fever', 'RADIO_DEFAULT'),
+                                new TextBox('te st',3, 'TEXTBOX_DEFAULT'),
+                                new Select('test',4, 'yes,no', 'SELECT_DEFAULT')
+                        ]
+                )
+        ]
+
+);
+
+$hpi->position++;
 
 ?>
 
@@ -28,25 +61,12 @@ require_login('login.php');
 
             <form class="border rounded border-secondary shadow-lg" action="survey.php" method="post">
 
-                <div class="fs-5 text-center mb-3">What symptoms are you experiencing today?</div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="SOB" id="SOB">
-                    <label class="form-check-label" for="SOB">
-                        Shortness of Breath
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="cough" id="cough">
-                    <label class="form-check-label" for="cough">
-                        Cough
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="fever" id="fever">
-                    <label class="form-check-label" for="fever">
-                        Fever
-                    </label>
-                </div>
+                <?php
+
+                    $hpi->render();
+
+                ?>
+
             </form>
 
         </section>
