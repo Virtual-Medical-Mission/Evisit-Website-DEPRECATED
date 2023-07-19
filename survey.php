@@ -7,11 +7,9 @@ require_once 'Questionnaire/RadioCheck.php';
 require_once 'Questionnaire/TextBox.php';
 require_once 'Questionnaire/Select.php';
 require_once 'Questionnaire/Questionnaire.php';
-use Questionnaire\{Questionnaire ,Form, RadioCheck, TextBox, Select};
-
-$hpi = new Questionnaire(
-
-        'hpi',
+require_once 'Questionnaire/Node.php';
+use Questionnaire\{Questionnaire ,Form, RadioCheck, TextBox, Select, Node};
+$hpi = new Questionnaire( 'HPI',
 
         [
                 new Form(
@@ -21,23 +19,32 @@ $hpi = new Questionnaire(
                                 new RadioCheck('test',2, 'acnee,fever', 'RADIO_DEFAULT'),
                                 new TextBox('te st',3, 'TEXTBOX_DEFAULT'),
                                 new Select('test',4, 'yes,no', 'SELECT_DEFAULT')
-                        ]
+                        ],
                 ),
 
                 new Form(
                         'test2',
                         [
                                 new RadioCheck('test',1, 'yes,no', 'RADIO_DEFAULT'),
-                                new RadioCheck('test',2, 'test,fever', 'RADIO_DEFAULT'),
+                                new RadioCheck('test',2, 's,fever', 'RADIO_DEFAULT'),
+                                new TextBox('te st',3, 'TEXTBOX_DEFAULT'),
+                                new Select('test',4, 'yes,no', 'SELECT_DEFAULT')
+                        ]
+                ),
+
+                new Form(
+                        'test3',
+                        [
+                                new RadioCheck('test',1, 'yes,no', 'RADIO_DEFAULT'),
+                                new RadioCheck('test',2, 's,fever', 'RADIO_DEFAULT'),
                                 new TextBox('te st',3, 'TEXTBOX_DEFAULT'),
                                 new Select('test',4, 'yes,no', 'SELECT_DEFAULT')
                         ]
                 )
-        ]
+        ],
+
 
 );
-
-$hpi->position++;
 
 ?>
 
@@ -66,6 +73,8 @@ $hpi->position++;
                     $hpi->render();
 
                 ?>
+
+
 
             </form>
 

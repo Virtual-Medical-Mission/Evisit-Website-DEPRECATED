@@ -6,13 +6,15 @@ abstract class Question
 {
     public $question;
     public $question_name;
-    public $question_HTML;
     public $question_validation;
-    public function displayQuestion() {
-        echo $this->question_HTML;
+    public $question_error = '';
+
+    public static function Error($message) {
+        return '<div class="p text-danger">' . $message . '</div>';
     }
 
+
     abstract public function validateQuestion();
-    abstract public function sessionSerialize();
+    abstract public function displayQuestion();
 
 }

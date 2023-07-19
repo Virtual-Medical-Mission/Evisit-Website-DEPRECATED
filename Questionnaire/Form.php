@@ -1,14 +1,15 @@
 <?php
 
 namespace Questionnaire;
-class Form implements \Iterator
+class Form
 {
-    private $position = 0;
     public $form_name;
     public $questions;
-    public function __construct($form_name, $questions) {
+    public $nodes;
+    public function __construct($form_name, $questions, $nodes = null) {
         $this->form_name = $form_name;
         $this->questions = $questions;
+        $this->nodes = $nodes;
     }
 
     public function display() {
@@ -18,29 +19,14 @@ class Form implements \Iterator
     }
 
     public function validate() {
+        $error = false;
         foreach($this->questions as $question) {
-            $question->validateQuestion();
+            if($question->validateQuestion()) {
+                $error = true;
+            }
         }
+        return $error;
     }
 
-    public function current() {
-        return $this->questions[$this->position];
-    }
-
-    public function key() {
-        return $this->position;
-    }
-
-    public function next() {
-        $this->position = $this->position + 1;
-    }
-
-    public function rewind() {
-        $this->position = 0;
-    }
-
-    public function valid() {
-        return $this->position < count($this->questions);
-    }
 
 }
