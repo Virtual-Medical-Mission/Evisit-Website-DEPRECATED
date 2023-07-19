@@ -13,8 +13,26 @@ abstract class Question
         return '<div class="p text-danger">' . $message . '</div>';
     }
 
+    public static function isChecked($response, $option_value) {
+        if(isset($response)) {
+            if($response == $option_value) {
+                return 'checked';
+            }
+        }
+        return '';
+    }
+
+    public static function isSelected($response, $option_value) {
+        if(isset($response)) {
+            if($response == $option_value) {
+                return 'selected';
+            }
+        }
+        return '';
+    }
+
 
     abstract public function validateQuestion();
-    abstract public function displayQuestion();
+    abstract public function displayQuestion($memory = false);
 
 }

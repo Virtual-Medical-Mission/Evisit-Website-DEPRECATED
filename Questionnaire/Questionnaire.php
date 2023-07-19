@@ -11,7 +11,7 @@ class Questionnaire
 
     public function SESSION_STORE() {
         foreach($this->forms[$this->position]->questions as $question) {
-            $_SESSION[$this->name][$question->question_name] = $_POST[$question->question_name];
+            $_SESSION[$this->name][$this->forms[$this->position]->form_name][$question->question_name] = $_POST[$question->question_name];
         }
     }
 
@@ -63,7 +63,7 @@ class Questionnaire
     }
 
     public function render() {
-        $this->forms[$this->position]->display();
+        $this->forms[$this->position]->display($this->name);
         if($this->position == 0) {
             echo '<div class="text-center mt-5">
                         <input class="btn" style="background-color: mediumseagreen" type="submit" name="next" value="next">
