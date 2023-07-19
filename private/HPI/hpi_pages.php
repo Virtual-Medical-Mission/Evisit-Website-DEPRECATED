@@ -44,7 +44,7 @@ function pageStart($HPI_data, $errors) {
         '. hpi_error($errors, 'location') .'
         <label class="form-label mt-2" for="start_date">When did you start living in that location?</label>
         <div class="input-group-md">
-            <input type="date" class="form-control" name="start_date" id="start_date" placeholder="Start Date" value="'.$HPI_data['start_date'].'">
+            <input type="date" class="form-control" name="start_date" id="start_date" placeholder="Start Calendar" value="'.$HPI_data['start_date'].'">
         </div>';
 
 }

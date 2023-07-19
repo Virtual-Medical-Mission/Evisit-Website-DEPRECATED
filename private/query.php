@@ -10,7 +10,6 @@ function register_user($user_data, $REGISTER_AI = null): array
     if($errors['present']) {
         return $errors;
     }
-
     $hashed_password = password_hash($user_data['password'], PASSWORD_BCRYPT);
     $DOB = $user_data['year'] . '-' . $user_data['month'] . '-' . $user_data['day'];
     $sql = "INSERT INTO users (first_name, last_name, role, username, gender, DOB, password) VALUES (";

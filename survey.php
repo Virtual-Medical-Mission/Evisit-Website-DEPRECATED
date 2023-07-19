@@ -6,9 +6,10 @@ require_once 'Questionnaire/Form.php';
 require_once 'Questionnaire/RadioCheck.php';
 require_once 'Questionnaire/TextBox.php';
 require_once 'Questionnaire/Select.php';
+require_once 'Questionnaire/Calendar.php';
 require_once 'Questionnaire/Questionnaire.php';
 require_once 'Questionnaire/Node.php';
-use Questionnaire\{Questionnaire ,Form, RadioCheck, TextBox, Select, Node};
+use Questionnaire\{Questionnaire ,Form, RadioCheck, TextBox, Select, Calendar, Node};
 $hpi = new Questionnaire( 'HPI',
 
         [
@@ -25,10 +26,11 @@ $hpi = new Questionnaire( 'HPI',
                 new Form(
                         'test2',
                         [
-                                new RadioCheck('test',1, 'yes,no', 'RADIO_DEFAULT'),
+                                new RadioCheck('test',1, 'e,no', 'RADIO_DEFAULT'),
                                 new RadioCheck('test',2, 's,fever', 'RADIO_DEFAULT'),
                                 new TextBox('te st',3, 'TEXTBOX_DEFAULT'),
-                                new Select('test',4, 'yes,no', 'SELECT_DEFAULT')
+                                new Select('test',4, 'yes,no', 'SELECT_DEFAULT'),
+                                new Calendar('Start date', '5', 'CALENDAR_DEFAULT')
                         ]
                 ),
 
