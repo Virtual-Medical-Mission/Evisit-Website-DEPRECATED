@@ -4,14 +4,12 @@ namespace Questionnaire;
 
 class Node
 {
-    public $question_name;
+    public $next_form;
     public $response;
-    public $next_question;
 
-    public function __construct($question_name, $response, $next_question) {
-        $this->question_name = $question_name;
+    public function __construct($next_form, $response = false) {
+        $this->next_form = $next_form;
         $this->response = $response;
-        $this->next_question = $next_question;
     }
 
 }
