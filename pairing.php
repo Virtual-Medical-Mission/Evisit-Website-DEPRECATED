@@ -22,7 +22,7 @@ var_dump($fetched_data);
 
 $user_ip = client_ipv4();
 echo '<br><br>Your IP address is: ' . $user_ip;
-
+echo 'tset';
 
 ?>
 
