@@ -143,8 +143,160 @@ $evisit = new Questionnaire('evisit',
                 [
                      new Node(false)
                 ]
-            )
+            ),
 
+            //Cough Track
+
+            new Form(
+                'Cough',
+                [
+                    new RadioCheck("Do you have a cough?", 1, "Yes,No", 'RADIO_DEFAULT')
+                ],
+                [
+                    new Node('fever', 'Yes'),
+                    new Node(false, 'No')
+                ]
+            ),
+
+            new Form(
+                'fever',
+                [
+                    new RadioCheck("Do you have a fever?", 1, "Yes,No", 'RADIO_DEFAULT')
+                ],
+                [
+                    new Node('traveled_recently', 'Yes'),
+                    new Node('when_cough', 'No')
+                ]
+            ),
+
+            new Form(
+                'traveled_recently',
+                [
+                    new RadioCheck("Have you traveled recently?", 1, "Yes,No", 'RADIO_DEFAULT')
+                ],
+                [
+                    new Node(false, 'Yes'),
+                    new Node('cough_duration', 'No')
+                ]
+            ),
+
+            new Form(
+                'cough_duration',
+                [
+                    new RadioCheck("How long have you had a cough with fever for?", 1, "<1 wk,>1-3 wks,>3 wks", 'RADIO_DEFAULT')
+                ],
+                [
+                    new Node('wetdry', '<1 wk'),
+                    new Node('blood_in_cough', '>1-3 wks'),
+                    new Node('blood_in_cough', '>3 wks'),
+                ]
+            ),
+
+            new Form(
+                'wetdry',
+                [
+                    new RadioCheck("Is your cough wet or dry?", 1, "Wet,Dry", 'RADIO_DEFAULT')
+                ],
+                [
+                    new Node('blood_in_cough2', 'Wet'),
+                    new Node('runny_nose', 'Dry')
+                ]
+            ),
+
+            new Form(
+                'blood_in_cough2',
+                [
+                    new RadioCheck("Do you have blood in your cough?", 1, "Yes,No", 'RADIO_DEFAULT')
+                ],
+                [
+                    new Node(false)
+                ]
+            ),
+
+            new Form(
+                'runny_nose',
+                [
+                    new RadioCheck("Do you have a runny_nose", 1, "Yes,No", 'RADIO_DEFAULT')
+                ],
+                [
+                    new Node(false)
+                ]
+            ),
+
+            new Form(
+                'blood_in_cough',
+                [
+                    new RadioCheck("Do you have blood in your cough?", 1, "Yes,No", 'RADIO_DEFAULT')
+                ],
+                [
+                    new Node('history_tuberculosis', 'Yes'),
+                    new Node('weight_loss', 'No')
+                ]
+            ),
+
+            new Form(
+                'history_tuberculosis',
+                [
+                    new RadioCheck("Do you have a history of Tuberculosis?", 1, "Yes,No", 'RADIO_DEFAULT')
+                ],
+                [
+                    new Node(false, 'Yes'),
+                    new Node('weightloss_or_sweatnchills', 'No')
+                ]
+            ),
+
+            new Form(
+                'weightloss_or_sweatnchills',
+                [
+                    new RadioCheck("Do you have weight loss or sweat and chills?", 1, "Yes,No", 'RADIO_DEFAULT')
+                ],
+                [
+                    new Node(false, 'Yes'),
+                    new Node('HIV', 'No')
+                ]
+            ),
+
+            new Form(
+                'HIV',
+                [
+                    new RadioCheck("Do you have HIV", 1, "Yes,No", 'RADIO_DEFAULT')
+                ],
+                [
+                    new Node(false)
+                ]
+            ),
+
+            new Form(
+                'weight_loss',
+                [
+                    new RadioCheck("Do you have weight loss?", 1, "Yes,No", 'RADIO_DEFAULT')
+                ],
+                [
+                    new Node(false, 'Yes'),
+                    new Node('history_tuberculosis2', 'No')
+                ]
+            ),
+
+            new Form(
+                'history_tuberculosis2',
+                [
+                    new RadioCheck("Do you have a history of tuberculosis", 1, "Yes,No", 'RADIO_DEFAULT')
+                ],
+                [
+                    new Node(false, 'Yes'),
+                    new Node('sweatnchills', 'No')
+                ]
+            ),
+
+            new Form(
+                'sweatnchills',
+                [
+                    new RadioCheck("Do you have Sweat or Chills?", 1, "Yes,No", 'RADIO_DEFAULT')
+                ],
+                [
+                    new Node(false)
+                ]
+            ),
 
 
 
