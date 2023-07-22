@@ -76,7 +76,9 @@ class Questionnaire
             //Check if the current form has a node with a response that matches the current form response
             foreach($this->forms[$this->position]->nodes as $node) {
                 if($node->response == $_SESSION[$this->name][$this->forms[$this->position]->form_name][$this->forms[$this->position]->questions[0]->question_name] ) {
-                    if(!$node->next_form) {
+                    if($node->next_form == false) {
+                        $_SESSION[$this->name]['path'][ $_SESSION[$this->name]['nextCount'] ] = $this->position;
+                        $_SESSION[$this->name]['nextCount'] = $_SESSION[$this->name]['nextCount'] + 1;
                         redirect_to('dump.php');
                     }
                     $_SESSION[$this->name]['path'][ $_SESSION[$this->name]['nextCount'] ] = $this->position;
@@ -152,6 +154,8 @@ class Questionnaire
                 if(!$this->BranchingLogicDisabled() and $this->isRoot()) {
                     $error = $this->forms[$this->position]->validate();
                     if(!$error) {
+                        $_SESSION[$this->name]['path'][ $_SESSION[$this->name]['nextCount'] ] = $this->position;
+                        $_SESSION[$this->name]['nextCount'] = $_SESSION[$this->name]['nextCount'] + 1;
                         redirect_to('dump.php');
                     }
                 } else {
