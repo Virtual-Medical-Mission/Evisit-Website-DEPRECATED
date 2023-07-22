@@ -71,7 +71,7 @@ $evisit = new Questionnaire('evisit',
 
     ]
 );
-
+var_dump($_SESSION);
 ?>
 
 <!DOCTYPE html>

@@ -53,6 +53,7 @@ $result = mysqli_query($evisit_db, $sql);
                             <th scope="col">drug_rate</th>
                             <th scope="col">physical_activities</th>
                             <th scope="col">family_history</th>
+                            <th scope="col">date</th>
 
 
 
@@ -87,6 +88,7 @@ $result = mysqli_query($evisit_db, $sql);
                                 <td><?php echo $row['drug_rate']; ?></td>
                                 <td><?php echo $row['physical_activities']; ?></td>
                                 <td><?php echo $row['family_history']; ?></td>
+                                <td><?php echo $row['date']; ?></td>
 
 
                             </tr>

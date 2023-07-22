@@ -56,9 +56,13 @@ class Questionnaire
 
     //Serializes the current form responses from a POST request in the $_SESSION storage
     public function SESSION_STORE() {
+
+
         foreach($this->forms[$this->position]->questions as $question) {
             $_SESSION[$this->name][$this->forms[$this->position]->form_name][$question->question_name] = $_POST[$question->question_name];
         }
+
+
     }
 
     public function NEXT() {
@@ -67,13 +71,16 @@ class Questionnaire
             $this->position++;
             $_SESSION[$this->name]['position'] = $this->position;
         } else {
+
+
             //Check if the current form has a node with a response that matches the current form response
             foreach($this->forms[$this->position]->nodes as $node) {
                 if($node->response == $_SESSION[$this->name][$this->forms[$this->position]->form_name][$this->forms[$this->position]->questions[0]->question_name] ) {
                     if(!$node->next_form) {
-                        unset($_SESSION[$this->name]);
-                        redirect_to('index.php');
+                        redirect_to('dump.php');
                     }
+                    $_SESSION[$this->name]['path'][ $_SESSION[$this->name]['nextCount'] ] = $this->position;
+                    $_SESSION[$this->name]['nextCount'] = $_SESSION[$this->name]['nextCount'] + 1;
                     $this->position = $this->getFormPositionByName($node->next_form);
                     $_SESSION[$this->name]['position'] = $this->position;
                     return 1;
@@ -83,6 +90,8 @@ class Questionnaire
             //Scan for default nodes with no response required
             foreach($this->forms[$this->position]->nodes as $node) {
                 if(!$node->response) {
+                    $_SESSION[$this->name]['path'][ $_SESSION[$this->name]['nextCount'] ] = $this->position;
+                    $_SESSION[$this->name]['nextCount'] = $_SESSION[$this->name]['nextCount'] + 1;
                     $this->position = $this->getFormPositionByName($node->next_form);
                     $_SESSION[$this->name]['position'] = $this->position;
                     return 1;
@@ -101,14 +110,20 @@ class Questionnaire
             $_SESSION[$this->name]['position'] = $this->position;
         } else {
 
-            foreach($this->forms as $form) {
-                foreach($form->nodes as $node) {
-                    if($node->next_form == $this->forms[$this->position]->form_name) {
-                        $this->position = $this->getFormPositionByName($form->form_name);
-                        $_SESSION[$this->name]['position'] = $this->position;
-                    }
-                }
-            }
+//            foreach($this->forms as $form) {
+//                foreach($form->nodes as $node) {
+//                    if($node->next_form == $this->forms[$this->position]->form_name) {
+//                        $this->position = $this->getFormPositionByName($form->form_name);
+//                        $_SESSION[$this->name]['position'] = $this->position;
+//                    }
+//                }
+//            }
+
+            $this->position = $_SESSION[$this->name]['path'][ $_SESSION[$this->name]['nextCount'] - 1 ];
+            $_SESSION[$this->name]['position'] = $this->position;
+            $_SESSION[$this->name]['nextCount'] = $_SESSION[$this->name]['nextCount'] - 1;
+            unset($_SESSION[$this->name]['path'][ $_SESSION[$this->name]['nextCount'] ]);
+
 
         }
     }
@@ -121,6 +136,10 @@ class Questionnaire
             $this->forms = $forms;
             $this->position = 0;
             $_SESSION[$name]['position'] = 0;
+            if(!$this->BranchingLogicDisabled()) {
+                $_SESSION[$this->name]['path'] = array();
+                $_SESSION[$this->name]['nextCount'] = 0;
+            }
         } elseif (isset($_SESSION[$name])) {
             $this->name = $name;
             $this->forms = $forms;
@@ -133,8 +152,7 @@ class Questionnaire
                 if(!$this->BranchingLogicDisabled() and $this->isRoot()) {
                     $error = $this->forms[$this->position]->validate();
                     if(!$error) {
-                        unset($_SESSION[$this->name]);
-                        redirect_to('index.php');
+                        redirect_to('dump.php');
                     }
                 } else {
                     $error = $this->forms[$this->position]->validate();
