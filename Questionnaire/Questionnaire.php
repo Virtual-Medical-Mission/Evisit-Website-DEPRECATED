@@ -154,6 +154,7 @@ class Questionnaire
                 if(!$this->BranchingLogicDisabled() and $this->isRoot()) {
                     $error = $this->forms[$this->position]->validate();
                     if(!$error) {
+                        $this->SESSION_STORE();
                         $_SESSION[$this->name]['path'][ $_SESSION[$this->name]['nextCount'] ] = $this->position;
                         $_SESSION[$this->name]['nextCount'] = $_SESSION[$this->name]['nextCount'] + 1;
                         redirect_to('dump.php');

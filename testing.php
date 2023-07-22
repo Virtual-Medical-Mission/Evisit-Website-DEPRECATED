@@ -14,69 +14,146 @@ use Questionnaire\{Questionnaire, Form, RadioCheck, TextBox, Select, Calendar, N
 $evisit = new Questionnaire('evisit',
 
     [
-        new Form(
-            'SOB',
-            [
-                new RadioCheck('Do you have shortness of breath?', 1, 'yes,no', 'RADIO_DEFAULT'),
-            ],
-            [
-                new Node('SOBresting', 'yes'),
-                new Node('Cough', 'no'),
-            ]
-        ),
+            //Start
+            new Form( 'SOB',
+                [
+                        new RadioCheck('Do you have shortness of breath?', 1, 'Yes,No', 'RADIO_DEFAULT')
+                ],
+                [
+                        new Node('SOB_resting', 'Yes'),
+                        new Node('Cough', 'No')
+                ]
+            ),
 
-        new Form (
-              'SOBresting',
-            [
-                    new RadioCheck('Do you have shortness of breath while resting?', 1, 'yes,no', 'RADIO_DEFAULT'),
-            ],
-            [
-                    new Node('swelling', 'yes'),
-                    new Node('SOB_exercise', 'no'),
-            ]
-        ),
+            //SOB pathway
+            new Form(
+                    'SOB_resting',
+                [
+                        new RadioCheck('Do you have shortness of breath while resting?', 1, 'Yes,No', 'RADIO_DEFAULT')
+                ],
+                [
+                        new Node('swelling', 'Yes'),
+                        new Node('SOB_exercise', 'No')
+                ]
+            ),
 
-        new Form(
-                'swelling',
-            [
-                    new RadioCheck('Do you have swelling?', 1, 'yes,no', 'RADIO_DEFAULT'),
-            ],
-            [
+            new Form(
+                   'swelling',
+                [
+                        new RadioCheck('Do you have swelling?', 1, 'Yes,No', 'RADIO_DEFAULT')
+                ],
+                [
+                    new Node('chest_pain', 'Yes'),
+                    new Node('wheezing', 'No')
+                ]
+            ),
+
+            new Form(
+                'chest_pain',
+                [
+                    new RadioCheck('Do you have chest_pain?', 1, 'Yes,No', 'RADIO_DEFAULT')
+                ],
+                [
+                    new Node('known_heart_condition', 'Yes'),
+                    new Node('wheezing', 'No')
+                ]
+            ),
+
+            new Form(
+                'wheezing',
+                [
+                    new RadioCheck('Do you have wheezing?', 1, 'Yes,No', 'RADIO_DEFAULT')
+                ],
+                [
+                    new Node(false, 'Yes'),
+                    new Node('smoker', 'No')
+                ]
+            ),
+
+            new Form(
+                'smoker',
+                [
+                    new RadioCheck('Are you a smoker?', 1, 'Yes,No', 'RADIO_DEFAULT')
+                ],
+                [
                     new Node(false)
-            ]
-        ),
+                ]
+            ),
 
-        new Form(
+            new Form(
+                       'known_heart_condition',
+                    [
+                            new RadioCheck('Do you have a known heart condition?', 1, 'Yes,No', 'RADIO_DEFAULT')
+                    ],
+                    [
+                        new Node(false, 'Yes'),
+                        new Node('burning_sensation', 'No')
+                    ]
+                ),
+
+            new Form(
+                'burning_sensation',
+                [
+                    new RadioCheck('Do you have a burning sensation?', 1, 'Yes,No', 'RADIO_DEFAULT')
+                ],
+                [
+                    new Node(false, 'Yes'),
+                    new Node('wheezing', 'No')
+                ]
+            ),
+
+            new Form(
                 'SOB_exercise',
-            [
-                    new RadioCheck('Do you have shortness of breath while exercising?', 1, 'yes,no', 'RADIO_DEFAULT'),
-            ],
-            [
-                   new Node(false)
-            ]
+                [
+                    new RadioCheck('Do you have shortness of breath while exercising?', 1, 'Yes,No', 'RADIO_DEFAULT')
+                ],
+                [
+                    new Node('wheezing2', 'Yes'),
+                    new Node('SOB_cause', 'No')
+                ]
+            ),
 
-        ),
+            new Form(
+                'wheezing2',
+                [
+                    new RadioCheck('Do you have wheezing', 1, 'Yes,No', 'RADIO_DEFAULT')
+                ],
+                [
+                    new Node('asthma_copd', 'Yes'),
+                    new Node(false, 'No')
+                ]
+            ),
 
-        new Form (
-                'Cough',
-            [
-                  new RadioCheck("Do you have a cough?", 1, 'yes,no', 'RADIO_DEFAULT'),
-            ],
-            [
-                    new Node('fever', 'yes'),
-                    new Node(false, 'no'),
-            ]
-        )
+            new Form(
+                'asthma_copd',
+                [
+                    new RadioCheck('Do you have Asthma/COPD?', 1, 'Yes,No', 'RADIO_DEFAULT')
+                ],
+                [
+                    new Node(false)
+                ]
+            ),
+
+
+            new Form(
+                    'SOB_cause',
+                [
+                     new TextBox('Describe what causes this shortness of breath?', 1, 'TEXTBOX_DEFAULT')
+                ],
+                [
+                     new Node(false)
+                ]
+            )
+
+
 
 
     ]
 );
-var_dump($_SESSION);
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
