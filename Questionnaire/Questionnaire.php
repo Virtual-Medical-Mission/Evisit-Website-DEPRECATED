@@ -44,7 +44,7 @@ class Questionnaire
     function isRoot() {
         $root = false;
         foreach($this->forms[$this->position]->nodes as $node) {
-            if( !$node->next_form and !$node->response) {
+            if( DxTx::isDxTx($node->next_form) and !$node->response) {
                 $root = true;
             }
         }
@@ -73,9 +73,11 @@ class Questionnaire
             //Check if the current form has a node with a response that matches the current form response
             foreach($this->forms[$this->position]->nodes as $node) {
                 if($node->response == $_SESSION[$this->name][$this->forms[$this->position]->form_name][$this->forms[$this->position]->questions[0]->question_name] ) {
-                    if($node->next_form == false) {
+                    if(DxTx::isDxTx($node->next_form)) {
                         $_SESSION[$this->name]['path'][ $_SESSION[$this->name]['nextCount'] ] = $this->position;
                         $_SESSION[$this->name]['nextCount'] = $_SESSION[$this->name]['nextCount'] + 1;
+                        $_SESSION[$this->name]['Dx'] = $node->next_form->diagnosis;
+                        $_SESSION[$this->name]['Tx'] = $node->next_form->treatment;
                         redirect_to('dump.php');
                     }
                     $_SESSION[$this->name]['path'][ $_SESSION[$this->name]['nextCount'] ] = $this->position;
@@ -145,6 +147,8 @@ class Questionnaire
                         $this->SESSION_STORE();
                         $_SESSION[$this->name]['path'][ $_SESSION[$this->name]['nextCount'] ] = $this->position;
                         $_SESSION[$this->name]['nextCount'] = $_SESSION[$this->name]['nextCount'] + 1;
+                        $_SESSION[$this->name]['Dx'] = $this->forms[$this->position]->nodes[0]->next_form->diagnosis;
+                        $_SESSION[$this->name]['Tx'] = $this->forms[$this->position]->nodes[0]->next_form->treatment;
                         redirect_to('dump.php');
                     }
                 } else {

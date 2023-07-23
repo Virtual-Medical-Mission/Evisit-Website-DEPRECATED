@@ -66,7 +66,7 @@ $evisit = new Questionnaire('evisit',
                 new RadioCheck('Do you have wheezing?', 1, 'Yes,No', 'RADIO_DEFAULT')
             ],
             [
-                new Node(false, 'Yes'),
+                new Node(new DxTx('none', 'Rescue Inhaler'), 'Yes'),
                 new Node('smoker', 'No')
             ]
         ),
@@ -77,7 +77,8 @@ $evisit = new Questionnaire('evisit',
                 new RadioCheck('Are you a smoker?', 1, 'Yes,No', 'RADIO_DEFAULT')
             ],
             [
-                new Node(false)
+                new Node(new DxTx('none', 'Laisx x3 Days + Inhaler'), 'Yes'),
+                new Node(new DxTx('none', 'Inhaler'), 'No'),
             ]
         ),
 
@@ -87,7 +88,7 @@ $evisit = new Questionnaire('evisit',
                 new RadioCheck('Do you have a known heart condition?', 1, 'Yes,No', 'RADIO_DEFAULT')
             ],
             [
-                new Node(false, 'Yes'),
+                new Node(new DxTx('none', 'Nitro SL'), 'Yes'),
                 new Node('burning_sensation', 'No')
             ]
         ),
@@ -98,7 +99,7 @@ $evisit = new Questionnaire('evisit',
                 new RadioCheck('Do you have a burning sensation?', 1, 'Yes,No', 'RADIO_DEFAULT')
             ],
             [
-                new Node(false, 'Yes'),
+                new Node(new DxTx('none', 'none'), 'Yes'),
                 new Node('wheezing', 'No')
             ]
         ),
@@ -121,7 +122,7 @@ $evisit = new Questionnaire('evisit',
             ],
             [
                 new Node('asthma_copd', 'Yes'),
-                new Node(false, 'No')
+                new Node(new DxTx('none', 'Rescue Inhaler'), 'No')
             ]
         ),
 
@@ -131,7 +132,8 @@ $evisit = new Questionnaire('evisit',
                 new RadioCheck('Do you have Asthma/COPD?', 1, 'Yes,No', 'RADIO_DEFAULT')
             ],
             [
-                new Node(false)
+                new Node(new DxTx('none', 'Long term and rescue inhaler'), 'Yes'),
+                new Node(new DxTx('none', 'Rescue Inhaler'), 'No'),
             ]
         ),
 
@@ -142,7 +144,7 @@ $evisit = new Questionnaire('evisit',
                 new TextBox('Describe what causes this shortness of breath?', 1, 'TEXTBOX_DEFAULT')
             ],
             [
-                new Node(false)
+                new Node(new DxTx('none', 'none'), false)
             ]
         ),
 
@@ -155,7 +157,7 @@ $evisit = new Questionnaire('evisit',
             ],
             [
                 new Node('fever', 'Yes'),
-                new Node(false, 'No')
+                new Node(new DxTx('none', 'none'), 'No')
             ]
         ),
 
@@ -176,7 +178,7 @@ $evisit = new Questionnaire('evisit',
                 new RadioCheck("Have you traveled recently?", 1, "Yes,No", 'RADIO_DEFAULT')
             ],
             [
-                new Node(false, 'Yes'),
+                new Node(new DxTx('none', 'none'), 'Yes'),
                 new Node('cough_duration', 'No')
             ]
         ),
@@ -210,7 +212,7 @@ $evisit = new Questionnaire('evisit',
                 new RadioCheck("Do you have blood in your cough?", 1, "Yes,No", 'RADIO_DEFAULT')
             ],
             [
-                new Node(false)
+                new Node(new DxTx('none', 'Antibiotics CAP'), false)
             ]
         ),
 
@@ -241,7 +243,7 @@ $evisit = new Questionnaire('evisit',
                 new RadioCheck("Do you have a history of Tuberculosis?", 1, "Yes,No", 'RADIO_DEFAULT')
             ],
             [
-                new Node(false, 'Yes'),
+                new Node(new DxTx('Possible TB with CAP', 'none'), 'Yes'),
                 new Node('weightloss_or_sweatnchills', 'No')
             ]
         ),
@@ -252,7 +254,7 @@ $evisit = new Questionnaire('evisit',
                 new RadioCheck("Do you have weight loss or sweat and chills?", 1, "Yes,No", 'RADIO_DEFAULT')
             ],
             [
-                new Node(false, 'Yes'),
+                new Node(new DxTx('HIV or TB', 'TB, CAP'), 'Yes'),
                 new Node('HIV', 'No')
             ]
         ),
@@ -263,7 +265,8 @@ $evisit = new Questionnaire('evisit',
                 new RadioCheck("Do you have HIV", 1, "Yes,No", 'RADIO_DEFAULT')
             ],
             [
-                new Node(false)
+                new Node(new DxTx('HIV or TB', 'Bacterium and CAP'), 'Yes'),
+                new Node(new DxTx('CAP', 'none'), 'No')
             ]
         ),
 
@@ -273,7 +276,7 @@ $evisit = new Questionnaire('evisit',
                 new RadioCheck("Do you have weight loss?", 1, "Yes,No", 'RADIO_DEFAULT')
             ],
             [
-                new Node(false, 'Yes'),
+                new Node(new DxTx('HIV or TB', 'TB, CAP'), 'Yes'),
                 new Node('history_tuberculosis2', 'No')
             ]
         ),
@@ -284,7 +287,7 @@ $evisit = new Questionnaire('evisit',
                 new RadioCheck("Do you have a history of tuberculosis", 1, "Yes,No", 'RADIO_DEFAULT')
             ],
             [
-                new Node(false, 'Yes'),
+                new Node(new DxTx('CAP', 'none'), 'Yes'),
                 new Node('sweatnchills', 'No')
             ]
         ),
@@ -295,7 +298,8 @@ $evisit = new Questionnaire('evisit',
                 new RadioCheck("Do you have Sweat or Chills?", 1, "Yes,No", 'RADIO_DEFAULT')
             ],
             [
-                new Node(false)
+                new Node(new DxTx('HIV or TB', 'CAP+Bac'), 'Yes'),
+                new Node(new DxTx('none', 'none'), 'No'),
             ]
         ),
 
@@ -306,7 +310,7 @@ $evisit = new Questionnaire('evisit',
             ],
             [
                 new Node('environment', 'Day Only'),
-                new Node(false, 'Night Only'),
+                new Node(new DxTx('GERD', 'GERD'), 'Night Only'),
                 new Node('cough_duration2', 'Both'),
             ]
         ),
@@ -327,7 +331,7 @@ $evisit = new Questionnaire('evisit',
                 new TextBox('What is your diet like?', 1, 'TEXTBOX_DEFAULT')
             ],
             [
-                new Node(false)
+                new Node(new DxTx('GERD', 'GERD'))
             ]
         ),
 
@@ -350,7 +354,8 @@ $evisit = new Questionnaire('evisit',
             ],
             [
                 new Node('spit_color', 'Wet'),
-                new Node(false, 'Dry')
+                new Node(new DxTx('Acute Bronchitis vs Allergy/Other', 'Zpac + OTC allergy'), 'Dry')
+
             ]
         ),
 
@@ -360,7 +365,9 @@ $evisit = new Questionnaire('evisit',
                 new RadioCheck("What is the color of your spit?", 1, "White Or Clear,Yellow or Green,Red", 'RADIO_DEFAULT')
             ],
             [
-                new Node(false)
+                new Node(new DxTx('Acute Bronchitis vs Allergy/Other', 'Zpac + OTC allergy'), 'White or Clear'),
+                new Node(new DxTx('Acute Bronchitis', 'Zpac'), 'Yellow or Green'),
+                new Node(new DxTx('none', 'none'), 'Red')
             ]
         ),
 
@@ -381,7 +388,7 @@ $evisit = new Questionnaire('evisit',
                 new RadioCheck("Do you have Asthma?", 1, "Yes,No", 'RADIO_DEFAULT')
             ],
             [
-                new Node(false, 'Yes'),
+                new Node(new DxTx('none', 'Zpac or doxy'), 'Yes'),
                 new Node('smoker2', 'No')
             ]
         ),
@@ -392,7 +399,8 @@ $evisit = new Questionnaire('evisit',
                 new RadioCheck("Are you a Smoker?", 1, "Yes,No", 'RADIO_DEFAULT')
             ],
             [
-                new Node(false)
+                new Node(new DxTx('none', 'Zpac or doxy'), 'Yes'),
+                new Node(new DxTx('Acute Bronchitis', 'Zpac'), 'No'),
             ]
         ),
 
@@ -413,7 +421,7 @@ $evisit = new Questionnaire('evisit',
                 new RadioCheck("Do you have blood in your spit?", 1, "Yes,No", 'RADIO_DEFAULT')
             ],
             [
-                new Node(false, 'Yes'),
+                new Node(new DxTx('none', 'none'), 'Yes'),
                 new Node('allergies', 'No')
             ]
         ),
@@ -424,7 +432,7 @@ $evisit = new Questionnaire('evisit',
                 new RadioCheck("Do you have any allergies?", 1, "Yes,No", 'RADIO_DEFAULT')
             ],
             [
-                new Node(false)
+                new Node(new DxTx('Allergies', 'OTC Allergy / Sinus'), false)
             ]
         ),
 
