@@ -8,8 +8,9 @@ require_once 'Questionnaire/Select.php';
 require_once 'Questionnaire/Calendar.php';
 require_once 'Questionnaire/Questionnaire.php';
 require_once 'Questionnaire/Node.php';
+require_once 'Questionnaire/DxTx.php';
 
-use Questionnaire\{Questionnaire, Form, RadioCheck, TextBox, Select, Calendar, Node};
+use Questionnaire\{Questionnaire, Form, RadioCheck, TextBox, Select, Calendar, Node, DxTx};
 
 $evisit = new Questionnaire('evisit',
 
@@ -429,6 +430,8 @@ $evisit = new Questionnaire('evisit',
 
     ]
 );
+
+
 ?>
 
 <!DOCTYPE html>

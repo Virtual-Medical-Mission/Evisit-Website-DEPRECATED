@@ -32,22 +32,19 @@ class Questionnaire
 
     //Check if a form is an origin (no previous forms) Only applies to Branching Logic
     public function isOrigin() {
-        $origin = true;
-        foreach($this->forms as $form) {
-            foreach($form->nodes as $node) {
-                if($node->next_form == $this->forms[$this->position]->form_name) {
-                    $origin = false;
-                }
-            }
+
+        if($_SESSION[$this->name]['nextCount'] == 0) {
+            return true;
+        } else {
+            return false;
         }
-        return $origin;
     }
 
     //Checks if a form is a root/leads to dx (no next forms) Only applies to Branching Logic
     function isRoot() {
         $root = false;
         foreach($this->forms[$this->position]->nodes as $node) {
-            if(!$node->next_form and !$node->response) {
+            if( !$node->next_form and !$node->response) {
                 $root = true;
             }
         }
@@ -111,15 +108,6 @@ class Questionnaire
             $this->position--;
             $_SESSION[$this->name]['position'] = $this->position;
         } else {
-
-//            foreach($this->forms as $form) {
-//                foreach($form->nodes as $node) {
-//                    if($node->next_form == $this->forms[$this->position]->form_name) {
-//                        $this->position = $this->getFormPositionByName($form->form_name);
-//                        $_SESSION[$this->name]['position'] = $this->position;
-//                    }
-//                }
-//            }
 
             $this->position = $_SESSION[$this->name]['path'][ $_SESSION[$this->name]['nextCount'] - 1 ];
             $_SESSION[$this->name]['position'] = $this->position;
