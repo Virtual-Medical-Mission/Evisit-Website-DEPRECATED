@@ -4,6 +4,7 @@ namespace Questionnaire;
 
 class Questionnaire
 {
+    //Used to allocate memory into session storage
     public $name;
     public $forms;
     public $position;
@@ -40,7 +41,7 @@ class Questionnaire
         }
     }
 
-    //Checks if a form is a root/leads to dx (no next forms) Only applies to Branching Logic
+    //Checks if a form is a root/leads to DxTx (no next forms) Only applies to Branching Logic
     function isRoot() {
         $root = false;
         foreach($this->forms[$this->position]->nodes as $node) {
@@ -62,26 +63,34 @@ class Questionnaire
 
     }
 
+    //Used to load the next form
     public function NEXT() {
+
         $this->SESSION_STORE();
+
         if($this->BranchingLogicDisabled()) {
             $this->position++;
             $_SESSION[$this->name]['position'] = $this->position;
-        } else {
 
+        } else {
+            // ----------------- BRANCHING LOGIC -----------------
 
             //Check if the current form has a node with a response that matches the current form response
             foreach($this->forms[$this->position]->nodes as $node) {
                 if($node->response == $_SESSION[$this->name][$this->forms[$this->position]->form_name][$this->forms[$this->position]->questions[0]->question_name] ) {
+                    //Check if the next form is DxTx
                     if(DxTx::isDxTx($node->next_form)) {
                         $_SESSION[$this->name]['path'][ $_SESSION[$this->name]['nextCount'] ] = $this->position;
                         $_SESSION[$this->name]['nextCount'] = $_SESSION[$this->name]['nextCount'] + 1;
+                        //Allocate DxTx into session storage
                         $_SESSION[$this->name]['Dx'] = $node->next_form->diagnosis;
                         $_SESSION[$this->name]['Tx'] = $node->next_form->treatment;
                         redirect_to('dump.php');
                     }
+                    //Add form into path storage
                     $_SESSION[$this->name]['path'][ $_SESSION[$this->name]['nextCount'] ] = $this->position;
                     $_SESSION[$this->name]['nextCount'] = $_SESSION[$this->name]['nextCount'] + 1;
+                    //Set up next form
                     $this->position = $this->getFormPositionByName($node->next_form);
                     $_SESSION[$this->name]['position'] = $this->position;
                     return 1;
@@ -105,12 +114,15 @@ class Questionnaire
 
     }
 
+    //Used to load the previous form
     public function BACK() {
         if($this->BranchingLogicDisabled()) {
             $this->position--;
             $_SESSION[$this->name]['position'] = $this->position;
         } else {
 
+            // ----------------- BRANCHING LOGIC -----------------
+            //Uses path storage to quickly load the previous form without having to scan any nodes at all
             $this->position = $_SESSION[$this->name]['path'][ $_SESSION[$this->name]['nextCount'] - 1 ];
             $_SESSION[$this->name]['position'] = $this->position;
             $_SESSION[$this->name]['nextCount'] = $_SESSION[$this->name]['nextCount'] - 1;
@@ -120,9 +132,10 @@ class Questionnaire
         }
     }
 
+    //Main Construct function ran every time HTTP REQUEST is made
     public function __construct($name, $forms) {
 
-
+        //First initialization of the questionnaire
         if(!isset($_SESSION[$name])) {
             $this->name = $name;
             $this->forms = $forms;
@@ -132,15 +145,21 @@ class Questionnaire
                 $_SESSION[$this->name]['path'] = array();
                 $_SESSION[$this->name]['nextCount'] = 0;
             }
-        } elseif (isset($_SESSION[$name])) {
+
+        }
+        //Loads Questionnaire from session storage
+        elseif (isset($_SESSION[$name])) {
             $this->name = $name;
             $this->forms = $forms;
             $this->position = $_SESSION[$name]['position'];
         }
 
+        //----------------- POST REQUEST HANDLER -----------------
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
+            //Next button handler
             if(isset($_POST['next'])) {
+                //Branching Logic enabled and Form Node is type root:
                 if(!$this->BranchingLogicDisabled() and $this->isRoot()) {
                     $error = $this->forms[$this->position]->validate();
                     if(!$error) {
@@ -151,22 +170,32 @@ class Questionnaire
                         $_SESSION[$this->name]['Tx'] = $this->forms[$this->position]->nodes[0]->next_form->treatment;
                         redirect_to('dump.php');
                     }
+
                 } else {
+                    //Handles any Questionnaire type
                     $error = $this->forms[$this->position]->validate();
                     if(!$error) {
                         $this->NEXT();
                     }
                 }
             }
-
+            //Handles back button
             elseif(isset($_POST['back'])) {
                 $this->BACK();
             }
+
+            //Handles finish button
+            //Only applies to Normal Questionnaire
+            elseif(isset($_POST['finish'])) {
+                //some code for uploading normal questionnaire into database
+            }
+
 
         }
 
     }
 
+    //Renders the current form and displays it
     public function render() {
         $this->forms[$this->position]->display($this->name);
         if($this->BranchingLogicDisabled()) {
