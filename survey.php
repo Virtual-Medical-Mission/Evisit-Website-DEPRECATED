@@ -10,7 +10,7 @@ require_once 'Questionnaire/Questionnaire.php';
 require_once 'Questionnaire/Node.php';
 require_once 'Questionnaire/DxTx.php';
 
-use Questionnaire\{Questionnaire, Form, RadioCheck, TextBox, Select, Calendar, Node, DxTx};
+use Questionnaire\{Questionnaire, Question, Form, RadioCheck, TextBox, Select, Calendar, Node, DxTx};
 
 $evisit = new Questionnaire('evisit',
 
