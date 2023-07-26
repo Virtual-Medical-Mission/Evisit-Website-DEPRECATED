@@ -4,7 +4,7 @@
 session_start();
 ob_start();
 
-const AI_ENABLED = false;
+const AI_ENABLED = true;
 const OPENAI_API_KEY = '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';
 
 const private_path = __DIR__ . '/';
@@ -21,3 +21,7 @@ require_once private_path . 'ai.php';
 
 
 $evisit_db = db_connect();
+
+if(!isset($_SESSION['auth'])) {
+    redirect_to('dev/auth.php');
+}
