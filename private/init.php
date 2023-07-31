@@ -21,7 +21,3 @@ require_once private_path . 'ai.php';
 
 
 $evisit_db = db_connect();
-
-if(!isset($_SESSION['auth'])) {
-    redirect_to('dev/auth.php');
-}
