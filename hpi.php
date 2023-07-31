@@ -3,8 +3,6 @@
 require_once 'private/init.php';
 require_once 'private/HPI/hpi_pages.php';
 require_once 'private/HPI/hpi_validate.php';
-require __DIR__ . '/vendor/autoload.php';
-use Orhanerday\OpenAi\OpenAi;
 
 
 
@@ -15,13 +13,6 @@ use Orhanerday\OpenAi\OpenAi;
 require_login('login.php');
 require_hpi_session('login.php');
 
-//Setup HPI AI if AI is enabled
-if(AI_ENABLED) {
-    $open_ai_key = OPENAI_API_KEY;
-    $HPI_AI = new OpenAi($open_ai_key);
-} else {
-    $HPI_AI = null;
-}
 
 
 

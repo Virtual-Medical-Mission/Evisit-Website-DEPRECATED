@@ -1,15 +1,7 @@
 <?php
 
 require_once 'private/init.php';
-require __DIR__ . '/vendor/autoload.php';
-use Orhanerday\OpenAi\OpenAi;
 
-if (AI_ENABLED) {
-    $open_ai_key = OPENAI_API_KEY;
-    $REGISTER_AI = new OpenAi($open_ai_key);
-} else {
-    $REGISTER_AI = null;
-}
 
 
 $year = date("Y");
@@ -29,7 +21,7 @@ $errors = [
 
 
 if (is_post_request()) {
-    $errors = register_user($_POST, $REGISTER_AI);
+    $errors = register_user($_POST);
     if (!$errors['present']) {
         hpi_init();
         redirect_to('hpi.php');

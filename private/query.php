@@ -3,10 +3,10 @@
 require_once 'init.php';
 
 //processes registration form and registers a user in the database
-function register_user($user_data, $REGISTER_AI = null): array
+function register_user($user_data): array
 {
     global $evisit_db;
-    $errors = validate_registration($user_data, $REGISTER_AI);
+    $errors = validate_registration($user_data);
     if($errors['present']) {
         return $errors;
     }
