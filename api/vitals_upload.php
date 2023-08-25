@@ -10,7 +10,7 @@ if( is_post_request() ) {
         $heartrate = $vitals[1];
         $BP = $vitals[2];
         $temperature = $vitals[3];
-        $ekg = explode(',', $vitals[4]);
+        $ekg = $vitals[4];
 
         $sql = 'INSERT INTO vitals (oxsat, heartrate, BP, temp, EKG ) VALUES (';
         $sql .= "'" . db_escape($evisit_db, $spo2) . "',";
