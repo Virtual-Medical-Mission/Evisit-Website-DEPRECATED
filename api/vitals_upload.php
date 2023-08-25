@@ -1,7 +1,7 @@
 <?php
 
 require_once '../private/init.php';
-
+global $evisit_db;
 if( is_post_request() ) {
 
     if( isset($_POST['vitals']) ) {
@@ -12,15 +12,16 @@ if( is_post_request() ) {
         $temperature = $vitals[3];
         $ekg = explode(',', $vitals[4]);
 
-        global $evisit_db;
-        $sql = "INSERT into vitals (oxsat, heartrate, BP, temp, EKG) VALUES(";
-        $sql .= "'" . '1' . "',";
-        $sql .= "'" . '1' . "',";
-        $sql .= "'" . '1' . "',";
-        $sql .= "'" . '1' . "',";
-        $sql .= "'" . '1' . "')";
+        $sql = 'INSERT INTO vitals (oxsat, heartrate, BP, temp, EKG ) VALUES (';
+        $sql .= "'" . db_escape($evisit_db, $spo2) . "',";
+        $sql .= "'" . db_escape($evisit_db, $heartrate) . "',";
+        $sql .= "'" . db_escape($evisit_db, $BP) . "',";
+        $sql .= "'" . db_escape($evisit_db, $temperature) . "',";
+        $sql .= "'" . db_escape($evisit_db, $ekg) . "')";
 
-        mysqli_query($evisit_db, $sql);
+        $result = mysqli_query($evisit_db, $sql);
+        confirm_result_set($result);
+
 
     }
 
