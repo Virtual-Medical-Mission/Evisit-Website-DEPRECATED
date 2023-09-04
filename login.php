@@ -23,13 +23,13 @@ if(is_post_request()) {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/private/assets/css/style.css" />
+    <link rel="stylesheet" href="/private/assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/private/assets/css/bs-theme-overrides.css" />
+    <link rel="stylesheet" href="/private/assets/fonts/font-awesome.min.css" />
     <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-        rel="stylesheet"
-        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
-        crossorigin="anonymous"
+            rel="stylesheet"
+            href="/private/assets/css/Footer-with-social-media-icons.css"
     />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <title>Register</title>
 </head>
     <body>
@@ -73,9 +73,67 @@ if(is_post_request()) {
             </form>
         </div>
 
-        <?php require_once 'private/temps/footer.temp.php'?>
+    <footer id="footerpad">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-lg-8 mx-auto">
+                    <ul class="list-inline text-center">
+                        <li class="list-inline-item">
+                            <a
+                                    href="https://www.instagram.com/vmmhealth/?igshid=ZWQyN2ExYTkwZQ=="
+                                    target="_blank"
+                            ><span class="fa-stack fa-lg"
+                                ><i class="fa fa-circle fa-stack-2x"></i
+                                    ><i
+                                            class="fa fa-instagram fa-stack-1x fa-inverse"
+                                    ></i></span
+                                ></a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a
+                                    href="https://www.linkedin.com/company/virtual-medical-missions/about/"
+                                    target="_blank"
+                            ><span class="fa-stack fa-lg"
+                                ><i class="fa fa-circle fa-stack-2x"></i
+                                    ><i class="fa fa-linkedin fa-stack-1x fa-inverse"></i></span
+                                ></a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="https://vmm-evisit.azurewebsites.net/" target="_blank">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i
+                    ><i
+                              class="fa fa-hospital-o fa-stack-1x fa-inverse"
+                      ></i> </span
+                  ></a>
+                        </li>
+                    </ul>
+                    <p
+                            class="copyright text-muted text-center"
+                            style="color: var(--bs-body-bg) !important"
+                    >
+                        Copyright ©2023 Virtual Medical Missions&nbsp;
+                    </p>
+                    <p style="text-align: center">
+                        <span style="color: rgb(254, 251, 241)">All Rights Reserved</span>
+                    </p>
+                    <p style="text-align: center">
+              <span style="color: rgb(254, 251, 241)"
+              >VMM is a registered 501(c)(3) nonprofit organization</span
+              >
+                    </p>
+                    <p style="text-align: center">
+              <span style="color: rgb(254, 251, 241)"
+              >All donations in the United States are tax-deductible.</span
+              >
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
 
 
     </body>
+    <script src="/private/assets/js/bootstrap.min.js"></script>
 </html>
 
