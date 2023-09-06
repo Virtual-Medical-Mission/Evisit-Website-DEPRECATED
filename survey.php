@@ -99,7 +99,7 @@ $evisit = new Questionnaire('evisit',
                 new RadioCheck('Do you have a burning sensation?', 1, 'Yes,No', 'RADIO_DEFAULT')
             ],
             [
-                new Node(new DxTx('none', 'none'), 'Yes'),
+                new Node('throatchest_burning', 'Yes'),
                 new Node('wheezing', 'No')
             ]
         ),
@@ -145,6 +145,116 @@ $evisit = new Questionnaire('evisit',
             ],
             [
                 new Node(new DxTx('none', 'none'), false)
+            ]
+        ),
+
+        //SOB Gerd
+
+        new Form(
+                'throatchest_burning',
+                [
+                    new RadioCheck("Do you have a burning sensation in your chest or throat?", '1', 'Yes,No', 'RADIO_DEFAULT')
+                ],
+
+                [
+                        new Node('regurgitating', "Yes"),
+                        new Node(new DxTx('false', 'false'), 'No')
+                ]
+        ),
+
+        new Form(
+            'regurgitating',
+            [
+                new RadioCheck("Do you have regurgitation?", '1', 'Yes,No', 'RADIO_DEFAULT')
+            ],
+
+            [
+                new Node('reg_morethanonceperweek', "Yes"),
+                new Node(new DxTx('Acid Reflux', 'none'), 'No')
+            ]
+        ),
+
+        new Form(
+            'reg_morethanonceperweek',
+            [
+                new RadioCheck("Does it occure more than once per week?", '1', 'Yes,No', 'RADIO_DEFAULT')
+            ],
+
+            [
+                new Node('chestpainbehindbreastbone', "Yes"),
+                new Node(new DxTx('Gastris Gallstone Peptic ulcer', 'none'), 'No')
+            ]
+        ),
+
+        new Form(
+            'chestpainbehindbreastbone',
+            [
+                new RadioCheck("Do you have chest pain?", '1', 'Yes,No', 'RADIO_DEFAULT')
+            ],
+
+            [
+                new Node('asthmadiagnosed', "Yes"),
+                new Node('paindifficultyswallowing', 'No')
+            ]
+        ),
+
+        new Form(
+            'asthmadiagnosed',
+            [
+                new RadioCheck("Do you have a diagnosis of asthma?", '1', 'Yes,No', 'RADIO_DEFAULT')
+            ],
+
+            [
+                new Node(new Dxtx('Asthma', 'Use inhaler or other remedy'), "Yes"),
+                new Node('paindifficultyswallowing', 'No')
+            ]
+        ),
+
+        new Form(
+            'asthmadiagnosed',
+            [
+                new RadioCheck("Do you have a diagnosis of asthma?", '1', 'Yes,No', 'RADIO_DEFAULT')
+            ],
+
+            [
+                new Node('asthmadiagnosed', "Yes"),
+                new Node('paindifficultyswallowing', 'No')
+            ]
+        ),
+
+        new Form(
+            'paindifficultyswallowing',
+            [
+                new RadioCheck("Do you have pain or difficulty swallowing?", '1', 'Yes,No', 'RADIO_DEFAULT')
+            ],
+
+            [
+                new Node(new DxTx('false', 'false'), "Yes"),
+                new Node('chroniccoughunrelatedtocold', 'No')
+            ]
+        ),
+
+        new Form(
+            'chroniccoughunrelatedtocold',
+            [
+                new RadioCheck("Do you have a chronic cough that is not related to cold.", '1', 'Yes,No', 'RADIO_DEFAULT')
+            ],
+
+            [
+                new Node(new DxTx('false', 'false'), "Yes"),
+                new Node('changesinvoice', 'No')
+            ]
+        ),
+
+        new Form(
+            'changesinvoice',
+            [
+                new RadioCheck("Do you have any changes in your voice currently?", '1', 'Yes,No', 'RADIO_DEFAULT')
+            ],
+
+            [
+                new Node(new DxTx('false','false'), "Yes"),
+                new Node(new DxTx('false','false'), 'No')
             ]
         ),
 
