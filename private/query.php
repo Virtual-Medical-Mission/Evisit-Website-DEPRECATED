@@ -23,8 +23,8 @@ function register_user($user_data): array
     $sql .= ")";
     $result = mysqli_query($evisit_db, $sql);
     confirm_result_set($result);
-
-    patient_set($user_data, 'register');
+    $user_id = mysqli_insert_id($evisit_db);
+    start_appointment($user_data, 'register', $user_id, $evisit_db);
 
     return $errors;
 
@@ -47,7 +47,7 @@ function login_user($user_login): bool
 
     if($fetched_data) {
         if(password_verify($user_login['password'], $fetched_data['password'])) {
-            patient_set($fetched_data, 'login');
+            start_appointment($fetched_data, 'login', $fetched_data['id'], $evisit_db);
             return true;
         }
     }

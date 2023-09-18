@@ -23,10 +23,11 @@ $errors = [
 if (is_post_request()) {
     $errors = register_user($_POST);
     if (!$errors['present']) {
-        hpi_init();
+        $_SESSION['hpi_ready'] = 'true';
         redirect_to('hpi.php');
     }
 }
+
 
 
 ?>
@@ -39,6 +40,7 @@ if (is_post_request()) {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/private/assets/css/style.css" />
+    <link rel="stylesheet" href="/private/assets/css/Navbar-Right-Links-icons.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
@@ -47,7 +49,44 @@ if (is_post_request()) {
 
 <body>
 
-    <?php vmm_banner('VMM Healthcare'); ?>
+<nav
+        class="navbar navbar-dark navbar-expand-md sticky-top"
+        style="background: linear-gradient(#05445e, #05445e), #05445e"
+>
+    <div class="container-fluid">
+        <a class="navbar-brand d-md-none text-center" href="#"
+        ><img
+                    src="assets/img/logo_tr.png"
+                    class="nav-logo"
+                    width="65%"
+                    height="65%"
+                    alt="Logo" /></a
+        ><button
+                data-bs-toggle="collapse"
+                class="navbar-toggler"
+                data-bs-target="#navcol-1"
+        >
+          <span class="visually-hidden">Toggle navigation</span
+          ><span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse d-md-flex" id="navcol-1">
+            <ul class="navbar-nav d-flex justify-content-evenly mx-auto w-100">
+
+            </ul>
+            <a class="navbar-brand d-none d-md-block me-0 fs-3 text-center"
+            ><img
+                        class="nav-logo"
+                        src="assets/img/logo_tr.png"
+                        width="70%"
+                        height="50%"
+                        alt="Logo"
+                /></a>
+            <ul class="navbar-nav d-flex justify-content-evenly mx-auto w-100">
+
+            </ul>
+        </div>
+    </div>
+</nav>
 
     <div class="container-fluid mt-5">
         <form action="index.php" method="POST" class="ps-5 pe-5 mt-3"

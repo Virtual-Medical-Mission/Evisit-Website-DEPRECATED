@@ -6,7 +6,7 @@ if(is_post_request()) {
 
     $login_result = login_user($_POST);
     if($login_result) {
-        hpi_init();
+        $_SESSION['hpi_ready'] = 'true';
         redirect_to('hpi.php');
     } else {
         $error = true;

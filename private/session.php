@@ -1,8 +1,9 @@
 <?php
 
-//stores patient user data in the session storage
-function patient_set($user_data, $action) : void {
+//stores patient user data in the session storage and starts an appointment
+function start_appointment($user_data, $action, $uid, $db) : void {
     session_regenerate_id();
+    $_SESSION['uid'] = $uid;
     $_SESSION['first_name'] = $user_data['first_name'];
     $_SESSION['last_name'] = $user_data['last_name'];
     $_SESSION['username'] = $user_data['username'];
@@ -13,6 +14,17 @@ function patient_set($user_data, $action) : void {
         $_SESSION['DOB'] = $user_data['DOB'];
     }
     $_SESSION['role'] = 'patient';
+
+    $sql = "INSERT INTO appointments (uid, vid, checkedin, checkedout, doctor) VALUES (";
+    $sql .= "'" . db_escape($db, $uid) . "', ";
+    $sql .= "'" . -1 . "', ";
+    $sql .= "'" . db_escape($db, date('Y-m-d H:i:s')) . "', ";
+    $sql .= "'" . 'N/A' . "', ";
+    $sql .= "'" . 'N/A' . "')";
+    $result = mysqli_query($db, $sql);
+    confirm_result_set($result);
+    $_SESSION['apid'] = mysqli_insert_id($db);
+
 }
 
 //deletes patient user data from the session storage
@@ -33,44 +45,4 @@ function require_login($redirect_url) : void {
     }
 }
 
-//Session storage object that temporarily will store HPI form data when a user does the HPI form
-function hpi_init() : void {
-    if(!isset($_SESSION['hpi'])) {
-        $_SESSION['hpi'] = [
-            'page' => 1,
-            'page_end' => 4,
-            'language' => 'english',
-            'tribe' => '',
-            'location' => '',
-            'start_date' => date('Y-m-d'),
-            'medical_conditions' => '',
-            'medications' => '',
-            'surgeries' => '',
-            'allergies' => '',
-            'hospitalized' => 'no',
-            'clean_water' => '',
-            'transportation' => '',
-            'immunizations' => '',
-            'dietary_restrictions' => '',
-            'smoke_rate' => '',
-            'alcohol_rate' => '',
-            'drug_rate' => '',
-            'physical_activities' => '',
-            'family_history' => '',
-
-        ];
-    }
-}
-
-//Destroy HPI form data from session storage if the user is finished with the HPI form
-function hpi_destroy() : void {
-    unset($_SESSION['hpi']);
-}
-
-//Makes sure that some random person can't do the HPI form unless they have auth to do it
-function require_hpi_session($redirect_url) : void {
-    if(!isset($_SESSION['hpi'])) {
-        redirect_to($redirect_url);
-    }
-}
 

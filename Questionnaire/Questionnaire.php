@@ -7,6 +7,8 @@ class Questionnaire
     //Used to allocate memory into session storage
     public $name;
     public $forms;
+    public $unlock;
+    public $db;
     public $position;
 
     //Checks if the current form has branching logic compatibility disabled
@@ -133,12 +135,14 @@ class Questionnaire
     }
 
     //Main Construct function ran every time HTTP REQUEST is made
-    public function __construct($name, $forms) {
+    public function __construct($name, $forms, $unlock, $db) {
 
         //First initialization of the questionnaire
         if(!isset($_SESSION[$name])) {
             $this->name = $name;
             $this->forms = $forms;
+            $this->unlock = $unlock;
+            $this->db = $db;
             $this->position = 0;
             $_SESSION[$name]['position'] = 0;
             if(!$this->BranchingLogicDisabled()) {
@@ -151,6 +155,8 @@ class Questionnaire
         elseif (isset($_SESSION[$name])) {
             $this->name = $name;
             $this->forms = $forms;
+            $this->unlock = $unlock;
+            $this->db = $db;
             $this->position = $_SESSION[$name]['position'];
         }
 
@@ -185,9 +191,26 @@ class Questionnaire
             }
 
             //Handles finish button
-            //Only applies to Normal Questionnaire
             elseif(isset($_POST['finish'])) {
-                //some code for uploading normal questionnaire into database
+                $this->SESSION_STORE();
+                $questions = array();
+                $responses = array();
+                if($this->BranchingLogicDisabled()) {
+                    foreach($this->forms as $form) {
+                        foreach($form->questions as $question) {
+                            $sql = 'INSERT INTO embedded_responses (questionnaire, question, uid, response, apid) VALUES(';
+                            $sql.= "'" . $this->name . "', ";
+                            $sql.= "'" . $question->question . "', ";
+                            $sql.= "'" . $_SESSION['uid'] . "', ";
+                            $sql.= "'" . db_escape($this->db,$_SESSION[$this->name][$form->form_name][$question->question_name]). "', ";
+                            $sql.= "'" . $_SESSION['apid'] . "')";
+                            $result = mysqli_query($this->db, $sql);
+                            confirm_result_set($result);
+
+                        }
+                    }
+                }
+                redirect_to('dummy.php');
             }
 
 
