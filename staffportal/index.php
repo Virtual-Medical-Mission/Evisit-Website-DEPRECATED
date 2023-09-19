@@ -36,6 +36,10 @@
                     <th>DoB</th>
                     <td>04/03/0001</td>
                 </tr
+                <tr>
+                    <th>Responses</th>
+                    <td>Results</td>
+                </tr
             </table>
         </div>
     </div>
