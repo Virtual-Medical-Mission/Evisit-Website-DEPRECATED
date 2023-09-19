@@ -14,28 +14,25 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-3">
-            <img src="" class="img-fluid rounded" alt="Patient Image">
-        </div>
-        <div class="col-md-9">
-            <h2 class="text-center">Patient Information</h2>
+        <div class="col-md-12">
+            <h1 class="text-center">Doctor's Patient List</h1>
             <table class="table table-bordered">
+                <thead>
                 <tr>
-                    <th>Name</th>
+                    <th>Patient ID</th>
+                    <th>Patient Name</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><a href="index.php">1</a></td>
                     <td>John Doe</td>
                 </tr>
                 <tr>
-                    <th>Age</th>
-                    <td>30</td>
+                    <td><a href="index.php">2</a></td>
+                    <td>Jane Smith</td>
                 </tr>
-                <tr>
-                    <th>Gender</th>
-                    <td>Male</td>
-                </tr
-                <tr>
-                    <th>DoB</th>
-                    <td>04/03/0001</td>
-                </tr
+                </tbody>
             </table>
         </div>
     </div>
