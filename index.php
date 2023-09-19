@@ -40,116 +40,70 @@ if (is_post_request()) {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/private/assets/css/style.css" />
-    <link rel="stylesheet" href="/private/assets/css/Navbar-Right-Links-icons.css" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="/private/assets/css/style.css" />
+    <link rel="stylesheet" href="/private/assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/private/assets/css/bs-theme-overrides.css" />
+    <link rel="stylesheet" href="/private/assets/fonts/font-awesome.min.css" />
+    <link rel="stylesheet" href="/private/assets/css/Footer-with-social-media-icons.css" />
     <title>Register</title>
 </head>
 
 <body>
 
-<nav
-        class="navbar navbar-dark navbar-expand-md sticky-top"
-        style="background: linear-gradient(#05445e, #05445e), #05445e"
->
+<nav class="navbar navbar-dark navbar-expand-md sticky-top" style="background: linear-gradient(#05445e, #05445e), #05445e">
     <div class="container-fluid">
-        <a class="navbar-brand d-md-none text-center" href="#"
-        ><img
-                    src="assets/img/logo_tr.png"
-                    class="nav-logo"
-                    width="65%"
-                    height="65%"
-                    alt="Logo" /></a
-        ><button
-                data-bs-toggle="collapse"
-                class="navbar-toggler"
-                data-bs-target="#navcol-1"
-        >
-          <span class="visually-hidden">Toggle navigation</span
-          ><span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse d-md-flex" id="navcol-1">
-            <ul class="navbar-nav d-flex justify-content-evenly mx-auto w-100">
-
-            </ul>
-            <a class="navbar-brand d-none d-md-block me-0 fs-3 text-center"
-            ><img
-                        class="nav-logo"
-                        src="assets/img/logo_tr.png"
-                        width="70%"
-                        height="50%"
-                        alt="Logo"
-                /></a>
-            <ul class="navbar-nav d-flex justify-content-evenly mx-auto w-100">
-
-            </ul>
+        <div class="navbar-brand text-center mx-auto">
+            <img src="private/assets/img/logo_tr.png" class="nav-logo" width="25%" height="25%" alt="Logo" />
         </div>
     </div>
 </nav>
 
-    <div class="container-fluid mt-5">
-        <form action="index.php" method="POST" class="ps-5 pe-5 mt-3"
-            style="margin: auto; background-color: #05445e; border-radius: 20px;">
-            <div class="fs-2 mt-5 text-light text-center">Register</div>
-            <div>
+    <div class="container mt-3">
+        <form action="index.php" method="POST" class="ps-3 pe-3 mt-3" style="background-color: #05445e; border-radius: 20px;">
+            <div class="fs-3 mt-3 text-light text-center">Register</div>
+            <div class="mb-3">
                 <label class="form-label mt-2 text-light" for="first_name">First Name</label>
-                <div class="input-group input-group-lg">
-                    <span <?php error_style_logo($errors, 'first_name'); ?> class="input-group-text"
-                        id="inputGroup-sizing-lg"><i class="bi bi-person-circle"></i></span>
-                    <input <?php error_style_input($errors, 'first_name'); ?> type="text"
-                        class="form-control form-control-lg" id="first_name" name="first_name"
-                        placeholder="Enter first name">
-                </div>
-                <?php if (isset($errors['first_name']) and $errors['present']) { ?>
-                    <div class="p text-danger fs-5">
+                <input <?php error_style_input($errors, 'first_name'); ?> type="text" class="form-control" id="first_name" name="first_name" placeholder="Enter first name">
+                <?php if (isset($errors['first_name']) && $errors['present']) { ?>
+                    <div class="text-danger fs-5">
                         <?php echo $errors['first_name'] ?>
                     </div>
                 <?php } ?>
-
             </div>
 
-            <div>
+            <div class="mb-3">
                 <label class="form-label mt-2 text-light" for="last_name">Last Name</label>
-                <div class="input-group input-group-lg">
-                    <span <?php error_style_logo($errors, 'last_name'); ?> class="input-group-text"
-                        id="inputGroup-sizing-lg"><i class="bi bi-person-circle"></i></span>
-                    <input <?php error_style_input($errors, 'last_name'); ?> type="text"
-                        class="form-control form-control-lg" id="last_name" name="last_name"
-                        placeholder="Enter last name">
-                </div>
-                <?php if (isset($errors['last_name']) and $errors['present']) { ?>
-                    <div class="p text-danger fs-5">
+                <input <?php error_style_input($errors, 'last_name'); ?> type="text" class="form-control" id="last_name" name="last_name" placeholder="Enter last name">
+                <?php if (isset($errors['last_name']) && $errors['present']) { ?>
+                    <div class="text-danger fs-5">
                         <?php echo $errors['last_name'] ?>
                     </div>
                 <?php } ?>
-
             </div>
 
             <div>
                 <label class="form-label mt-2 text-light" for="username">Create Username</label>
-                <div class="input-group input-group-lg">
-                    <span <?php error_style_logo($errors, 'username'); ?> class="input-group-text"
-                        id="inputGroup-sizing-lg"><i class="bi bi-person-badge"></i></span>
+                <div class="mb-3 input-group">
+        <span <?php error_style_logo($errors, 'username'); ?> class="input-group-text"
+                                                              id="inputGroup-sizing-lg"><i class="bi bi-person-badge"></i></span>
                     <input <?php error_style_input($errors, 'username'); ?> type="text"
-                        class="form-control form-control-lg" id="username" name="username"
-                        placeholder="Create a username">
+                                                                            class="form-control" id="username" name="username"
+                                                                            placeholder="Create a username">
                 </div>
                 <?php if (isset($errors['username']) and $errors['present']) { ?>
                     <div class="p text-danger fs-5">
                         <?php echo $errors['username'] ?>
                     </div>
                 <?php } ?>
-
             </div>
 
             <div>
                 <label class="form-label mt-2 text-light" for="gender">Gender</label>
-                <div class="input-group input-group-lg">
-                    <span <?php error_style_logo($errors, 'gender'); ?> class="input-group-text"
-                        id="inputGroup-sizing-lg"><i class="bi bi-gender-ambiguous"></i></span>
+                <div class="mb-3 input-group">
+        <span <?php error_style_logo($errors, 'gender'); ?> class="input-group-text"
+                                                            id="inputGroup-sizing-lg"><i class="bi bi-gender-ambiguous"></i></span>
                     <select <?php error_style_input($errors, 'gender'); ?> class="form-select" id="gender"
-                        name="gender">
+                                                                           name="gender">
                         <option value="gender" selected>Choose your gender:</option>
                         <option value="male">♂️Male</option>
                         <option value="female">♀️Female</option>
@@ -161,12 +115,12 @@ if (is_post_request()) {
                         <?php echo $errors['gender'] ?>
                     </div>
                 <?php } ?>
-
             </div>
+
 
             <div>
                 <label class="form-label mt-2 text-light" for="DOB">Date of Birth</label>
-                <div class="input-group input-group-lg">
+                <div class="mb-3 input-group">
                     <span <?php error_style_logo($errors, 'DOB'); ?> class="input-group-text" id="inputGroup-sizing-lg"><i class="bi bi-calendar3"></i></span>
                     <select <?php error_style_input($errors, 'DOB'); ?> class="form-select" id="month" name="month">
                         <option value="month" selected>Month</option>
@@ -229,55 +183,49 @@ if (is_post_request()) {
                         <?php echo $errors['DOB'] ?>
                     </div>
                 <?php } ?>
-
             </div>
 
             <div>
                 <label class="form-label mt-2 text-light" for="password">Create Password</label>
-                <div class="input-group input-group-lg">
-                    <span <?php error_style_logo($errors, 'password'); ?> class="input-group-text"
-                        id="inputGroup-sizing-lg"><i class="bi bi-asterisk"></i></span>
+                <div class="mb-3 input-group">
+        <span <?php error_style_logo($errors, 'password'); ?> class="input-group-text"
+                                                              id="inputGroup-sizing-lg"><i class="bi bi-asterisk"></i></span>
                     <input <?php error_style_input($errors, 'password'); ?> type="password"
-                        class="form-control form-control-lg" id="password" name="password"
-                        placeholder="Create a password">
+                                                                            class="form-control" id="password" name="password"
+                                                                            placeholder="Create a password">
                 </div>
                 <?php if (isset($errors['password']) and $errors['present']) { ?>
                     <div class="p text-danger fs-5">
                         <?php echo $errors['password'] ?>
                     </div>
                 <?php } ?>
-
             </div>
 
             <div>
                 <label class="form-label mt-2 text-light" for="confirm_password">Confirm Password</label>
-                <div class="input-group input-group-lg">
-                    <span <?php error_style_logo($errors, 'confirm_password'); ?> class="input-group-text"
-                        id="inputGroup-sizing-lg"><i class="bi bi-asterisk"></i></span>
+                <div class="mb-3 input-group">
+        <span <?php error_style_logo($errors, 'confirm_password'); ?> class="input-group-text"
+                                                                      id="inputGroup-sizing-lg"><i class="bi bi-asterisk"></i></span>
                     <input <?php error_style_input($errors, 'confirm_password'); ?> type="password"
-                        class="form-control form-control-lg" id="confirm_password" name="confirm_password"
-                        placeholder="Confirm password">
+                                                                                    class="form-control" id="confirm_password" name="confirm_password"
+                                                                                    placeholder="Confirm password">
                 </div>
                 <?php if (isset($errors['confirm_password']) and $errors['present']) { ?>
                     <div class="p text-danger fs-5">
                         <?php echo $errors['confirm_password'] ?>
                     </div>
                 <?php } ?>
-
             </div>
             <div class="text-center">
-                <button type="submit" class="btn btn-lg mt-3 mb-3" style="background-color: antiquewhite;">Register</button>
+                <button type="submit" class="btn btn-lg mt-3" style="background-color: antiquewhite;">Register</button>
             </div>
 
             <div class="text-center fs-4 pb-3">
                 <a href="login.php" class="text-light">Already have an account? Login</a>
             </div>
-
         </form>
     </div>
-
-    <?php require_once 'private/temps/footer.temp.php' ?>
-
+    <?php include 'private/temps/footer.temp.php'?>
 
 </body>
 

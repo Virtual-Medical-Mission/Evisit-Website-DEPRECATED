@@ -19,3 +19,67 @@
   display: flex;
   justify-content: center;
 }
+
+
+.navbar-nav .nav-item .nav-link {
+  position: relative;
+  color: white;
+  font-family: "Nunito", "sans-serif" !important;
+}
+
+.navbar-nav .nav-item .nav-link::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: red;
+  transform: scaleX(0);
+  transition: transform 0.3s ease-in-out;
+}
+
+.navbar-nav .nav-item .nav-link:hover::before {
+  transform: scaleX(1);
+}
+.custom-toggler .navbar-toggler-icon {
+  filter: brightness(1) invert(1);
+}
+.navbar-nav .nav-item .nav-link.active {
+  position: relative;
+}
+
+.navbar-nav .nav-item .nav-link.active::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: red;
+}
+
+@media (max-width: 767px) {
+  .navbar-nav {
+    text-align: center;
+  }
+
+  .nav-logo {
+    width: 35% !important;
+    height: 40% !important;
+  }
+
+  .nav-link {
+    font-size: 20px !important;
+  }
+
+  .navbar-toggler {
+    font-size: 15px !important;
+  }
+}
+body {
+  font-family: "Nunito", sans-serif;
+}
+p {
+  font-family: "Nunito", sans-serif;
+}
