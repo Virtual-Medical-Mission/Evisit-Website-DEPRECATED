@@ -11,13 +11,15 @@ if( is_post_request() ) {
         $BP = $vitals[2];
         $temperature = $vitals[3];
         $ekg = $vitals[4];
+        $ip = $vitals[5]; 
 
-        $sql = 'INSERT INTO vitals (oxsat, heartrate, BP, temp, EKG ) VALUES (';
+        $sql = 'INSERT INTO vitals (oxsat, heartrate, BP, temp, EKG, IP ) VALUES (';
         $sql .= "'" . db_escape($evisit_db, $spo2) . "',";
         $sql .= "'" . db_escape($evisit_db, $heartrate) . "',";
         $sql .= "'" . db_escape($evisit_db, $BP) . "',";
         $sql .= "'" . db_escape($evisit_db, $temperature) . "',";
-        $sql .= "'" . db_escape($evisit_db, $ekg) . "')";
+        $sql .= "'" . db_escape($evisit_db, $ekg) . "',";
+        $sql .= "'" . db_escape($evisit_db, $ip) . "')";
 
         $result = mysqli_query($evisit_db, $sql);
         confirm_result_set($result);
