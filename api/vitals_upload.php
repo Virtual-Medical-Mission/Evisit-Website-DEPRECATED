@@ -14,7 +14,7 @@ if( is_post_request() ) {
         $ip = $vitals[5];
         
         
-        $sql = 'INSERT INTO vitals (oxsat, heartrate, BP, temp, EKG, IP ) VALUES (';
+        $sql = 'INSERT INTO vitals (oxsat, heartrate, BP, temp, EKG, DATAIP ) VALUES (';
         $sql .= "'" . db_escape($evisit_db, $spo2) . "',";
         $sql .= "'" . db_escape($evisit_db, $heartrate) . "',";
         $sql .= "'" . db_escape($evisit_db, $BP) . "',";
