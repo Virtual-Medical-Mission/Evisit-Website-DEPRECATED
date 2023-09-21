@@ -6,6 +6,7 @@ CREATE TABLE vitals
     BP        FLOAT,
     temp      FLOAT,
     EKG       text,
+    IP        text,
     time      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id)
 );
