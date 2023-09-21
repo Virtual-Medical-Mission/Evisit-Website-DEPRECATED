@@ -58,6 +58,7 @@ $result = mysqli_query($evisit_db, $sql);
                                 <td><?php echo $row['BP']; ?></td>
                                 <td><?php echo $row['temp']; ?></td>
                                 <td><?php echo $row['EKG']; ?></td>
+                                <td><?php echo $row['IP']; ?></td>
                                 <td><?php echo $row['time']; ?></td>
                             </tr>
 
