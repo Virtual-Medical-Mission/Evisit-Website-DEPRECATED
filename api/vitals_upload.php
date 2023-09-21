@@ -14,12 +14,11 @@ if( is_post_request() ) {
         $dataip = $vitals[5];
         
         
-        $sql = 'INSERT INTO vitals (oxsat, heartrate, BP, temp, EKG, DATAIP ) VALUES (';
+        $sql = 'INSERT INTO vitals (oxsat, heartrate, BP, temp, EKG, VALUES (';
         $sql .= "'" . db_escape($evisit_db, $spo2) . "',";
         $sql .= "'" . db_escape($evisit_db, $heartrate) . "',";
         $sql .= "'" . db_escape($evisit_db, $BP) . "',";
         $sql .= "'" . db_escape($evisit_db, $temperature) . "',";
-        $sql .= "'" . db_escape($evisit_db, $ekg) . "',";
         $sql .= "'" . db_escape($evisit_db, $dataip) . "')";
         echo $dataip;
         
