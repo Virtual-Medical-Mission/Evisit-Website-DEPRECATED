@@ -20,7 +20,7 @@ if( is_post_request() ) {
         $sql .= "'" . db_escape($evisit_db, $BP) . "',";
         $sql .= "'" . db_escape($evisit_db, $temperature) . "',";
         $sql .= "'" . db_escape($evisit_db, $ekg) . "',";
-        $sql .= "'" . db_escape($evisit_db, "SOMETHING") . "')";
+        $sql .= "'" . db_escape($evisit_db, $dataip) . "')";
         echo $dataip;
         
         $result = mysqli_query($evisit_db, $sql);
