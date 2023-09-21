@@ -39,6 +39,7 @@ $result = mysqli_query($evisit_db, $sql);
                             <th scope="col">BP</th>
                             <th scope="col">temp</th>
                             <th scope="col">EKG</th>
+                            <th scope="col">IP</th>
                             <th scope="col">time</th>
 
                         </tr>
