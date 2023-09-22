@@ -22,7 +22,7 @@
             <table class="table table-bordered">
                 <tr>
                     <th>Name</th>
-                    <td>John Doe</td>
+                    <td></td>
                 </tr>
                 <tr>
                     <th>Age</th>
