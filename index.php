@@ -34,7 +34,7 @@ if (is_post_request()) {
 
 
 
-<html lang="en">
+<!DOCTYPE html lang="en">
 
 <head>
     <meta charset="UTF-8" />
