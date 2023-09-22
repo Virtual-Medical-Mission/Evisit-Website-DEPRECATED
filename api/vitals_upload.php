@@ -24,7 +24,7 @@ if( is_post_request() ) {
         
         $result = mysqli_query($evisit_db, $sql);
         confirm_result_set($result);
-        
+        echo 'goodsend';
 
 
     }
