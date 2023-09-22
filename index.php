@@ -40,7 +40,6 @@ if (is_post_request()) {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/private/assets/css/style.css" />
-    <link rel="stylesheet" href="/private/assets/css/style.css" />
     <link rel="stylesheet" href="/private/assets/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/private/assets/css/bs-theme-overrides.css" />
     <link rel="stylesheet" href="/private/assets/fonts/font-awesome.min.css" />
@@ -50,7 +49,7 @@ if (is_post_request()) {
 
 <body>
 
-<nav class="navbar navbar-dark navbar-expand-md sticky-top" style="background: linear-gradient(#05445e, #05445e), #05445e">
+<nav class="navbar navbar-dark navbar-expand-md" style="background: linear-gradient(#05445e, #05445e), #05445e">
     <div class="container-fluid">
         <div class="navbar-brand text-center mx-auto">
             <img src="private/assets/img/logo_tr.png" class="nav-logo" width="25%" height="25%" alt="Logo" />
@@ -58,12 +57,13 @@ if (is_post_request()) {
     </div>
 </nav>
 
-    <div class="container mt-3">
-        <form action="index.php" method="POST" class="ps-3 pe-3 mt-3" style="background-color: #05445e; border-radius: 20px;">
-            <div class="fs-3 mt-3 text-light text-center">Register</div>
+<div class="container mt-3" id="main-content">
+    <form action="index.php" method="POST" class="ps-3 pe-3 mt-3" style="background-color: #05445e; border-radius: 20px;">
+        <div class="fs-3 mt-3 text-light text-center">Register</div>
+        <div class="d-flex flex-column align-items-center">
             <div class="mb-3">
                 <label class="form-label mt-2 text-light" for="first_name">First Name</label>
-                <input <?php error_style_input($errors, 'first_name'); ?> type="text" class="form-control" id="first_name" name="first_name" placeholder="Enter first name">
+                <input <?php error_style_input($errors, 'first_name'); ?> type="text" class="form-control smaller-input" id="first_name" name="first_name" placeholder="Enter first name">
                 <?php if (isset($errors['first_name']) && $errors['present']) { ?>
                     <div class="text-danger fs-5">
                         <?php echo $errors['first_name'] ?>
@@ -73,7 +73,7 @@ if (is_post_request()) {
 
             <div class="mb-3">
                 <label class="form-label mt-2 text-light" for="last_name">Last Name</label>
-                <input <?php error_style_input($errors, 'last_name'); ?> type="text" class="form-control" id="last_name" name="last_name" placeholder="Enter last name">
+                <input <?php error_style_input($errors, 'last_name'); ?> type="text" class="form-control smaller-input" id="last_name" name="last_name" placeholder="Enter last name">
                 <?php if (isset($errors['last_name']) && $errors['present']) { ?>
                     <div class="text-danger fs-5">
                         <?php echo $errors['last_name'] ?>
@@ -87,7 +87,7 @@ if (is_post_request()) {
         <span <?php error_style_logo($errors, 'username'); ?> class="input-group-text"
                                                               id="inputGroup-sizing-lg"><i class="bi bi-person-badge"></i></span>
                     <input <?php error_style_input($errors, 'username'); ?> type="text"
-                                                                            class="form-control" id="username" name="username"
+                                                                            class="form-control smaller-input" id="username" name="username"
                                                                             placeholder="Create a username">
                 </div>
                 <?php if (isset($errors['username']) and $errors['present']) { ?>
@@ -102,7 +102,7 @@ if (is_post_request()) {
                 <div class="mb-3 input-group">
         <span <?php error_style_logo($errors, 'gender'); ?> class="input-group-text"
                                                             id="inputGroup-sizing-lg"><i class="bi bi-gender-ambiguous"></i></span>
-                    <select <?php error_style_input($errors, 'gender'); ?> class="form-select" id="gender"
+                    <select <?php error_style_input($errors, 'gender'); ?> class="form-select smaller-input" id="gender"
                                                                            name="gender">
                         <option value="gender" selected>Choose your gender:</option>
                         <option value="male">♂️Male</option>
@@ -122,7 +122,7 @@ if (is_post_request()) {
                 <label class="form-label mt-2 text-light" for="DOB">Date of Birth</label>
                 <div class="mb-3 input-group">
                     <span <?php error_style_logo($errors, 'DOB'); ?> class="input-group-text" id="inputGroup-sizing-lg"><i class="bi bi-calendar3"></i></span>
-                    <select <?php error_style_input($errors, 'DOB'); ?> class="form-select" id="month" name="month">
+                    <select <?php error_style_input($errors, 'DOB'); ?> class="form-select smaller-input-select" id="month" name="month">
                         <option value="month" selected>Month</option>
                         <option value="january">January</option>
                         <option value="february">February</option>
@@ -137,7 +137,7 @@ if (is_post_request()) {
                         <option value="november">November</option>
                         <option value="december">December</option>
                     </select>
-                    <select <?php error_style_input($errors, 'DOB'); ?> class="form-select" id="day" name="day">
+                    <select <?php error_style_input($errors, 'DOB'); ?> class="form-select smaller-input-select" id="day" name="day">
                         <option value="day" selected>Day</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -171,7 +171,7 @@ if (is_post_request()) {
                         <option value="30">30</option>
                         <option value="31">31</option>
                     </select>
-                    <select <?php error_style_input($errors, 'DOB'); ?> class="form-select" id="year" name="year">
+                    <select <?php error_style_input($errors, 'DOB'); ?> class="form-select smaller-input-select" id="year" name="year">
                         <option value="year" selected>Year</option>
                         <?php for ($i = $year; $i >= $year - 100; $i--) { ?>
                             <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
@@ -191,7 +191,7 @@ if (is_post_request()) {
         <span <?php error_style_logo($errors, 'password'); ?> class="input-group-text"
                                                               id="inputGroup-sizing-lg"><i class="bi bi-asterisk"></i></span>
                     <input <?php error_style_input($errors, 'password'); ?> type="password"
-                                                                            class="form-control" id="password" name="password"
+                                                                            class="form-control smaller-input" id="password" name="password"
                                                                             placeholder="Create a password">
                 </div>
                 <?php if (isset($errors['password']) and $errors['present']) { ?>
@@ -207,7 +207,7 @@ if (is_post_request()) {
         <span <?php error_style_logo($errors, 'confirm_password'); ?> class="input-group-text"
                                                                       id="inputGroup-sizing-lg"><i class="bi bi-asterisk"></i></span>
                     <input <?php error_style_input($errors, 'confirm_password'); ?> type="password"
-                                                                                    class="form-control" id="confirm_password" name="confirm_password"
+                                                                                    class="form-control smaller-input" id="confirm_password" name="confirm_password"
                                                                                     placeholder="Confirm password">
                 </div>
                 <?php if (isset($errors['confirm_password']) and $errors['present']) { ?>
@@ -223,8 +223,10 @@ if (is_post_request()) {
             <div class="text-center fs-4 pb-3">
                 <a href="login.php" class="text-light">Already have an account? Login</a>
             </div>
+        </div>
         </form>
     </div>
+
     <?php include 'private/temps/footer.temp.php'?>
 
 </body>

@@ -31,7 +31,14 @@ if(is_post_request()) {
 </head>
     <body>
 
-    <?php vmm_banner('VMM Healthcare'); ?>
+    <nav class="navbar navbar-dark navbar-expand-md sticky-top" style="background: linear-gradient(#05445e, #05445e), #05445e">
+        <div class="container-fluid">
+            <div class="navbar-brand text-center mx-auto">
+                <img src="private/assets/img/logo_tr.png" class="nav-logo" width="25%" height="25%" alt="Logo" />
+            </div>
+        </div>
+    </nav>
+
     <div class="container-fluid mt-5">
             <form action="login.php" method="POST" class="ps-5 pe-5 mt-3" style="margin: auto; background-color: #05445e; border-radius: 20px;">
                 <div class="fs-2 mt-5 text-light text-center">Login</div>
@@ -70,10 +77,9 @@ if(is_post_request()) {
             </form>
         </div>
 
-        <?php include 'private/temps/footer.temp.php'?>
+    <?php include 'private/temps/footer.temp.php'?>
 
 
     </body>
-    <script src="/private/assets/js/bootstrap.min.js"></script>
 </html>
 
