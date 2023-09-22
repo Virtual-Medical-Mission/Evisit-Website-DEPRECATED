@@ -39,7 +39,7 @@ $result = mysqli_query($evisit_db, $sql);
                             <th scope="col">BP</th>
                             <th scope="col">temp</th>
                             <th scope="col">EKG</th>
-                            <th scope="col">DATAIP</th>
+                            <th scope="col">ip</th>
                             <th scope="col">time</th>
 
                         </tr>
@@ -58,7 +58,7 @@ $result = mysqli_query($evisit_db, $sql);
                                 <td><?php echo $row['BP']; ?></td>
                                 <td><?php echo $row['temp']; ?></td>
                                 <td><?php echo $row['EKG']; ?></td>
-                                <td><?php echo $row['DATAIP']; ?></td>
+                                <td><?php echo $row['ip']; ?></td>
                                 <td><?php echo $row['time']; ?></td>
                             </tr>
 
