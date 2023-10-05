@@ -7,7 +7,7 @@ if(is_post_request()) {
     $login_result = login_user($_POST);
     if($login_result) {
         $_SESSION['hpi_ready'] = 'true';
-        redirect("alert:hello");
+        header("Location:alert:hello");
         redirect_to('hpi.php');
     } else {
         $error = true;
