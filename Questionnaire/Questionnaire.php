@@ -9,6 +9,7 @@ class Questionnaire
     public $forms;
     public $unlock;
     public $db;
+    public $next;
     public $position;
 
     //Checks if the current form has branching logic compatibility disabled
@@ -87,7 +88,7 @@ class Questionnaire
                         //Allocate DxTx into session storage
                         $_SESSION[$this->name]['Dx'] = $node->next_form->diagnosis;
                         $_SESSION[$this->name]['Tx'] = $node->next_form->treatment;
-                        redirect_to('dump.php');
+                        $this->FINISH();
                     }
                     //Add form into path storage
                     $_SESSION[$this->name]['path'][ $_SESSION[$this->name]['nextCount'] ] = $this->position;
@@ -134,8 +135,43 @@ class Questionnaire
         }
     }
 
+    public function FINISH() {
+        $this->SESSION_STORE();
+        if($this->BranchingLogicDisabled()) {
+            foreach($this->forms as $form) {
+                foreach($form->questions as $question) {
+                    $sql = 'INSERT INTO embedded_responses (questionnaire, question, uid, response, apid) VALUES(';
+                    $sql.= "'" . $this->name . "', ";
+                    $sql.= "'" . $question->question . "', ";
+                    $sql.= "'" . $_SESSION['uid'] . "', ";
+                    $sql.= "'" . db_escape($this->db,$_SESSION[$this->name][$form->form_name][$question->question_name]). "', ";
+                    $sql.= "'" . $_SESSION['apid'] . "')";
+                    $result = mysqli_query($this->db, $sql);
+                    confirm_result_set($result);
+
+                }
+            }
+        }
+        else {
+            foreach ($_SESSION[$this->name]['path'] as $formPosition) {
+                foreach ($this->forms[$formPosition]->questions as $question) {
+                    $sql = 'INSERT INTO embedded_responses (questionnaire, question, uid, response, apid) VALUES(';
+                    $sql.= "'" . $this->name . "', ";
+                    $sql.= "'" . $question->question . "', ";
+                    $sql.= "'" . $_SESSION['uid'] . "', ";
+                    $sql.= "'" . db_escape($this->db,$_SESSION[$this->name][$this->forms[$formPosition]->form_name][$question->question_name]). "', ";
+                    $sql.= "'" . $_SESSION['apid'] . "')";
+                    $result = mysqli_query($this->db, $sql);
+                    confirm_result_set($result);
+                }
+            }
+        }
+        $_SESSION[$this->unlock] = 'Unlocked';
+        redirect_to($this->next);
+    }
+
     //Main Construct function ran every time HTTP REQUEST is made
-    public function __construct($name, $forms, $unlock, $db) {
+    public function __construct($name, $forms, $unlock, $db, $next) {
 
         //First initialization of the questionnaire
         if(!isset($_SESSION[$name])) {
@@ -143,6 +179,7 @@ class Questionnaire
             $this->forms = $forms;
             $this->unlock = $unlock;
             $this->db = $db;
+            $this->next = $next;
             $this->position = 0;
             $_SESSION[$name]['position'] = 0;
             if(!$this->BranchingLogicDisabled()) {
@@ -157,6 +194,7 @@ class Questionnaire
             $this->forms = $forms;
             $this->unlock = $unlock;
             $this->db = $db;
+            $this->next = $next;
             $this->position = $_SESSION[$name]['position'];
         }
 
@@ -174,7 +212,7 @@ class Questionnaire
                         $_SESSION[$this->name]['nextCount'] = $_SESSION[$this->name]['nextCount'] + 1;
                         $_SESSION[$this->name]['Dx'] = $this->forms[$this->position]->nodes[0]->next_form->diagnosis;
                         $_SESSION[$this->name]['Tx'] = $this->forms[$this->position]->nodes[0]->next_form->treatment;
-                        redirect_to('dump.php');
+                        $this->FINISH();
                     }
 
                 } else {
@@ -192,25 +230,7 @@ class Questionnaire
 
             //Handles finish button
             elseif(isset($_POST['finish'])) {
-                $this->SESSION_STORE();
-                $questions = array();
-                $responses = array();
-                if($this->BranchingLogicDisabled()) {
-                    foreach($this->forms as $form) {
-                        foreach($form->questions as $question) {
-                            $sql = 'INSERT INTO embedded_responses (questionnaire, question, uid, response, apid) VALUES(';
-                            $sql.= "'" . $this->name . "', ";
-                            $sql.= "'" . $question->question . "', ";
-                            $sql.= "'" . $_SESSION['uid'] . "', ";
-                            $sql.= "'" . db_escape($this->db,$_SESSION[$this->name][$form->form_name][$question->question_name]). "', ";
-                            $sql.= "'" . $_SESSION['apid'] . "')";
-                            $result = mysqli_query($this->db, $sql);
-                            confirm_result_set($result);
-
-                        }
-                    }
-                }
-                redirect_to('dummy.php');
+                $this->FINISH();
             }
 
 

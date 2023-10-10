@@ -11,7 +11,10 @@ require_once 'Questionnaire/Node.php';
 require_once 'Questionnaire/DxTx.php';
 
 use Questionnaire\{Questionnaire, Question, Form, RadioCheck, TextBox, Select, Calendar, Node, DxTx};
-
+global $evisit_db;
+if(!isset($_SESSION['survey']) or !isset($_SESSION['username'])) {
+    redirect_to('index.php');
+}
 $evisit = new Questionnaire('evisit',
 
     [
@@ -546,10 +549,13 @@ $evisit = new Questionnaire('evisit',
             ]
         ),
 
-    ]
+    ],
+'diagnosis',
+$evisit_db,
+'dummy.php'
 );
 
-
+var_dump($_SESSION);
 ?>
 
 <!DOCTYPE html>

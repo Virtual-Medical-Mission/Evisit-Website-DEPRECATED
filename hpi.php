@@ -68,9 +68,10 @@ $hpi = new Questionnaire('hpi', [
 
 ],
 'survey',
-$evisit_db
+$evisit_db,
+'survey.php'
 );
-var_dump($_SESSION);
+
 ?>
 
 <!DOCTYPE html>
