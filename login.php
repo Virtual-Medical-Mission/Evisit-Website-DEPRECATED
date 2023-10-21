@@ -67,7 +67,9 @@ if(is_post_request()) {
                 <?php } ?>
 
                 <div class="text-center">
-                    <button type="submit" class="btn btn-lg mt-3 mb-3" style="background-color: antiquewhite">Login</button>
+                    <a href="Alert:Hello%20World">
+                        <button type="submit" class="btn btn-lg mt-3 mb-3" style="background-color: antiquewhite">Login</button>
+                    </a>
                 </div>
 
                 <div class="text-center fs-4 pb-3">
