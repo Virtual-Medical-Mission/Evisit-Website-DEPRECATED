@@ -15,12 +15,13 @@ function start_appointment($user_data, $action, $uid, $db) : void {
     }
     $_SESSION['role'] = 'patient';
 
-    $sql = "INSERT INTO appointments (uid, vid, checkedin, checkedout, doctor) VALUES (";
+    $sql = "INSERT INTO appointments (uid, vid, checkedin, checkedout, doctor, ip) VALUES (";
     $sql .= "'" . db_escape($db, $uid) . "', ";
     $sql .= "'" . -1 . "', ";
     $sql .= "'" . db_escape($db, date('Y-m-d H:i:s')) . "', ";
     $sql .= "'" . 'N/A' . "', ";
-    $sql .= "'" . 'N/A' . "')";
+    $sql .= "'" . 'N/A' . "', ";
+    $sql .= "'" . db_escape($db, client_ipv4()) . "')";
     $result = mysqli_query($db, $sql);
     confirm_result_set($result);
     $_SESSION['apid'] = mysqli_insert_id($db);
