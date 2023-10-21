@@ -5,5 +5,6 @@ CREATE TABLE appointments (
     checkedin VARCHAR(255),
     checkedout VARCHAR(255),
     doctor VARCHAR(255),
+    ip TEXT,
     PRIMARY KEY (id)
 );
