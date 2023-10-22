@@ -2,15 +2,24 @@
 require_once '../private/init.php';
 global $evisit_db;
 
+//Gets the appointment ID from the URL
 $appviewing = $_GET['apid'];
-$sql = "SELECT * FROM appointments WHERE id = ' " . $appviewing . " ' ";
+
+//Gets the appointment data row from the database
+$sql = "SELECT * FROM appointments WHERE id = ' " . $appviewing . "'";
 $result = mysqli_query($evisit_db, $sql);
 $appointmentRow = mysqli_fetch_assoc($result);
+
+//Gets the user data row from the database
 $sql2 = "SELECT * FROM users WHERE id = ' " . $appointmentRow['uid'] . " ' ";
 $result2 = mysqli_query($evisit_db, $sql2);
 $userRow = mysqli_fetch_assoc($result2);
+
+//Gets the users questionnaire responses from the database
 $sql3 = "SELECT * FROM embedded_responses WHERE apid = ' " . $appviewing . " ' ";
 $result3 = mysqli_query($evisit_db, $sql3);
+
+//Checks if the user has vitals data
 if (($appointmentRow['vid'] !== '-1') && ($appointmentRow['vid'] !== null ) ) {
     $sql4 = "SELECT * FROM vitals WHERE id = ' " . $appointmentRow['vid'] . " ' ";
     $result4 = mysqli_query($evisit_db, $sql4);
