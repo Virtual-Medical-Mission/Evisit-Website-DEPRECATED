@@ -555,7 +555,7 @@ $evisit_db,
 'thankyou.html'
 );
 
-var_dump($_SESSION);
+//var_dump($_SESSION);
 ?>
 
 <!DOCTYPE html>
