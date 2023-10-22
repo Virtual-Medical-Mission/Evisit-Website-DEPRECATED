@@ -3,7 +3,7 @@ require_once "../private/init.php";
 
 global $evisit_db;
 
-$sql = "SELECT * FROM appointments";
+$sql = "SELECT * FROM appointments ORDER BY id DESC";
 $result = mysqli_query($evisit_db, $sql);
 confirm_result_set($result);
 
