@@ -1,5 +1,7 @@
 <?php
 require_once '../private/init.php';
+global $evisit_db;
+
 $appviewing = $_GET['apid'];
 debug_to_console($appviewing);
 $sql = "SELECT * FROM appointments WHERE id = ' " . $appviewing . " ' ";
