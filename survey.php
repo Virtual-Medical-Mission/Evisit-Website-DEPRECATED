@@ -552,7 +552,7 @@ $evisit = new Questionnaire('evisit',
     ],
 'diagnosis',
 $evisit_db,
-'dummy.php'
+'thankyou.html'
 );
 
 var_dump($_SESSION);
