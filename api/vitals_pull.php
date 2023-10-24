@@ -2,10 +2,10 @@
 require_once '../private/init.php';
 global $evisit_db;
 header("Content-Type:application/json");
-if (isset($_GET['vitals']) && $_GET['vitals'] != "") {
+if (isset($_GET['vitals'])) {
 	// getting latest vitals
 	$sql = "SELECT * FROM vitals ORDER BY ID DESC LIMIT 1"; 
-	$result = mysqli_query($evisit_db, $sql);
+	$result = mysqli_query($evisit_db,$sql);
 	if(mysqli_num_rows($result)>0) {
 		$vitalsRow = mysqli_fetch_assoc($result);
 		$vid = $vitalsRow['id'];
@@ -14,7 +14,7 @@ if (isset($_GET['vitals']) && $_GET['vitals'] != "") {
     	$BP = $vitalsRow['BP'];
     	$temp = $vitalsRow['temp'];
 		$sql2 = "SELECT * FROM appointments WHERE vid = ' " . $vid . "'";
-		$result2 =  mysqli_query($evisit_db, $sql2);
+		$result2 =  mysqli_query($evisit_db,$sql2);
 		if(mysqli_num_rows($resul2)>0){
 			// getting appointment associated with latest vitals
 			$appsRow = mysqli_fetch_assoc($result2);
@@ -22,18 +22,19 @@ if (isset($_GET['vitals']) && $_GET['vitals'] != "") {
 			$checkedIn = $appsRow['checkedin'];
 			// getting user with latest appointment
 			$sql3 = "SELECT * FROM users WHERE id = ' " . $uid . "'";
-			$result3 =  mysqli_query($evisit_db, $sql3);
+			$result3 =  mysqli_query($evisit_db,$sql3);
 			if(mysqli_num_rows($resul3)>0) {
 				$usersRow =  mysqli_fetch_assoc($result3);
 				$name = $usersRow['first_name'] . ' ' . $usersRow['last_name'];
+				response($name,$uid,$checkedIn,$oxsat,$heartrate,$BP,$temp,0);
 			} else{
-				response($name,$uid,$checkedIn,$oxsat,$heartrate,$BP,$temp,403);
+				response("Not Found",$uid,$checkedIn,$oxsat,$heartrate,$BP,$temp,402);
 			}
 		} else{
-			response("Not Found",$uid,$checkedIn,$oxsat,$heartrate,$BP,$temp,0);
+			response("Not Found","Not Found","Not Found",$oxsat,$heartrate,$BP,$temp,403);
 		}
 		} else{
-			response("Not Found","Not Found","Not Found",$oxsat,$heartrate,$BP,$temp,403);
+			response("Not Found","Not Found","Not Found","Not Found","Not Found","Not Found","Not Found",404);
 		}
 } else{
 	response("Invalid Request","Invalid Request","Invalid Request","Invalid Request","Invalid Request","Invalid Request","Invalid Request",400);
