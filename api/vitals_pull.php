@@ -18,27 +18,24 @@ if (isset($_GET['vitals']) && $_GET['vitals'] != "1") {
 		if(mysqli_num_rows($resul2)>0){
 			// getting appointment associated with latest vitals
 			$appsRow = mysqli_fetch_assoc($result2);
-			$uid = $result2['uid'];
-			$checkedIn = $result2['checkedin'];
+			$uid = $appsRow['uid'];
+			$checkedIn = $appsRow['checkedin'];
 			// getting user with latest appointment
 			$sql3 = "SELECT * FROM users WHERE id = ' " . $uid . "'";
 			$result3 =  mysqli_query($evisit_db, $sql3);
 			if(mysqli_num_rows($resul3)>0) {
 				$usersRow =  mysqli_fetch_assoc($result3);
 				$name = $usersRow['first_name'] . ' ' . $usersRow['last_name'];
-			else{
+			} else{
 				response($name,$uid,$checkedIn,$oxsat,$heartrate,$BP,$temp,403);
 			}
-			} else{
-				response("Not Found",$uid,$checkedIn,$oxsat,$heartrate,$BP,$temp,0);
-			}
+		} else{
+			response("Not Found",$uid,$checkedIn,$oxsat,$heartrate,$BP,$temp,0);
+		}
 		} else{
 			response("Not Found","Not Found","Not Found",$oxsat,$heartrate,$BP,$temp,403);
 		}
-	} else {
-		response("Not Found","Not Found","Not Found","Not Found","Not Found","Not Found","Not Found",404);
-	}
-}else{
+} else{
 	response("Invalid Request","Invalid Request","Invalid Request","Invalid Request","Invalid Request","Invalid Request","Invalid Request",400);
 	}
 
