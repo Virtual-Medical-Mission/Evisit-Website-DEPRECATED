@@ -15,7 +15,7 @@ if (isset($_GET['vitals'])) {
     	$temp = $vitalsRow['temp'];
 		$sql2 = "SELECT * FROM appointments WHERE vid = ' " . $vid . "'";
 		$result2 =  mysqli_query($evisit_db,$sql2);
-		if(mysqli_num_rows($resul2)>0){
+		if(mysqli_num_rows($result2)>0){
 			// getting appointment associated with latest vitals
 			$appsRow = mysqli_fetch_assoc($result2);
 			$uid = $appsRow['uid'];
@@ -23,7 +23,7 @@ if (isset($_GET['vitals'])) {
 			// getting user with latest appointment
 			$sql3 = "SELECT * FROM users WHERE id = ' " . $uid . "'";
 			$result3 =  mysqli_query($evisit_db,$sql3);
-			if(mysqli_num_rows($resul3)>0) {
+			if(mysqli_num_rows($result3)>0) {
 				$usersRow =  mysqli_fetch_assoc($result3);
 				$name = $usersRow['first_name'] . ' ' . $usersRow['last_name'];
 				response($name,$uid,$checkedIn,$oxsat,$heartrate,$BP,$temp,0);
