@@ -2,7 +2,7 @@
 require_once '../private/init.php';
 global $evisit_db;
 header("Content-Type:application/json");
-if (isset($_GET['vitals']) && $_GET['vitals'] == "1") {
+if (isset($_GET['vitals']) && $_GET['vitals'] != "") {
 	// getting latest vitals
 	$sql = "SELECT * FROM vitals ORDER BY ID DESC LIMIT 1"; 
 	$result = mysqli_query($evisit_db, $sql);
