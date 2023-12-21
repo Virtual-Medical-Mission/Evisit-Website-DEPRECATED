@@ -102,7 +102,7 @@ if (($appointmentRow['vid'] !== '-1') && ($appointmentRow['vid'] !== null ) ) {
                         const yValues = [<?php echo $EKG?>];
                         var xValues = [];
                         xValues.push(0);
-                        for(let i = 1; i < yValues.length; i += 1){
+                        for(let i = 1; i < (yValues.length-1); i += 1){
                             xValues.push(parseFloat(xValues[i-1]+0.03).toPrecision(2));
                         }
                         new Chart(document.getElementById("ekgGraph"), {
