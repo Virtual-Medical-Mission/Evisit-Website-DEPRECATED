@@ -1,26 +1,20 @@
 <?php
 require_once '../private/init.php';
-global $evisit_db;
-
-//Gets the appointment ID from the URL
 $appviewing = $_GET['apid'];
-
-//Gets the appointment data row from the database
-$sql = "SELECT * FROM appointments WHERE id = ' " . $appviewing . "'";
+debug_to_console($appviewing);
+$sql = "SELECT * FROM appointments WHERE id = ' " . $appviewing . " ' ";
 $result = mysqli_query($evisit_db, $sql);
 $appointmentRow = mysqli_fetch_assoc($result);
-
-//Gets the user data row from the database
+debug_to_console($appointmentRow['uid']);
 $sql2 = "SELECT * FROM users WHERE id = ' " . $appointmentRow['uid'] . " ' ";
 $result2 = mysqli_query($evisit_db, $sql2);
 $userRow = mysqli_fetch_assoc($result2);
-
-//Gets the users questionnaire responses from the database
+debug_to_console($userRow['first_name']);
 $sql3 = "SELECT * FROM embedded_responses WHERE apid = ' " . $appviewing . " ' ";
 $result3 = mysqli_query($evisit_db, $sql3);
-
-//Checks if the user has vitals data
+debug_to_console($appointmentRow['vid']);
 if (($appointmentRow['vid'] !== '-1') && ($appointmentRow['vid'] !== null ) ) {
+    debug_to_console("seraching for vitals");
     $sql4 = "SELECT * FROM vitals WHERE id = ' " . $appointmentRow['vid'] . " ' ";
     $result4 = mysqli_query($evisit_db, $sql4);
     $vitalsRow = mysqli_fetch_assoc($result4);
@@ -28,12 +22,18 @@ if (($appointmentRow['vid'] !== '-1') && ($appointmentRow['vid'] !== null ) ) {
     $heartrate = $vitalsRow['heartrate'];
     $BP = $vitalsRow['BP'];
     $temp = $vitalsRow['temp'];
+    $EKG = $vitalsRow['EKG'];
 } else {
     $oxsat = "not found";
     $heartrate = "not found";
     $BP = "not found";
     $temp = "not found";
+    $EKG = "";
 }
+//while($reponsesRow = mysqli_fetch_assoc($result3)) :
+  //  debug_to_console($reponsesRow['question']);
+  //  debug_to_console($reponsesRow['response']);
+//endwhile;
 ?>
 
 
@@ -45,6 +45,7 @@ if (($appointmentRow['vid'] !== '-1') && ($appointmentRow['vid'] !== null ) ) {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <title><?php echo $userRow['first_name']. "'s Appointment "  ?></title>
 </head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 <body>
 <div class="container mt-4">
     <div class="row">
@@ -95,6 +96,37 @@ if (($appointmentRow['vid'] !== '-1') && ($appointmentRow['vid'] !== null ) ) {
                     <th> Temp </th>
                     <td> <?php echo $temp ?> </td>
                 </tr>
+                </table>
+                    <canvas id="ekgGraph" width="300" height="100" style="border:1px solid #000000;"></canvas>
+                    <script>
+                        const yValues = [<?php echo $EKG?>];
+                        var xValues = [];
+                        xValues.push(0);
+                        for(let i = 1; i < yValues.length; i += 1){
+                            xValues.push(parseFloat(xValues[i-1]+0.03).toPrecision(2));
+                        }
+                        new Chart(document.getElementById("ekgGraph"), {
+                            type: "line",
+                            data: {
+                                labels: xValues,
+                                datasets: [{
+                                    fill: false,
+                                    lineTension: 0,
+                                    backgroundColor: "rgba(0,0,255,1.0)",
+                                    borderColor: "rgba(0,0,255,0.1)",
+                                    data: yValues
+                                }]
+                            },
+                            options: {
+                                legend: {display: false},
+                                scales: {
+                                    yAxes: [{ ticks: {display: false}}],
+                                    //xAxes: [{ ticks: {display: false}}]
+                                }
+                            }
+                            });
+                    </script> 
+                <table class="table table-bordered">   
                 <tr>
                     <th> <FONT COLOR="RED">Responses</FONT> </th>
                     <td> </td>
@@ -110,6 +142,6 @@ if (($appointmentRow['vid'] !== '-1') && ($appointmentRow['vid'] !== null ) ) {
     </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script // src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
