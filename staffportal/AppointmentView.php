@@ -1,20 +1,20 @@
 <?php
 require_once '../private/init.php';
 $appviewing = $_GET['apid'];
-debug_to_console($appviewing);
+//debug_to_console($appviewing);
 $sql = "SELECT * FROM appointments WHERE id = ' " . $appviewing . " ' ";
 $result = mysqli_query($evisit_db, $sql);
 $appointmentRow = mysqli_fetch_assoc($result);
-debug_to_console($appointmentRow['uid']);
+//debug_to_console($appointmentRow['uid']);
 $sql2 = "SELECT * FROM users WHERE id = ' " . $appointmentRow['uid'] . " ' ";
 $result2 = mysqli_query($evisit_db, $sql2);
 $userRow = mysqli_fetch_assoc($result2);
-debug_to_console($userRow['first_name']);
+//debug_to_console($userRow['first_name']);
 $sql3 = "SELECT * FROM embedded_responses WHERE apid = ' " . $appviewing . " ' ";
 $result3 = mysqli_query($evisit_db, $sql3);
-debug_to_console($appointmentRow['vid']);
+//debug_to_console($appointmentRow['vid']);
 if (($appointmentRow['vid'] !== '-1') && ($appointmentRow['vid'] !== null ) ) {
-    debug_to_console("seraching for vitals");
+    //debug_to_console("seraching for vitals");
     $sql4 = "SELECT * FROM vitals WHERE id = ' " . $appointmentRow['vid'] . " ' ";
     $result4 = mysqli_query($evisit_db, $sql4);
     $vitalsRow = mysqli_fetch_assoc($result4);
@@ -112,8 +112,8 @@ if (($appointmentRow['vid'] !== '-1') && ($appointmentRow['vid'] !== null ) ) {
                                 datasets: [{
                                     fill: false,
                                     lineTension: 0,
-                                    backgroundColor: "rgba(0,0,255,1.0)",
-                                    borderColor: "rgba(0,0,255,0.1)",
+                                    backgroundColor: "rgba(63,237,5,1.0)",
+                                    borderColor: "rgba(63,237,5,1.0)",
                                     data: yValues
                                 }]
                             },
