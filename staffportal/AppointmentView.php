@@ -97,35 +97,47 @@ if (($appointmentRow['vid'] !== '-1') && ($appointmentRow['vid'] !== null ) ) {
                     <td> <?php echo $temp ?> </td>
                 </tr>
                 </table>
-                    <canvas id="ekgGraph" width="300" height="100" style="border:1px solid #000000;"></canvas>
-                    <script>
-                        const yValues = [<?php echo $EKG?>];
-                        var xValues = [];
-                        xValues.push(0);
-                        for(let i = 1; i < (yValues.length-1); i += 1){
-                            xValues.push(parseFloat(xValues[i-1]+0.03).toPrecision(2));
-                        }
-                        new Chart(document.getElementById("ekgGraph"), {
-                            type: "line",
-                            data: {
-                                labels: xValues,
-                                datasets: [{
-                                    fill: false,
-                                    lineTension: 0,
-                                    backgroundColor: "rgba(63,237,5,1.0)",
-                                    borderColor: "rgba(63,237,5,1.0)",
-                                    data: yValues
-                                }]
-                            },
-                            options: {
-                                legend: {display: false},
-                                scales: {
-                                    yAxes: [{ ticks: {display: false}}],
-                                    //xAxes: [{ ticks: {display: false}}]
-                                }
+                <canvas id="ekgGraph" width="300" height="100" style="border:1px solid #000000;"></canvas>
+                <script>
+                    var yValues = [<?php echo $EKG?>];
+                    yValues.pop();
+                    const max = Math.max(...yValues);
+                    const min = Math.min(...yValues);
+                    var xValues = [];
+                    xValues.push(0);
+                    for(let i = 1; i < (yValues.length); i += 1){
+                        xValues.push(parseFloat(parseFloat(xValues[i-1])+parseFloat(0.012)));
+                    }
+                    for(let i = 1; i < (yValues.length); i += 1){
+                        xValues[i] =parseFloat(xValues[i]).toPrecision(2);
+                    }
+                    new Chart(document.getElementById("ekgGraph"), {
+                        type: "line",
+                        data: {
+                            labels: xValues,
+                            datasets: [{
+                                fill: false,
+                                lineTension: 0,
+                                backgroundColor: "rgba(63,237,5,1.0)",
+                                borderColor: "rgba(63,237,5,1.0)",
+                                data: yValues
+                            }]
+                        },
+                        options: {
+                            legend: {display: false},
+                            scales: {
+                                yAxes: [{ 
+                                    ticks: {
+                                        display: false,
+                                        max: max,
+                                        min: min
+                                    }
+                                }],
+                                //xAxes: [{ ticks: {display: false}}]
                             }
-                            });
-                    </script> 
+                        }
+                    });
+                </script> 
                 <table class="table table-bordered">   
                 <tr>
                     <th> <FONT COLOR="RED">Responses</FONT> </th>
