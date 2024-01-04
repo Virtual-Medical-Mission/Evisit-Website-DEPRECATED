@@ -40,8 +40,16 @@ function patient_destroy($user_data) : void {
 
 }
 
+//requires a login for main pages
 function require_login($redirect_url) : void {
     if(!isset($_SESSION['username'])) {
+        redirect_to($redirect_url);
+    }
+}
+
+//used for staffportal pages, requires a login and a staff role
+function require_staffrole($redirect_url) : void {
+    if($_SESSION['role'] !== 'staff') {
         redirect_to($redirect_url);
     }
 }
