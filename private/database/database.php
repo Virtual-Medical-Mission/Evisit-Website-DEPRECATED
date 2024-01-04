@@ -9,7 +9,7 @@ function db_connect()
 {
     $conn = mysqli_init();
     mysqli_ssl_set($conn, NULL, NULL, private_path . '\cert\DigiCertGlobalRootCA.crt.pem' , NULL, NULL);
-    $connection = mysqli_real_connect($conn, DB_SERVER, DB_USER, DB_PASSWORD, DB_NAME, 3306, MYSQLI_CLIENT_SSL, MYSQLI_CLIENT_SSL_DONT_VERIFY_SERVER_CERT);
+    $connection = mysqli_real_connect($conn, getenv('DB_SERVER'), getenv('DB_USER'), getenv('DB_PASSWORD'), getenv('DB_NAME'), 3306, MYSQLI_CLIENT_SSL, MYSQLI_CLIENT_SSL_DONT_VERIFY_SERVER_CERT);
     confirm_db_connect();
     return $conn;
 }
