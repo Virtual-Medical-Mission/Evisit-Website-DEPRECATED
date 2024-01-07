@@ -1,0 +1,4 @@
+SetEnv DB_USER  "evisitdbadmin"
+SetEnv DB_PASSWORD  "TelemedDB123$"
+SetEnv DB_NAME  "evisit"
+SetEnv DB_SERVER  "evisit-db.mysql.database.azure.com"
