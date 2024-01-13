@@ -1,21 +1,13 @@
 <?php
 require_once '../private/init.php';
 global $evisit_db;
-if(isset($_GET['pid'])){
-    $pid = $_GET['pid'];
-    $sql = "SELECT * FROM pain ORDER BY ID DESC LIMIT 1";
-    $result = mysqli_query($evisit_db, $sql);
-    $painRow = mysqli_fetch_assoc($result);
-    $painX = $painRow['painX'];
-    $painY = $painRow['painY'];
-    $level = $painRow['level'];
-    $internal = $painRow['internal'];
-} else {
-    $painX = "";
-    $painY = "";
-    $level = "";
-    $internal = "";
-}
+$sql = "SELECT * FROM pain ORDER BY ID DESC LIMIT 1";
+$result = mysqli_query($evisit_db, $sql);
+$painRow = mysqli_fetch_assoc($result);
+$painX = $painRow['painX'];
+$painY = $painRow['painY'];
+$level = $painRow['level'];
+$internal = $painRow['internal'];
 ?>
 <style>
     canvas {
