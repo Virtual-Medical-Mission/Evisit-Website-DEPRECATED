@@ -222,7 +222,7 @@ if (is_post_request()) {
             </div>
 
             <div class="text-center fs-4 pb-3">
-                <a href="login.php" class="text-light">Already have an account? Login</a>
+                <a href="index.php" class="text-light">Already have an account? Login</a>
             </div>
         </div>
         </form>
