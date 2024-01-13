@@ -24,7 +24,7 @@ function register_user($user_data): array
     $result = mysqli_query($evisit_db, $sql);
     confirm_result_set($result);
     $user_id = mysqli_insert_id($evisit_db);
-    start_appointment($user_data, 'register', $user_id, $evisit_db);
+    set_current_user($user_data, 'register', $user_id, $evisit_db);
 
     return $errors;
 
@@ -47,7 +47,7 @@ function login_user($user_login): bool
 
     if($fetched_data) {
         if(password_verify($user_login['password'], $fetched_data['password'])) {
-            start_appointment($fetched_data, 'login', $fetched_data['id'], $evisit_db);
+            set_current_user($fetched_data, 'login', $fetched_data['id'], $evisit_db);
             return true;
         }
     }

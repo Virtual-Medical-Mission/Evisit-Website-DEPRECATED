@@ -2,8 +2,10 @@
 require_once "../private/init.php";
 
 global $evisit_db;
-
-$sql = "SELECT * FROM appointments ORDER BY id DESC";
+if(!isset($_SESSION['loggedin'])) {
+    redirect_to('../index.php');
+}
+$sql = "SELECT * FROM appointments WHERE uid = '" .$_SESSION['uid'] . "' ORDER BY id DESC";
 $result = mysqli_query($evisit_db, $sql);
 confirm_result_set($result);
 
@@ -22,7 +24,7 @@ confirm_result_set($result);
     <div class="container mt-4">
         <div class="row">
             <div class="col-md-12">
-                <h1 class="text-center">Hello Dr. Ayush Moghe</h1>
+                <h1 class="text-center">Hello <?php echo $_SESSION['first_name']; ?></h1>
             </div>
         </div>
         <div class="row">
@@ -32,7 +34,6 @@ confirm_result_set($result);
                     <thead>
                         <tr>
                             <th>Appointment ID</th>
-                            <th>Patient Name</th>
                             <th>Appointment Start Time</th>
                         </tr>
                     </thead>
@@ -44,13 +45,11 @@ confirm_result_set($result);
                                 $sql2 = "SELECT * FROM users WHERE id = " . $row['uid'];
                                 $result2 = mysqli_query($evisit_db, $sql2);
                                 confirm_result_set($result2);
-                                $urow = mysqli_fetch_assoc($result2);
-                                $name = $urow['first_name'] . " " .  $urow['last_name'];                                
+                                $username = mysqli_fetch_assoc($result2)['username'];
                             ?>
 
                             <tr>
-                                <td><a href= <?php echo ("AppointmentView.php?apid=" . $row['id']) ?>?><?php echo $row['id']; ?></a></td>
-                                <td><?php echo $name; ?></td>
+                                <td><a href= <?php echo ("viewappoitment.php?apid=" . $row['id']) ?>?><?php echo $row['id']; ?></a></td>
                                 <td><?php echo $row['checkedin']; ?></td>
                             </tr>
 

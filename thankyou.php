@@ -1,9 +1,21 @@
+<?php 
+require_once 'private/init.php';
+
+if(is_post_request()){
+if($_POST['action'] == "logout"){
+	unset($_SESSION['loggedin']);
+	patient_destroy();
+	redirect_to('index.php');
+}
+}
+?>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title></title>
+	<title>thank you</title>
 	<link href='https://fonts.googleapis.com/css?family=Lato:300,400|Montserrat:700' rel='stylesheet' type='text/css'>
 	<style>
 		@import url(//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.min.css);
@@ -22,5 +34,8 @@
 		<i class="fa fa-check main-content__checkmark" id="checkmark"></i>
 		<p class="main-content__body" data-lead-id="main-content-body">You should have the results of your appointment in a few days please feel better.</p>
 	</div>
+	<form action="thankyou.php" method="post">
+        <button type="submit" name="action" value="logout" >Click to Log Out</button>
+    </form> 
 </body>
 </html>

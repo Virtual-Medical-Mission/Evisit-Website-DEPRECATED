@@ -1,7 +1,7 @@
 <?php
 
 //stores patient user data in the session storage and starts an appointment
-function start_appointment($user_data, $action, $uid, $db) : void {
+function set_current_user($user_data, $action, $uid, $db) : void {
     session_regenerate_id();
     $_SESSION['uid'] = $uid;
     $_SESSION['first_name'] = $user_data['first_name'];
@@ -14,7 +14,9 @@ function start_appointment($user_data, $action, $uid, $db) : void {
         $_SESSION['DOB'] = $user_data['DOB'];
     }
     $_SESSION['role'] = 'patient';
+}
 
+function start_appointment($uid, $db) : void {
     $sql = "INSERT INTO appointments (uid, vid, checkedin, checkedout, doctor, ip) VALUES (";
     $sql .= "'" . db_escape($db, $uid) . "', ";
     $sql .= "'" . -1 . "', ";
@@ -29,13 +31,14 @@ function start_appointment($user_data, $action, $uid, $db) : void {
 }
 
 //deletes patient user data from the session storage
-function patient_destroy($user_data) : void {
+function patient_destroy() : void {
     unset($_SESSION['first_name']);
     unset($_SESSION['last_name']);
     unset($_SESSION['username']);
     unset($_SESSION['gender']);
     unset($_SESSION['DOB']);
     unset($_SESSION['role']);
+    unset($_SESSION['apid']);
     session_destroy();
 
 }
