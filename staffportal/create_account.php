@@ -219,6 +219,13 @@ if( is_post_request() ) {
 
     </form>
 </div>
+<?php } else{ ?>
+
+<h1 class="text-center mt-5">Your request for a staff account is pending!</h1>
+
+
+
+
 <?php } ?>
 <?php include '../private/temps/footer.temp.php'?>
 
