@@ -32,6 +32,30 @@ function register_user($user_data): array
 
 }
 
+//For doctor registration system
+function doctor_register($user_data) {
+    global $evisit_db;
+    $errors = validate_registration($user_data);
+    if($errors['present']) {
+        return $errors;
+    }
+    $hashed_password = password_hash($user_data['password'], PASSWORD_BCRYPT);
+    $DOB = $user_data['year'] . '-' . $user_data['month'] . '-' . $user_data['day'];
+    $sql = "INSERT INTO users (first_name, last_name, role, username, gender, DOB, password) VALUES (";
+    $sql .= "'" . db_escape($evisit_db, $user_data['first_name']) . "',";
+    $sql .= "'" . db_escape($evisit_db, $user_data['last_name']) . "',";
+    $sql .= "'" . 'pending_doctor' . "',";
+    $sql .= "'" . db_escape($evisit_db, $user_data['username']) . "',";
+    $sql .= "'" . db_escape($evisit_db, $user_data['gender']) . "',";
+    $sql .= "'" . db_escape($evisit_db, $DOB) . "',";
+    $sql .= "'" . db_escape($evisit_db, $hashed_password) . "'";
+    $sql .= ")";
+    $result = mysqli_query($evisit_db, $sql);
+    confirm_result_set($result);
+
+    return $errors;
+}
+
 //Checks if a user logs in to a username with the correct password and then sets the session variables for auth purposes
 function login_user($user_login): bool
 {
