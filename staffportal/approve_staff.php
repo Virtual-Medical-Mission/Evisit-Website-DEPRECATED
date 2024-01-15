@@ -3,7 +3,7 @@ require_once "../private/init.php";
 
 global $evisit_db;
 
-require_staffrole('create_account.php');
+
 
 $sql = "SELECT * FROM users WHERE role='pending_doctor' ORDER BY id DESC";
 $result = mysqli_query($evisit_db, $sql);

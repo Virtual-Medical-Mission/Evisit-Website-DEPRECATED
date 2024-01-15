@@ -81,6 +81,26 @@ function login_user($user_login): bool
 
 }
 
+function login_staff($staff_login) {
+    global $evisit_db;
+
+    $sql = "SELECT * FROM users WHERE username='";
+    $sql .= db_escape($evisit_db, $staff_login['username']) . "'";
+    $result = mysqli_query($evisit_db, $sql);
+    confirm_result_set($result);
+    $fetched_data = mysqli_fetch_assoc($result);
+    mysqli_free_result($result);
+
+    if($fetched_data) {
+        if(password_verify($staff_login['password'], $fetched_data['password']) and $fetched_data['role'] == 'staff') {
+            set_current_staff($fetched_data, 'login', $fetched_data['id'], $evisit_db);
+            return true;
+        }
+    }
+
+    return false;
+}
+
 //Submits all the HPI data into the database and destroys the HPI session storage
 function submit_hpi($hpi_data): void
 {

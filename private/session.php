@@ -16,6 +16,23 @@ function set_current_user($user_data, $action, $uid, $db) : void {
     $_SESSION['role'] = 'patient';
 }
 
+//sets a staff user's session variables
+function set_current_staff($user_data, $action, $uid, $db) : void {
+    session_regenerate_id();
+    $_SESSION['uid'] = $uid;
+    $_SESSION['first_name'] = $user_data['first_name'];
+    $_SESSION['last_name'] = $user_data['last_name'];
+    $_SESSION['username'] = $user_data['username'];
+    $_SESSION['gender'] = $user_data['gender'];
+    if($action == 'register') {
+        $_SESSION['DOB'] = $user_data['year'] . '-' . $user_data['month'] . '-' . $user_data['day'];
+    } elseif($action == 'login') {
+        $_SESSION['DOB'] = $user_data['DOB'];
+    }
+    $_SESSION['role'] = 'staff';
+}
+
+
 function start_appointment($uid, $db) : void {
     $sql = "INSERT INTO appointments (uid, vid, checkedin, checkedout, doctor, ip) VALUES (";
     $sql .= "'" . db_escape($db, $uid) . "', ";

@@ -7,7 +7,7 @@ $sql = "SELECT * FROM appointments ORDER BY id DESC";
 $result = mysqli_query($evisit_db, $sql);
 confirm_result_set($result);
 
-
+var_dump($_SESSION['role']);
 ?>
 
 <!DOCTYPE html>
