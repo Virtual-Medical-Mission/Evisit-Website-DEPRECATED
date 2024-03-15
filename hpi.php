@@ -59,8 +59,7 @@ $hpi = new Questionnaire('hpi', [
         [
             new Select('How often do you smoke?', '1', 'Never,Occasionally,Daily', "SELECT_DEFAULT"),
             new Select('How often do you drink alcohol?', '2', 'Never,Occasionally,Daily', "SELECT_DEFAULT"),
-            new Select('How often do you use recreational drugs?', '3', 'Never,Occasionally,Daily', "SELECT_DEFAULT"),
-            new TextBox('Do you engage in physical activities? If so, please list them:', '4', 'TEXTBOX_DEFAULT'),
+            new Select('How often do you use street drugs?', '3', 'Never,Occasionally,Daily', "SELECT_DEFAULT"),
             new TextBox('Do you have any family history of disease? If so, please list them:', '5', 'TEXTBOX_DEFAULT')
 
         ]
