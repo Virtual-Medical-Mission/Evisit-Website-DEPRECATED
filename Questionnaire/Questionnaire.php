@@ -165,9 +165,26 @@ class Questionnaire
                     confirm_result_set($result);
                 }
             }
+            $sql = 'INSERT INTO embedded_responses (questionnaire, question, uid, response, apid) VALUES(';
+            $sql.= "'" . $this->name . "', ";
+            $sql.= "'Diagnosis', ";
+            $sql.= "'" . $_SESSION['uid'] . "', ";
+            $sql.= "'" . $_SESSION[$this->name]['Dx'] . "', ";
+            $sql.= "'" . $_SESSION['apid'] . "')";
+            $result = mysqli_query($this->db, $sql);
+            confirm_result_set($result);
+
+            $sql = 'INSERT INTO embedded_responses (questionnaire, question, uid, response, apid) VALUES(';
+            $sql.= "'" . $this->name . "', ";
+            $sql.= "'Treatment', ";
+            $sql.= "'" . $_SESSION['uid'] . "', ";
+            $sql.= "'" . $_SESSION[$this->name]['Tx'] . "', ";
+            $sql.= "'" . $_SESSION['apid'] . "')";
+            $result = mysqli_query($this->db, $sql);
+            confirm_result_set($result);
         }
         $_SESSION[$this->unlock] = 'Unlocked';
-        redirect_to($this->next);
+        redirect_to($this->next .'?Dx='.$_SESSION[$this->name]['Dx']  .'&Tx=' .$_SESSION[$this->name]['Tx']   );
     }
 
     //Main Construct function ran every time HTTP REQUEST is made

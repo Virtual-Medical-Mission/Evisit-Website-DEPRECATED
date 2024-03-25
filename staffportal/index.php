@@ -1,66 +1,85 @@
 <?php
-require_once "../private/init.php";
 
-global $evisit_db;
+require_once '../private/init.php';
+$error = false;
+if(is_post_request()) {
 
-$sql = "SELECT * FROM appointments ORDER BY id DESC LIMIT 20";
-$result = mysqli_query($evisit_db, $sql);
-confirm_result_set($result);
+    $login_result = login_staff($_POST);
+    if($login_result) {
+        $_SESSION['loggedin'] = 'true';
+        //$_SESSION['hpi_ready'] = 'true';
+        redirect_to('appointments.php');
+    } else {
+        $error = true;
+    }
 
-var_dump($_SESSION['role']);
+}
 ?>
 
-<!DOCTYPE html>
+
+
+
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <title>Doctor's View</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/private/assets/css/style.css" />
+    <link rel="stylesheet" href="/private/assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/private/assets/css/bs-theme-overrides.css" />
+    <link rel="stylesheet" href="/private/assets/fonts/font-awesome.min.css" />
+    <link rel="stylesheet" href="/private/assets/css/Footer-with-social-media-icons.css" />
+    <title>Register</title>
 </head>
 <body>
-    <div class="container mt-4">
-        <div class="row">
-            <div class="col-md-12">
-                <h1 class="text-center">Hello Dr. Ayush Moghe</h1>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <h1 class="text-center">Appointments</h1>
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Appointment ID</th>
-                            <th>Patient Name</th>
-                            <th>Appointment Start Time</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php while($row = mysqli_fetch_assoc($result)): ?>
 
-                            <?php
-                                //Gets the username of the patient for the appointment
-                                $sql2 = "SELECT * FROM users WHERE id = " . $row['uid'];
-                                $result2 = mysqli_query($evisit_db, $sql2);
-                                confirm_result_set($result2);
-                                $urow = mysqli_fetch_assoc($result2);
-                                $name = $urow['first_name'] . " " .  $urow['last_name'];                                
-                            ?>
-
-                            <tr>
-                                <td><a href= <?php echo ("AppointmentView.php?apid=" . $row['id']) ?>?><?php echo $row['id']; ?></a></td>
-                                <td><?php echo $name; ?></td>
-                                <td><?php echo $row['checkedin']; ?></td>
-                            </tr>
-
-                        <?php endwhile; ?>
-                    </tbody>
-                </table>
-            </div>
+<nav class="navbar navbar-dark navbar-expand-md sticky-top" style="background: linear-gradient(#05445e, #05445e), #05445e">
+    <div class="container-fluid">
+        <div class="navbar-brand text-center mx-auto">
+            <img src="private/assets/img/logo_tr.png" class="nav-logo" width="25%" height="25%" alt="Logo" />
         </div>
     </div>
+</nav>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<div class="container-fluid mt-5">
+    <form action="index.php" method="POST" class="ps-5 pe-5 mt-3" style="margin: auto; background-color: #05445e; border-radius: 20px;">
+        <div class="fs-2 mt-5 text-light text-center">Login</div>
+
+        <div>
+            <label class="form-label mt-2 text-light" for="username">Username</label>
+            <div class="input-group input-group-lg">
+                <span class="input-group-text" id="inputGroup-sizing-lg"><i class="bi bi-person-badge"></i></span>
+                <input type="text" class="form-control form-control-lg" id="username" name="username" placeholder="Enter username">
+            </div>
+
+        </div>
+
+        <div>
+            <label class="form-label mt-2 text-light" for="password">Password</label>
+            <div class="input-group input-group-lg">
+                <span class="input-group-text" id="inputGroup-sizing-lg"><i class="bi bi-asterisk"></i></span>
+                <input  type="password" class="form-control form-control-lg" id="password" name="password" placeholder="Enter password">
+            </div>
+
+
+        </div>
+
+        <?php if($error) { ?>
+            <div class="p fs-5 text-danger">Invalid Login</div>
+        <?php } ?>
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-lg mt-3 mb-3" style="background-color: antiquewhite">Login</button>
+        </div>
+
+        <div class="text-center fs-4 pb-3">
+            <a href="create_account.php" class="text-light">Don't have an account? Register</a>
+        </div>
+
+    </form>
+</div>
+
+<?php include '../private/temps/footer.temp.php'?>
+
+
 </body>
 </html>

@@ -1,6 +1,10 @@
 <?php
+
 require_once '../private/init.php';
+redirect_to("../index.php");
 global $evisit_db;
+
+
 
 $sql = "SELECT * FROM hpi";
 $result = mysqli_query($evisit_db, $sql);

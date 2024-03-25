@@ -32,7 +32,27 @@ if($_POST['action'] == "logout"){
 
 	<div class="main-content">
 		<i class="fa fa-check main-content__checkmark" id="checkmark"></i>
-		<p class="main-content__body" data-lead-id="main-content-body">You should have the results of your appointment in a few days please feel better.</p>
+        <?php
+        if(is_get_request()){
+            if(isset($_GET['Dx'])){
+                $tx = '';
+                if(isset($_GET['Tx'])){
+                    $tx = $_GET['Tx'];
+                } else {
+                    $tx = "Unknown";
+                }
+                echo '<p class="main-content__body" data-lead-id="main-content-body">' . 'You have ' .$_GET['Dx'] . ' </p>';
+                echo '<p class="main-content__body" data-lead-id="main-content-body">' . 'The Treatment is ' . $tx . ' </p>';
+                echo '<p class="main-content__body" data-lead-id="main-content-body"> </p>';
+            } else {
+                echo '<p class="main-content__body" data-lead-id="main-content-body"> You should have the results of your appointment in a few days please feel better.</p>';
+            }
+        } else {
+            echo '<p class="main-content__body" data-lead-id="main-content-body"> You should have the results of your appointment in a few days please feel better.</p>';
+        }
+        ?>
+
+        <!-- <p class="main-content__body" data-lead-id="main-content-body"> You should have the results of your appointment in a few days please feel better.</p> -->
 	</div>
 	<form action="thankyou.php" method="post">
         <button type="submit" name="action" value="logout" >Click to Log Out</button>

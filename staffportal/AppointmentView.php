@@ -1,5 +1,6 @@
 <?php
 require_once '../private/init.php';
+global $evisit_db;
 $appviewing = $_GET['apid'];
 //debug_to_console($appviewing);
 $sql = "SELECT * FROM appointments WHERE id = ' " . $appviewing . " ' ";
@@ -96,10 +97,12 @@ if (($appointmentRow['vid'] !== '-1') && ($appointmentRow['vid'] !== null ) ) {
                     <th> Temp </th>
                     <td> <?php echo $temp ?> </td>
                 </tr>
-                </table>
-                <canvas id="ekgGraph" width="300" height="100" style="border:1px solid #000000;"></canvas>
-                <script>
-                    var yValues = [<?php echo $EKG?>];
+                <?php if($EKG !=  "") {
+                    echo ' </table> ';
+                    echo '<canvas id="ekgGraph" width="300" height="100" style="border:1px solid #000000;"></canvas>' ;
+                    echo '<script>' ;
+                    echo 'var yValues = [' . $EKG . '];' ;
+                    echo <<< EOD
                     yValues.pop();
                     const max = Math.max(...yValues);
                     const min = Math.min(...yValues);
@@ -138,7 +141,8 @@ if (($appointmentRow['vid'] !== '-1') && ($appointmentRow['vid'] !== null ) ) {
                         }
                     });
                 </script> 
-                <table class="table table-bordered">   
+                <table class="table table-bordered">  
+                EOD;} ?>
                 <tr>
                     <th> <FONT COLOR="RED">Responses</FONT> </th>
                     <td> </td>

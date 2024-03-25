@@ -3,7 +3,9 @@ require_once "../private/init.php";
 
 global $evisit_db;
 
-
+if(!($_SESSION['role'] == 'staff' && $_SESSION['loggedin'] == 'true')){
+    redirect_to('index.php');
+}
 
 $sql = "SELECT * FROM users WHERE role='pending_doctor' ORDER BY id DESC";
 $result = mysqli_query($evisit_db, $sql);

@@ -1,5 +1,6 @@
 <?php
 require_once '../private/init.php';
+redirect_to("../index.php");
 global $evisit_db;
 
 $sql = "SELECT * FROM embedded_responses";
