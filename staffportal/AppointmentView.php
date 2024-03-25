@@ -1,6 +1,11 @@
 <?php
 require_once '../private/init.php';
 global $evisit_db;
+
+if(!($_SESSION['role'] == 'staff' && $_SESSION['loggedin'] == 'true')){
+    redirect_to('index.php');
+}
+
 $appviewing = $_GET['apid'];
 //debug_to_console($appviewing);
 $sql = "SELECT * FROM appointments WHERE id = ' " . $appviewing . " ' ";
@@ -31,6 +36,20 @@ if (($appointmentRow['vid'] !== '-1') && ($appointmentRow['vid'] !== null ) ) {
     $temp = "not found";
     $EKG = "";
 }
+$diagnosis = "";
+$sql5 = "SELECT * FROM embedded_responses WHERE apid = ' " . $appviewing . " ' " . " AND question = 'Diagnosis'";
+$result5 = mysqli_query($evisit_db, $sql5);
+if($result5){
+    $diagnosisRow=  mysqli_fetch_assoc($result5);
+    $diagnosis = $diagnosisRow['response'];
+}
+$treatment = "";
+$sql6 = "SELECT * FROM embedded_responses WHERE apid = ' " . $appviewing . " ' " . " AND question = 'Treatment'";
+$result6 = mysqli_query($evisit_db, $sql6);
+if($result6){
+    $treatmentRow=  mysqli_fetch_assoc($result6);
+    $treatment = $treatmentRow['response'];
+}
 //while($reponsesRow = mysqli_fetch_assoc($result3)) :
   //  debug_to_console($reponsesRow['question']);
   //  debug_to_console($reponsesRow['response']);
@@ -51,7 +70,7 @@ if (($appointmentRow['vid'] !== '-1') && ($appointmentRow['vid'] !== null ) ) {
 <div class="container mt-4">
     <div class="row">
         <div class="col-md-12">
-            <h1 class="text-center">Hello Dr.</h1>
+            <h1 class="text-center">Hello Dr. <?php  echo  $_SESSION['first_name'] . ' ' .$_SESSION['last_name']?></h1>
         </div>
     </div>
     <div class="row">
@@ -76,7 +95,25 @@ if (($appointmentRow['vid'] !== '-1') && ($appointmentRow['vid'] !== null ) ) {
                 <tr>
                     <th>DoB</th>
                     <td><?php echo $userRow['DOB'] ?></td>
-                </tr
+                </tr>
+                <?php if($diagnosis != ""){
+                echo  <<< EOD
+                <tr>
+                    <th> <FONT COLOR="RED">Diagnosis and Treatment</FONT> </th>
+                    <td> </td>
+                </tr>
+                <tr>
+                    <th> Diagnosis </th>
+                EOD;
+                echo    "<td> ". $diagnosis ." </td>" ;
+                echo "</tr>" ;
+                if($treatment != ""){
+                    echo "<tr>";
+                    echo "<th> Treatment </th>";
+                    echo "<td> ". $treatment ." </td>" ;
+                    echo "</tr>" ;
+                }
+                }?>
                 <tr>
                     <th> <FONT COLOR="RED">Vitals</FONT> </th>
                     <td> </td>
